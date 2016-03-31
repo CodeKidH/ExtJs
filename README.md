@@ -39,18 +39,18 @@
     Ext.Loader.setConfig({
         enabled: true,
         paths: {
-            'ext6': '/app'  // #1
+            'ext6': '/app'  // Class file of ext6's app  is located in app folder
         }
     });
     Ext.require([
-        'ext6.view.chapter1.HelloWorld' // #2
+        'ext6.view.chapter1.HelloWorld' // Class which we need is loaded
     ]);
 
-    Ext.onReady(function () {   // #3
-        Ext.create('ext6.view.chapter1.HelloWorld', {   // #4
-            renderTo: document.body,    // #5
-            width: '100%', // #6
-            height: 150,    // #7
+    Ext.onReady(function () {   // Ext.onReady is scope of executing, It will help to start a js
+        Ext.create('ext6.view.chapter1.HelloWorld', {   //It will be instance to start
+            renderTo: document.body,    // for browser
+            width: '100%',  // UI class's width
+            height: 150,    // UI class's height
             bodyPadding: 5
         });
 
@@ -65,11 +65,11 @@
 * HelloWorld.js
 
 ~~~javascript
-Ext.define('ext6.view.chapter1.HelloWorld', {   // #1
-    extend: 'Ext.panel.Panel',  // #2
-    alias: 'widget.chapter1-helloworld',    // #3
-    title: 'Hello World',   // #5
-    html: '안녕하세요 ExtJS5를 같이 배워요!!'  // #6
+Ext.define('ext6.view.chapter1.HelloWorld', {   // Define a class [app's name.package name.class name]
+    extend: 'Ext.panel.Panel',  
+    alias: 'widget.chapter1-helloworld',    
+    title: 'Hello World',   
+    html: '안녕하세요 ExtJS5를 같이 배워요!!' 
 });
 
 ~~~
