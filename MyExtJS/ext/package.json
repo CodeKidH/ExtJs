@@ -1,0 +1,68 @@
+{
+  "name": "ext",
+  "format": "1",
+  "version": "6.0.0.640",
+  "compatVersion": "6.0.0",
+  "creator": "Sencha",
+  "summary": "Ext JS",
+  "detailedDescription": "Sencha Ext JS JavaScript Framework",
+  "type": "framework",
+  "signatures": [
+    {
+      "name": "Sencha",
+      "uuid": "e93ebd09-85f5-46b6-bfc1-c7f06cf0b8a5",
+      "created": "2015-06-30T20:59:16Z",
+      "algorithm": "SHA1withRSA",
+      "nonce": "GkhHr4A0Q68\u003d",
+      "signature": "tLWGjeIjMJ7Qv9G0nlxwYN/p6GXQ7Xvz1HBMinzKMj7uG7L74Yd6QVLesK1XANQlFoMn+N3/swjSuoY/YFl/rQ1ed2Ph0jMurjgC9xRgheIP7OgXK9hIQDNdfsgANHBXPo7B/m3VE7bJ57E2lkEHEOBf4Z+T/MPgf3aWor8ut8n0H0YNjM0JVnlqzXSISwXVveW5jABO2qhFMSZ3P32xPuSTQ6Rb8XZzvkdjG8lQdB4Oxa+G4S8sCyUwc8oW03OxzsswlyNX6J0Q7k5WepAC9Og9NlPGnzpmENOpe+ofOyxBhbnqyDxo1hsQL6Nlp+xl8h/6xVNpoIxqN88TePECm1qU9qdNasT2wvBY0Os2eihW6Uc9VGzxPl39kUiSidzylsPXdrOyhJHeQbtka99FnWI7S2TR6WD4hsWHo4gTvneL/3oZAi8IivIwE7kCYnSsAh5bfbRkDdPdO5Xyp4gGd3Gak/PSGuSODAhV9v9xgOjI0Sg/YOSEANo5ZmGkja5cmiN6nHzY73Th6HjCJUm3sVe3TVwPegn6dlFJlpfzYkG0QgmCXALg6Qdrbt08YavJBdMKGxGxoaiV0EvpSwt51m8lqYFBwI+t0gh5DoYwQYDS/nWcaghnAn+GKhY5aG0zNo5i6XnsuEgQTFYNpsxrmR43CkzivdbpC47loOfV0Rk\u003d"
+    }
+  ],
+  "resources": [
+    "resources"
+  ],
+  "output": "${package.dir}/build",
+  "build": {
+    "dir": "${package.output.base}"
+  },
+  "sass": {
+    "fashion": true,
+    "namespace": "Ext",
+    "etc": "${package.dir}/sass/etc/all.scss",
+    "var": "${package.dir}/sass/var",
+    "src": "${package.dir}/sass/src"
+  },
+  "classpath": "${package.dir}/src",
+  "overrides": "${package.dir}/overrides",
+  "example": {
+    "path": [
+      "examples",
+      "templates"
+    ],
+    "apps": [
+      "admin-dashboard",
+      "executive-dashboard",
+      "kitchensink",
+      "classic/charts-kitchensink",
+      "classic/desktop",
+      "classic/ticket-app",
+      "classic/portal",
+      "classic/simple-tasks",
+      "classic/responsive-app",
+      "classic/aria",
+      "modern/addressbook",
+      "modern/energy",
+      "modern/stockapp",
+      "modern/states",
+      "modern/geocongress",
+      "modern/oreilly"
+    ]
+  },
+  "subpkgs": [
+    "classic/classic",
+    "modern/modern",
+    "packages/charts",
+    "packages/amf",
+    "packages/soap",
+    "packages/ux"
+  ]
+}
