@@ -79,8 +79,8 @@ Ext.define('ext6.view.chapter1.HelloWorld', {   // Define a class [app's name.pa
 * DefineClass.js
 
 ~~~javascript
-Ext.define('ext6.view.chapter2.DefineClass',{
-   extend:'Ext.panel.Panel',
+Ext.define('ext6.view.chapter2.DefineClass',{ 
+   extend:'Ext.panel.Panel',                  
     alias: 'widget.chapter2-defineclass',
     initComponent:function(){                
         var me = this;
@@ -99,6 +99,10 @@ Ext.define('ext6.view.chapter2.DefineClass',{
     }
 });
 ~~~
+
+  - Ext.define : Define a class
+  - extend : Define a extend class, There are a lot of class so you choose one of them
+  - 
 
 2_DefineClass.html
 
@@ -119,18 +123,18 @@ Ext.define('ext6.view.chapter2.DefineClass',{
     Ext.Loader.setConfig({
         enabled: true,
         paths: {
-            'ext6': '/app'  // #1
+            'ext6': '/app'  
         }
     });
     Ext.require([
-        'ext6.view.chapter2.DefineClass' // #2
+        'ext6.view.chapter2.DefineClass' 
     ]);
 
-    Ext.onReady(function () {   // #3
-        Ext.create('ext6.view.chapter2.DefineClass', {   // #4
-            renderTo: document.body,    // #5
-            width: '100%', // #6
-            height: 150,    // #7
+    Ext.onReady(function () {  
+        Ext.create('ext6.view.chapter2.DefineClass', {   
+            renderTo: document.body,   
+            width: '100%', 
+            height: 150,    
             bodyPadding: 5
         });
 
