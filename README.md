@@ -100,9 +100,22 @@ Ext.define('ext6.view.chapter2.DefineClass',{
 });
 ~~~
 
-  - Ext.define : Define a class
-  - extend : Define a extend class, There are a lot of class so you choose one of them
-  - 
+  - Ext.define 
+        Define a class
+
+  - extend  
+        Define a extend class, There are a lot of class so you choose one of them
+
+
+  - alias 
+        Call it widget, alias -> widget.chapter2-defineclass , xtype -> chpater2-defineclass
+
+
+  - initComponent
+        Define a expanded class, It must contain a me.callParent(arguments)
+
+  
+  
 
 2_DefineClass.html
 
