@@ -112,6 +112,26 @@ Ext.define('ext6.view.chapter2.DefineClass',{
 
   - initComponent
       Define a expanded class, It must contain a me.callParent(arguments)
+
+  - Ext.apply(me,{})
+      me : Object that is added, me = DefineClass has a expanded Panel class
+      {} : Object that will add
+      
+      Me(this or DefineClass) will add a {}
+
+  - me.on('render',function(component))
+      Define a EventListener
+      
+      me.on = DefineClass will add a EventListener
+
+      1. me : EventLister's target
+      2. on : target will be added
+      3. render : Kind of event, for rendering
+      4. function : Execute it after render event occur 
+  
+  - items
+      items add a children in a Container class
+      
 ~~~  
 
 * 2_DefineClass.html
