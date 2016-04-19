@@ -73,3 +73,72 @@ Ext.define('ext6.view.chapter1.HelloWorld', {   // Define a class [app's name.pa
 });
 
 ~~~
+
+# 3. Define and Create Class
+
+* DefineClass.js
+
+~~~javascript
+Ext.define('ext6.view.chapter2.DefineClass',{
+   extend:'Ext.panel.Panel',
+    alias: 'widget.chapter2-defineclass',
+    initComponent:function(){                
+        var me = this;
+        Ext.apply(me,{
+           title: 'Hello',
+            items: [{
+                xtype : 'button',
+                text:'Click me'
+            }]
+        });
+
+        me.callParent(arguments);
+        me.on('render',function(component){
+           console.log('On will be started when class is rendered on the browser ');
+        });
+    }
+});
+~~~
+
+2_DefineClass.html
+
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+      
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext6': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext6.view.chapter2.DefineClass' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        Ext.create('ext6.view.chapter2.DefineClass', {   // #4
+            renderTo: document.body,    // #5
+            width: '100%', // #6
+            height: 150,    // #7
+            bodyPadding: 5
+        });
+
+
+    })
+
+</script>
+</body>
+</html>
+
+~~~
