@@ -184,7 +184,9 @@ Ext.define('ext6.view.chapter2.DefineClass',{
     If I set up a config option in class, Class system provide three methods (getter, setter, apply) for me
     so I can pass a value to class 
     
-    - ClassConfig.js
+    
+    
+  - ClassConfig.js
     
     ~~~javascript
     Ext.define('ext5.view.chapter2.ClassConfig', {
