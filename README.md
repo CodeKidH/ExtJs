@@ -272,9 +272,9 @@ Ext.define('ext6.view.chapter2.DefineClass',{
       ]);
       Ext.onReady(function () {
           var myWindow = Ext.create('ext5.view.chapter2.ClassConfig', {
-              subject: '안녕하세요 ^^',      // #1
+              subject: '안녕하세요 ^^',      // Create a class and set a subject config
               renderTo: document.body,
-              bottomBar: {    // #2
+              bottomBar: {    // set a bottom config and pass a value 60 
                   height: 60
               }
           });
