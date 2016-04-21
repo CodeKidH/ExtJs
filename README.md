@@ -176,3 +176,115 @@ Ext.define('ext6.view.chapter2.DefineClass',{
 </html>
 
 ~~~
+
+# 4. Config
+  
+    Config
+    
+    If I set up a config option in class, Class system provide three methods (getter, setter, apply) for me
+    so I can pass a value to class 
+    
+    - ClassConfig.js
+    
+    ~~~javascript
+    Ext.define('ext5.view.chapter2.ClassConfig', {
+    extend: 'Ext.panel.Panel',
+    xtype: 'chapter2-classconfig',
+    title : 'ClassConfig',
+    config: {   // #1
+        subject: 'Subject Here',    // #2
+
+        bottomBar: {    // #3
+            height: 50,
+            width: 200
+        }
+    },
+
+    applySubject: function (subject) {  // #4
+        if (!Ext.isString(subject) || subject.length === 0) {
+            console.log('제목은 반드시 입력해야 합니다.');
+        }
+        else {
+            return subject;
+        }
+    },
+
+    applyBottomBar: function (bottomBar) {  // #5
+        if (bottomBar) {    // #6
+            if (!this.bottomBar) {  // #7
+                return Ext.create('MyInnerClass', bottomBar);
+            }
+            else {
+                this.bottomBar.setConfig(bottomBar);    // #8
+            }
+        }
+    }
+    });
+    Ext.define('MyInnerClass', {    // #9
+        config: {
+            height: undefined,
+            width: 100
+        }
+    });
+    ~~~
+    
+    ~~~java
+      - config
+        Define a class config
+        
+      - subject 
+        Define a subject config
+      
+      - bottomBar
+        Define a object type config
+      
+      - applySubject
+        To set up a subject config
+      
+      - applyBottom 
+        To set up a bottom config
+      
+      
+    ~~~
+    
+  - ClassConfig.html
+  - 
+  ~~~html
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>4_ClassConfig</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+  </head>
+  <body>
+  <script type="text/javascript">
+      Ext.Loader.setConfig({
+          enabled: true,
+          paths: {
+              'ext5': '/app'
+          }
+      });
+      Ext.require([
+          'ext5.view.chapter2.ClassConfig'
+      ]);
+      Ext.onReady(function () {
+          var myWindow = Ext.create('ext5.view.chapter2.ClassConfig', {
+              subject: '안녕하세요 ^^',      // #1
+              renderTo: document.body,
+              bottomBar: {    // #2
+                  height: 60
+              }
+          });
+          console.log(myWindow.getSubject()); // #3
+          myWindow.setSubject('반갑습니다.^^');  // #4
+          console.log(myWindow.getSubject()); // #5
+          myWindow.setSubject(null); // #6
+          myWindow.setBottomBar({ height: 100 }); // #7
+          console.log(myWindow.getBottomBar().getHeight()); // #8
+      })
+
+  </script>
+  </body>
+  </html>
+  ~~~
