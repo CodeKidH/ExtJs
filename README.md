@@ -290,3 +290,31 @@ Ext.define('ext6.view.chapter2.DefineClass',{
   </body>
   </html>
   ~~~
+  
+  # 5. Static
+  
+      All class is suppose to has a static method and varible
+      
+      If we access a static, we don't need to make a instance
+      
+  
+  * ClassStatic.js
+  
+  ~~~javascript
+  Ext.define('ext5.view.chapter2.ClassStatic',{
+     extend : 'Ext.panel.Panel',
+      xtype : 'chapter2-classstatic',
+      config:{
+          studentName: null
+      },
+      static :{
+          studentCount :0,
+          student: function(studentName){
+              return new this({
+                  studentName : studentName,
+                  studentCount : this.studentCount++
+              });
+          }
+      }
+  });
+  ~~~
