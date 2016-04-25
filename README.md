@@ -372,7 +372,7 @@ Ext.define('ext6.view.chapter2.DefineClass',{
 
 ~~~html
 <script type="text/javascript" src=".../...app/view/chapter2/RequireClass.js></script>
-<script type="text/javascript" src=".../...app/view/chapter2/RequireClass.js></script>
+<script type="text/javascript" src=".../...app/view/chapter2/DynamicPanel.js></script>
 .
 .
 .
