@@ -362,3 +362,101 @@ Ext.define('ext6.view.chapter2.DefineClass',{
 </html>
 
   ~~~
+  
+  #6. Dynamic Class loading
+  
+      Dynamic class loading has been used on flexible development environment
+      It's not for faster development
+      
+* Javscript in HTML
+
+~~~html
+<script type="text/javascript" src=".../...app/view/chapter2/RequireClass.js></script>
+<script type="text/javascript" src=".../...app/view/chapter2/RequireClass.js></script>
+.
+.
+.
+  If we have a ton of script source, It will be impossible to arrange these source
+~~~
+
+* Require
+
+~~~javascript
+  Ext.require([
+    'ext5.view.chapter2.DynamicPanel'
+  ]);
+~~~
+
+* 6_DynamicClassLoading.html
+~~~html
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>4_ClassConfig</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter2.DynamicPanel'
+    ]);
+    Ext.onReady(function () {
+        Ext.create('ext5.view.chapter2.DynamicPanel', {
+            title : 'Hello',
+            renderTo : document.body
+
+        });
+    })
+
+</script>
+</body>
+</html>
+~~~
+
+* RequireClass.js
+~~~javascript
+
+Ext.define('ext5.view.chapter2.RequireClass',{
+   extend:'Ext.panel.Panel',
+    xtype:'chapter2-requireclass',
+    title:'Class that was loaded dynamically'
+});
+~~~
+
+* DynamicPanel.js
+
+~~~javascript
+Ext.define('ext5.view.chapter2.DynamicPanel',{
+   extend: 'Ext.panel.Panel',
+    requires:['ext5.view.chapter2.RequireClass'],  #1
+    xtype:'chapter2-dynamicloading',
+    title:'DynamicPanel',
+    otherContent:[{
+        xtype: 'dynamic loading class',
+        path:'app/view/chapter2/RequireClass.js'
+    }],
+
+    items:[{
+        xtype:'chapter2-requireclass' #2
+    }]
+});
+~~~
+
+~~~java
+  #1.requires
+    - Define a class that will be used through dynamic class loading
+  
+  #2.widget name
+    - If #1 will be removed, #2 will not work
+    
+    alias : 'widget.chapter2-requireclass
+    xtype: 'chapter2-requireclass'
+~~~
+
