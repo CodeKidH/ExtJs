@@ -170,4 +170,5 @@ Ext.define('ext5.view.chapter3.AbsoluteLayout',{
   anchor:'80% 80%'
     - panel2 size was changed by increasing proportionally to parent's size
 ~~~
-
+	![Absoulte]
+	(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/absoluteLayout.png)
