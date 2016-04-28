@@ -102,7 +102,7 @@ Ext.define('ext5.view.chapter3.FlexConfig',{
       - To decide a height of child (100)
 ~~~
 
-#. Absolute layout
+# 2. Absolute layout
 
     Absolute
       - It use a x,y coordinate
@@ -174,7 +174,7 @@ Ext.define('ext5.view.chapter3.AbsoluteLayout',{
 ![Absoulte]
 (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/absoluteLayout.png)
 
-# Fit
+# 3. Fit
 
     Fit layout has only one child
     and Child use parent whole size
