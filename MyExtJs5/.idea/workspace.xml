@@ -21,100 +21,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="0_FlexConfig.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/chapter3/0_FlexConfig.html">
+      <file leaf-file-name="4_AnchorLayout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/chapter3/4_AnchorLayout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="28" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="242">
+              <caret line="13" column="17" selection-start-line="9" selection-start-column="0" selection-end-line="32" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FlexConfig.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/chapter3/FlexConfig.js">
+      <file leaf-file-name="AnchorLayout.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/chapter3/AnchorLayout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            <state relative-caret-position="253">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="5_ColumnLayout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/chapter3/5_ColumnLayout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ColumnLayout.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/view/chapter3/ColumnLayout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
               <folding>
                 <element signature="e#0#50#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1_AbsoluteLayout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/chapter3/1_AbsoluteLayout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="25" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbsoluteLayout.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/chapter3/AbsoluteLayout.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#50#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2_FitLayout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/chapter3/2_FitLayout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FitLayout.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/chapter3/FitLayout.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#50#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="3_BorderLayout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/chapter3/3_BorderLayout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BorderLayout.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/view/chapter3/BorderLayout.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#50#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="6_DynamicClassLoading.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/chapter2/6_DynamicClassLoading.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -147,6 +91,10 @@
         <option value="$PROJECT_DIR$/app/view/chapter3/FitLayout.js" />
         <option value="$PROJECT_DIR$/example/chapter3/3_BorderLayout.html" />
         <option value="$PROJECT_DIR$/app/view/chapter3/BorderLayout.js" />
+        <option value="$PROJECT_DIR$/example/chapter3/4_AnchorLayout.html" />
+        <option value="$PROJECT_DIR$/app/view/chapter3/AnchorLayout.js" />
+        <option value="$PROJECT_DIR$/example/chapter3/5_ColumnLayout.html" />
+        <option value="$PROJECT_DIR$/app/view/chapter3/ColumnLayout.js" />
       </list>
     </option>
   </component>
@@ -156,10 +104,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="219" />
-    <option name="y" value="99" />
+    <option name="x" value="272" />
+    <option name="y" value="105" />
     <option name="width" value="1529" />
-    <option name="height" value="780" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -186,7 +134,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -307,7 +255,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,15 +268,16 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter3" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\images" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\app\view\chapter3" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\app\view\chapter2" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter2" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Sencha\workspace\MyExtJs5\images" />
       <recent name="C:\Sencha\workspace\MyExtJs5\example" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Sencha\workspace\MyExtJs5\images" />
-      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter3" />
-      <recent name="C:\Sencha\workspace\MyExtJs5\app\view\chapter2" />
-      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter2" />
     </key>
   </component>
   <component name="RunManager">
@@ -405,15 +354,16 @@
       <workItem from="1461545592865" duration="2563000" />
       <workItem from="1461638744794" duration="2236000" />
       <workItem from="1461720232955" duration="1667000" />
-      <workItem from="1461806832583" duration="4996000" />
+      <workItem from="1461806832583" duration="5604000" />
+      <workItem from="1461891706063" duration="3043000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18164000" />
+    <option name="totallyTimeSpent" value="21815000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="219" y="99" width="1529" height="780" extended-state="0" />
+    <frame x="272" y="105" width="1529" height="778" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22009254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -450,6 +400,42 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/view/chapter3/FitLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/chapter3/3_BorderLayout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter3/BorderLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/chapter2/6_DynamicClassLoading.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/example/chapter3/0_FlexConfig.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -749,7 +735,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example/chapter3/2_FitLayout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
+        <state relative-caret-position="207">
           <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
           <folding />
         </state>
@@ -765,6 +751,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter3/BorderLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/example/chapter3/3_BorderLayout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -773,10 +769,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/chapter3/BorderLayout.js">
+    <entry file="file://$PROJECT_DIR$/example/chapter3/4_AnchorLayout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+        <state relative-caret-position="242">
+          <caret line="13" column="17" selection-start-line="9" selection-start-column="0" selection-end-line="32" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter3/AnchorLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/chapter3/5_ColumnLayout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter3/ColumnLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
           <folding>
             <element signature="e#0#50#0" expanded="false" />
           </folding>
