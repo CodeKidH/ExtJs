@@ -479,4 +479,84 @@ Ext.define('ext5.view.chapter3.ColumnLayout',{
 ~~~
 
 ![Columnlayout]
-(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/columnlayout_1.png) 
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/columnlayout.png) 
+
+
+# 7. Table Layout
+
+    TableLayout likes a html table tag
+      - Use a tr, td, colspan, rowspan
+
+  * tableLayout.html
+  ~~~html
+  <body>
+<script type="text/javascript">
+ Ext.Loader.setConfig({
+  enabled: true,
+  paths: {
+   'ext5': '/app'
+  }
+ });
+ Ext.require([
+  'ext5.view.chapter3.TableLayout'
+ ]);
+ Ext.onReady(function () {
+  Ext.create('ext5.view.chapter3.TableLayout', {
+   renderTo : document.body
+  });
+ })
+
+</script>
+  ~~~
+  
+  * tableLayout.js
+  ~~~javascript
+  /**
+ * Created by Administrator on 2016-04-29.
+ */
+Ext.define('ext5.view.chapter3.TableLayout',{
+    alias:'widget.chapter3-tablelayout',
+    extend:'Ext.panel.Panel',
+     title:'table layout',
+    width: 500,
+    height: 300,
+    layout:{
+        type : 'table',
+        columns : 4
+    },
+    items:[{
+        height : 100,
+        html :'header<br/>Colspan:4, rowspan:1',
+        colspan:4
+    },{
+        width:100,
+        height:200,
+        html:'menu<br/>colsapne:2,rowspan:1',
+        rowspan:2
+    },{
+        width:300,
+        height:100,
+        html:'content above<br/>colspan:2, rowspan:1',
+        colspan:2
+    },{
+        width:100,
+        height:200,
+        html:'rightside<br/>colspan:1, rowspan:2',
+       rowspan:2
+    },{
+        html:'contentdown1<br/><br/>colspan:1,rowspan:1',
+        height:100,
+        width:150
+    },{
+        html:'contentdown2<br/><br/>colspan:1, rowspan:1',
+        height:100,
+        width:150
+    }]
+
+  });
+  ~~~
+  
+![tablelayout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/tablelayout_1.png) 
+  
+  
