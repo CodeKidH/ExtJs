@@ -380,6 +380,51 @@ Ext.define('ext5.view.chapter3.AnchorLayout',{
     - Child object was fixed by using %
 ~~~
 
+![Anchorlayout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/anchorlayout.png)  
+
 #### 5_2. offset
 
+* AnchorLayout.html
 
+~~~html
+<script type="text/javascript">
+ Ext.Loader.setConfig({
+  enabled: true,
+  paths: {
+   'ext5': '/app'
+  }
+ });
+ Ext.require([
+  'ext5.view.chapter3.AnchorLayout'
+ ]);
+ Ext.onReady(function () {
+  Ext.create('ext5.view.chapter3.AnchorLayout', {
+   renderTo : document.body,
+   items:[{
+     xtype:'panel',
+    title:'Offset',
+    html:'With is size of parent(300px) - 50px <br> Height is size of parent(300px)-100px',
+    anchor : '-50 -100'
+   }]
+
+  });
+ })
+
+</script>
+~~~
+
+* AnchorLayout.js
+~~~javascript
+Ext.define('ext5.view.chapter3.AnchorLayout',{
+   alias : 'widget.chapter3-anchorlayout',
+    extend: 'Ext.panel.Panel',
+    width:300,
+    height:300,
+    title:'Parents Anchor Layout',
+    layout:'anchor'
+
+});
+~~~
+![Anchorlayout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/anchorlayout_1.png) 
