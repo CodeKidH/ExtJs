@@ -428,3 +428,55 @@ Ext.define('ext5.view.chapter3.AnchorLayout',{
 ~~~
 ![Anchorlayout]
 (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/anchorlayout_1.png) 
+
+# 6.ColumnLayout
+
+* columnLayout.html
+~~~html
+<script type="text/javascript">
+ Ext.Loader.setConfig({
+  enabled: true,
+  paths: {
+   'ext5': '/app'
+  }
+ });
+ Ext.require([
+  'ext5.view.chapter3.ColumnLayout'
+ ]);
+ Ext.onReady(function () {
+  Ext.create('ext5.view.chapter3.ColumnLayout', {
+   renderTo : document.body
+  });
+ })
+
+</script>
+~~~
+
+* columnlayout.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-04-29.
+ */
+Ext.define('ext5.view.chapter3.ColumnLayout',{
+   alias : 'widget.chapter3-columnlayout',
+    extend:'Ext.panel.Panel',
+    title:'ColumnLayout',
+    width:400,
+    height:250,
+    layout : 'column',
+    items:[{
+        title:'column1',
+        width:120
+    },{
+        title:'column2',
+        columnWidth:0.7
+    },{
+        title:'column3',
+        columnWidth:0.3
+    }]
+
+});
+~~~
+
+![Columnlayout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/columnlayout_1.png) 
