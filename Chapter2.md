@@ -328,3 +328,58 @@ Ext.define('ext5.view.chapter3.BorderLayout',{
 
 ![Borderlayout]
 (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/borderlayout.png)  
+
+# 5. AnchorLayout
+      Anchor size increase with parent's size
+      There are two ways to config anchor layout size, % or offset
+      
+
+* AnchorLayout.html
+~~~html
+<script type="text/javascript">
+ Ext.Loader.setConfig({
+  enabled: true,
+  paths: {
+   'ext5': '/app'
+  }
+ });
+ Ext.require([
+  'ext5.view.chapter3.AnchorLayout'
+ ]);
+ Ext.onReady(function () {
+  Ext.create('ext5.view.chapter3.AnchorLayout', {
+   renderTo : document.body
+
+  });
+ })
+
+</script>
+~~~
+#### 5_1. %
+
+* AnchorLayout.js
+~~~javascript
+Ext.define('ext5.view.chapter3.AnchorLayout',{
+   alias : 'widget.chapter3-anchorlayout',
+    extend: 'Ext.panel.Panel',
+    width:300,
+    height:300,
+    title:'Parents Anchor Layout',
+    layout:'anchor',
+    items:[{
+        xtype:'panel',
+        title:'Use a parents size through %',
+        html:'Width is size of parent(300px)* 75%<br>height is size of parent(300px)* 50%',
+        anchor : '75% 50%'
+    }]
+});
+~~~
+
+~~~java
+  anchor : '75% 50%'
+    - Child object was fixed by using %
+~~~
+
+#### 5_2. offset
+
+
