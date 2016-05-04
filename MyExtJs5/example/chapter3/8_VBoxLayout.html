@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>6_TableLayout</title>
+ <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+ Ext.Loader.setConfig({
+  enabled: true,
+  paths: {
+   'ext5': '/app'
+  }
+ });
+ Ext.require([
+  'ext5.view.chapter3.VBoxLayout'
+ ]);
+ Ext.onReady(function () {
+  Ext.create('ext5.view.chapter3.VBoxLayout', {
+   renderTo : document.body
+  });
+ })
+
+</script>
+</body>
+</html>
