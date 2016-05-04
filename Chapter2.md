@@ -556,7 +556,8 @@ Ext.define('ext5.view.chapter3.TableLayout',{
   });
   ~~~
   
+
 ![tablelayout]
-(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/tablelayout_1.png) 
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/tablelayout.png) 
   
   
