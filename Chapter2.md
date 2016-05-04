@@ -699,3 +699,250 @@ Ext.define('ext5.view.chapter3.TableLayout',{
   
   ![Vboxlayout]
 (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/vboxlayout.png) 
+
+
+# 9. CardLayout
+
+    CardLayout is gonna show us a Component one by one like a revolving door
+    
+
+  * CardLayout.html
+  ~~~html
+  <script type="text/javascript">
+      Ext.Loader.setConfig({
+          enabled: true,
+          paths: {
+              'ext5': '/app'
+          }
+      });
+      Ext.require([
+          'ext5.view.chapter3.CardLayout'
+      ]);
+  
+      Ext.onReady(function () {
+          Ext.create('ext5.view.chapter3.CardLayout', {
+              renderTo : document.body
+          });
+  
+      })
+  
+  </script>
+  ~~~
+
+  * CardChild1.js
+  ~~~javascript
+  Ext.define('ext5.view.chapter3.CardChild1', {
+      extend : 'Ext.panel.Panel',
+      xtype: 'chapter3-cardchild1',
+      id: 'card1',                   // #1
+      bodyPadding: 5,
+      width: 300,
+      title: '첫번째 패널(id: card1)',
+      items: [
+          {
+              xtype: 'datefield',
+              fieldLabel: 'Start date'
+          },
+          {
+              xtype: 'datefield',
+              fieldLabel: 'End date'
+          }
+      ],
+      listeners: {
+          render: function () {   // #2
+              console.log('card1이 렌더링 되었습니다.')
+          }
+      }
+  });
+  ~~~
+  ~~~java
+    id
+      - It will be used to search for class
+    
+    listener
+      - When this class will be on the broswer, Console work 
+  ~~~
+
+  ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/cardchild1.png)
+
+  * Cardchild2.js
+  ~~~javascript
+  Ext.define('ext5.view.chapter3.CardChild2', {
+      extend : 'Ext.container.Container',
+      xtype: 'chapter3-cardchild2',
+      id: 'card2',
+      border: 1,
+      html: '두 번째 컨테이너(id: card2)',
+      listeners: {
+          render: function () {
+              console.log('card2이 렌더링 됐습니다.')
+          }
+      }
+  });
+  ~~~
+  ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/cardchild2.png)
+  * Cardchild3.js
+  ~~~javascript
+  Ext.define('ext5.view.chapter3.CardChild3', {
+    extend : 'Ext.grid.Panel',
+    xtype: 'chapter3-cardchild3',
+    bodyStyle: 'padding: 20px',
+    id: 'card3',
+    title: '세 번째 그리드 패널(id: card3)',
+    store: '',
+    columns: [
+        {
+            text: '게시글번호 ',
+            width: 80,
+            dataIndex: 'brd_seq',
+            field: {
+                allowBlank: false
+            }
+        },
+        {
+            text: '제목',
+            flex: 1,
+            dataIndex: 'brd_title',
+            field: {
+                allowBlank: false
+            }
+        },
+        {
+            text: '입력자',
+            width: 70,
+            dataIndex: 'brd_input_user_nm',
+            field: {
+                allowBlank: false
+            }
+        }
+    ],
+    listeners: {
+        render: function () {
+            console.log('card3이 렌더링 되었습니다.')
+        }
+    }
+  });
+
+  ~~~
+  ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/cardchild3.png)
+  * CardLayout.js(Parent)
+  ~~~javascript
+  Ext.define('ext5.view.chapter3.CardLayout', {
+    alias: 'widget.chapter3-cardlayout',
+    extend: 'Ext.panel.Panel',
+    requires: [
+        'Ext.form.field.Date',
+        'Ext.layout.container.Card',
+        'ext5.view.chapter3.CardChild1',
+        'ext5.view.chapter3.CardChild2',
+        'ext5.view.chapter3.CardChild3'
+    ],
+    title: 'Card Layout',
+    width: 350,
+    height: 150,
+    layout: {
+        type: 'card',        // #1
+        deferredRender: true
+    },
+
+    initComponent: function () {
+        var me = this;
+        Ext.apply(me, {
+            bbar: ['->', { // #2
+                xtype: 'button',    // #3
+                text: '이전',
+                handler: function (btn) {   // #4
+                    var layout = btn.up('panel').getLayout();   // #5
+
+                    if (layout.getPrev()) {     // #6
+                        layout.prev();          // #7
+                        me.cardInfo();        // #8
+                    }
+                }
+            }, {
+                xtype: 'button',
+                text: '다음',
+                handler: function (btn) {
+                    var layout = btn.up('panel').getLayout();
+
+                    if (layout.getNext()) { // #9
+                        layout.next();      // #10
+                        me.cardInfo();      // #11
+                    }
+                }
+            }],
+            items: [    // #12
+                {
+                    xtype: 'chapter3-cardchild1'
+                },
+                {
+                    xtype: 'chapter3-cardchild2'
+                },
+                {
+                    xtype: 'chapter3-cardchild3'
+                }
+            ],
+            listeners: {
+                render: {   // #13
+                    fn: this.cardInfo,
+                    scope: this
+                }
+            }
+        });
+        me.callParent(arguments);
+    },
+
+    cardCheck: function (domId) {   // #14
+        var checkValue = Ext.Object.isEmpty(document.getElementById(domId));
+        return domId + '는 ' + (checkValue ? '존재하지 않습니다.' : '존재합니다.') + '전체 Dom 크기는 :' + document.getElementsByTagName("*").length + '입니다.';
+    },
+
+    cardInfo: function () { // #15
+        var me = this,
+            task = new Ext.util.DelayedTask(function () {
+                console.log(me.cardCheck('card1'))
+                console.log(me.cardCheck('card2'))
+                console.log(me.cardCheck('card3'))
+            });
+        task.delay(500);
+    }
+  });
+
+  ~~~
+  ~~~java
+    bbar 
+      - This is a toolbar
+      
+    handler: function (btn)
+      - Handler will work When The button is clicked
+      
+    var layout = btn.up('panel').getLayout();
+      - btn.up('panel') : To find a parent class
+      - getLayout() : return card layout object
+    
+    if (layout.getPrev()) {
+      - Check a child component that can be changed 
+    
+    layout.prev();  
+      - card will be changed
+      
+    me.cardInfo();
+      - As soon as card is changed, cardInfo print a data
+      
+     items: [    // #12
+                {
+                    xtype: 'chapter3-cardchild1'
+                },
+                {
+                    xtype: 'chapter3-cardchild2'
+                },
+                {
+                    xtype: 'chapter3-cardchild3'
+                }
+            ],
+            
+      - To add child components
+  ~~~
