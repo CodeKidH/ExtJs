@@ -556,7 +556,146 @@ Ext.define('ext5.view.chapter3.TableLayout',{
   });
   ~~~
   
+
 ![tablelayout]
-(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/tablelayout_1.png) 
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/tablelayout.png) 
   
   
+# 7. HBoxLayout
+
+    Components will be arranged horizontally
+  
+  * 7_HBoxLayout.html
+  ~~~html
+  <script type="text/javascript">
+   Ext.Loader.setConfig({
+    enabled: true,
+    paths: {
+     'ext5': '/app'
+    }
+   });
+   Ext.require([
+    'ext5.view.chapter3.HBoxLayout'
+   ]);
+   Ext.onReady(function () {
+    Ext.create('ext5.view.chapter3.HBoxLayout', {
+     renderTo : document.body
+    });
+   })
+  
+  </script>
+  ~~~
+
+  * HBoxLayout.js
+  ~~~javascript
+  Ext.define('ext5.view.chapter3.HBoxLayout',{
+     alias : 'widget.chapter3-hboxlayout',
+      extend:'Ext.panel.Panel',
+      title : 'Hbox Layout',
+      height:300,
+      layout:{
+          type:'hbox',
+          padding:10
+      },
+      items:[{
+          xtype:'panel',
+          title:'firstPanel',
+          html:'width 100px <br> height 200px',
+          height : 200,
+          width :100
+      },{
+          xtype:'panel',
+          title:'second panel',
+          html:'width variable <br> height 100px',
+          height :100,
+          flex:1
+      },{
+          xtype:'panel',
+          title:'third panel',
+          html:'width 100px <br> height150px',
+          width :100,
+          height: 150
+      }]
+  });
+  ~~~
+  
+![Hboxlayout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/hboxlayout_1.png)  
+
+  ~~~java
+    align : 
+      - Parent component can handle child's height by using align
+  ~~~
+  
+  * align
+  ~~~javascript
+  layout:{
+        type:'hbox',
+        align : 'stretchmax', // 'stretch'
+        padding:10
+    },
+
+  // When we use a stretch, child's height will be same parent's height 
+  ~~~
+  
+# 8. VBoxLayout
+  
+* VBoxlayout.html
+  ~~~html
+  <script type="text/javascript">
+   Ext.Loader.setConfig({
+    enabled: true,
+    paths: {
+     'ext5': '/app'
+    }
+   });
+   Ext.require([
+    'ext5.view.chapter3.VBoxLayout'
+   ]);
+   Ext.onReady(function () {
+    Ext.create('ext5.view.chapter3.VBoxLayout', {
+     renderTo : document.body
+    });
+   })
+  
+  </script>
+  ~~~
+
+* VBoxlayout.js
+
+  ~~~javascript
+  Ext.define('ext5.view.chapter3.VBoxLayout',{
+     alias : 'widget.chapter3-vboxlayout',
+      extend:'Ext.panel.Panel',
+      title:'Vbox layout',
+      width:300,
+      height:300,
+      layout:{
+          type:'vbox',
+          align : 'stretchmax',
+          padding : 10
+      },
+      items:[{
+          xtype:'panel',
+          title:'first panel',
+          html:'width 150px <br> height 70px',
+          height : 70,
+          width : 150
+      },{
+          xtype:'panel',
+          title:'second panel',
+          width:100,
+          html:'width 100 <br> height variable',
+          flex: 1
+      },{
+          xtype:'panel',
+          title:'third panel',
+          html:'width 200px <br> height 100',
+          width:200,
+          height: 100
+      }]
+  });
+  ~~~
+  
+  ![Vboxlayout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/vboxlayout.png) 
