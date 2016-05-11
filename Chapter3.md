@@ -262,7 +262,7 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep1',{
 
 * View
  ![child1layout]
-(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/customer.png)
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/custom.png)
 
 ~~~java
     Tab is little strange because ExtJs CSS  conflict with User CSS
