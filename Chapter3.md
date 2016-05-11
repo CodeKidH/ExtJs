@@ -170,3 +170,17 @@
     
  ![child1layout]
 (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/domhelper.png)
+
+~~~java
+    I have a same result view
+    
+    1. Ext.dom.Helper.append('myDiv'
+        - Use a append(), so myDiv add to second parameter
+    
+    2. tag:'div'
+        - Children Div
+    
+    3. cls: 'tab_bg'
+        - Define a class
+    
+~~~
