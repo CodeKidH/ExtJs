@@ -82,3 +82,84 @@
 </body>
 </html>
 ~~~
+
+## 1. Ext.dom.Helper class
+
+        Ext.dom.Helper class can help us make the dom elements
+    
+    
+    * 1_DomHelper.html
+    ~~~html
+    <body>
+    <script type="text/javascript">
+    
+        Ext.require([
+            'Ext.Component'
+        ]);
+    
+        Ext.onReady(function () {
+           Ext.dom.Helper.append('myDiv',{
+              tag:'div',
+               cls:'tab_bg',
+               children:[
+                   {
+                       tag:'ul',
+                       cls:'dashboard_tab_menu',
+                       children:[
+                           {
+                               tag:'li',
+                               children:[
+                                   {
+                                       tag:'a',
+                                       href:'#',
+                                       cls:'on',
+                                       html:'first tap'
+                                   }
+                               ]
+                           },
+                           {
+                               tag:'li',
+                               children:[
+                                   {
+                                       tag:'a',
+                                       href:'#',
+                                       cls:'',
+                                       html:'second'
+                                   }
+                               ]
+                           },
+                           {
+                                tag:'li',
+                               children:[
+                                   {
+                                       tag:'a',
+                                       href:'#',
+                                       cls:'',
+                                       html:'third'
+                                   }
+                               ]
+                           },
+                           {
+                               tag:'li',
+                               children:[
+                                   {
+                                       tag:'a',
+                                       href:'#',
+                                       cls:'',
+                                       html:'forth'
+                                   }
+                               ]
+                         }
+                       ]
+                   }
+               ]
+           });
+    
+        });
+
+    </script>
+    
+    <div id="myDiv" class="main_dashboard"/>
+    
+    </body>
+    ~~~
