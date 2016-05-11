@@ -83,12 +83,17 @@
 </html>
 ~~~
 
+ ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/cardchild3.png)
+
 ## 1. Ext.dom.Helper class
 
         Ext.dom.Helper class can help us make the dom elements
     
     
     * 1_DomHelper.html
+    
+    
     ~~~html
     <body>
     <script type="text/javascript">
@@ -163,3 +168,6 @@
     
     </body>
     ~~~
+    
+ ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/cardchild3.png)
