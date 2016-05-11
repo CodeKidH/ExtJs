@@ -184,3 +184,108 @@
         - Define a class
     
 ~~~
+
+## 2. Using the XTemplate
+
+        User Class has the Ext.XTemplate class
+        and Dom elements was included within UserClass
+
+* 2_CustomTabPanelStep1.html
+
+~~~html
+<body>
+<script type="text/javascript">
+
+    Ext.Loader.setConfig({
+       enabled : true,
+        paths:{
+            'ext5': '/app'
+        }
+    });
+
+    Ext.require([
+        'ext5.view.chapter4.MyCustomTabPanelStep1'
+    ]);
+
+    Ext.onReady(function () {
+        Ext.create('ext5.view.chapter4.MyCustomTabPanelStep1',{
+            width:500,
+            height:300,
+            renderTo: document.body
+        });
+
+    })
+
+</script>
+
+<div id="myDiv" class="main_dashboard"/>
+
+
+</body>
+~~~
+
+* MyCustomTabPanelStep1.js
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-05-11.
+ */
+Ext.define('ext5.view.chapter4.MyCustomTabPanelStep1',{
+   extend:'Ext.Component',
+    xtype:'chapter4-customstep1',
+    initComponent: function(){
+        var me = this;
+        Ext.apply(this,{
+            html : this.setTabTpl()
+        });
+
+        me.callParent(arguments);
+    },
+
+    setTabTpl: function() {
+        return new Ext.XTemplate(    //Using
+            '<div class="main_dashboard">',
+            '<div class="tab_bg">',
+            '<ul class="dashboard_tab_menu">',
+            '<li><a href="#" class="tab1 on">Tab1</a></li>',
+            '<li><a href="#" class="tab1 on">Tab1</a></li>',
+            '<li><a href="#" class="tab1">Tab1</a></li>',
+            '<li><a href="#" class="tab1">Tab1</a></li>',
+            '</ul>',
+            '</div>',
+            '</div>'
+        )
+    }
+
+});
+~~~
+
+* View
+ ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/customer.png)
+
+~~~java
+    Tab is little strange because ExtJs CSS  conflict with User CSS
+    so I fix a CSS by adding a ExtJs CSS
+~~~
+
+* adding CSS
+
+~~~css
+    .custom-tab.x-border-box *{
+        box-sizing: border-box;
+        -moz-box-sizing: content-box;
+        -ms-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+    }
+~~~
+
+* Usage css
+~~~javascript
+extend:'Ext.Component',
+cls : 'custom-tab',
+xtype:'chapter4-customstep1',
+~~~
+
+
+
