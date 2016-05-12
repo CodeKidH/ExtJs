@@ -492,3 +492,73 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
 
  ![child1layout]
 (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/atag.png)
+
+* preventDefault()
+
+        I can stop event by using preventDefault()
+    
+
+
+    - MyCustomTabPanelStep3.js
+    
+    ~~~javascript
+      '<li><a href="http://www.daum.net">탭1번</a></li>' 
+      
+      When I click the tab, page move
+    ~~~
+        
+    - preventDefault()
+    
+    ~~~javascript
+        Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
+    extend: 'Ext.Component',
+    cls: 'custom-tab',
+    xtype: 'chapter4-customstep3',
+    requires: ['Ext.window.MessageBox'],
+    onRender: function () {     // #1
+        this.callParent(arguments);
+        Ext.core.DomHelper.append(this.getEl(),     // #2
+            '<div class="main_dashboard">' +
+                '<div class="tab_bg">' +
+                '<ul class="dashboard_tab_menu" id="ulroot">' +
+                '<li><a href="http://www.daum.net">탭1번</a></li>' +
+                '<li><a href="#" class="on">탭2번</a></li>' +
+                '<li><a href="#">탭3번</a></li>' +
+                '</ul>' +
+                '</div>' +
+                '</div>'
+        );
+    },
+    initComponent: function () {
+        var me = this;
+        this.callParent(arguments);
+        this.on('afterrender', function () {
+            this.el.on("click", function (eventObject, htmlElement) {
+                eventObject.preventDefault();
+                var url = Ext.get(htmlElement).getAttribute('href');
+                if(url!='#'){
+                    Ext.Msg.confirm('url check', 'link exist, you want to move?', function(btn){
+                        if(btn == 'yes'){
+                            location.href = url;
+                        }
+                    },me);
+
+                }
+                console.log(htmlElement);
+            }, this, {
+                delegate: "a"   // #6
+            });
+        });
+    }
+    ~~~
+    
+    - view
+     ![child1layout]
+    (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/confirm.png)
+    
+    ~~~java
+    
+    ~~~
+
+
+
