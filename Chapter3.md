@@ -553,6 +553,8 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
     ~~~
     
     - view
+    
+    
      ![child1layout]
     (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/confirm.png)
     
