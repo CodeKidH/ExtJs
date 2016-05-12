@@ -387,3 +387,100 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep2', {
 
  ![child1layout]
 (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/customtab2.png)
+
+## 4. Dom element event Control
+
+        Add a event to panel so I can choose a tab
+
+
+* 4_CustomTabPanelStep3.html
+
+~~~html
+<body>
+<script type="text/javascript">
+
+    Ext.Loader.setConfig({
+       enabled : true,
+        paths:{
+            'ext5': '/app'
+        }
+    });
+
+    Ext.require([
+        'ext5.view.chapter4.MyCustomTabPanelStep3'
+    ]);
+
+    Ext.onReady(function () {
+        Ext.create('ext5.view.chapter4.MyCustomTabPanelStep3',{
+            width:500,
+            height:300,
+            renderTo: document.body
+        });
+
+    })
+
+</script>
+</body>
+~~~
+
+* MyCustomTabPanelStep3.js
+
+~~~javascript
+Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
+    extend: 'Ext.Component',
+    cls: 'custom-tab',
+    xtype: 'chapter4-customstep3',
+    requires: ['Ext.window.MessageBox'],
+    onRender: function () {     // #1
+        this.callParent(arguments);
+        Ext.core.DomHelper.append(this.getEl(),     // #2
+            '<div class="main_dashboard">' +
+                '<div class="tab_bg">' +
+                '<ul class="dashboard_tab_menu" id="ulroot">' +
+                '<li><a href="#">탭1번</a></li>' +
+                '<li><a href="#" class="on">탭2번</a></li>' +
+                '<li><a href="#">탭3번</a></li>' +
+                '</ul>' +
+                '</div>' +
+                '</div>'
+        );
+    },
+    initComponent: function () {
+        var me = this;
+        this.callParent(arguments);
+        this.on('afterrender', function () {
+            this.el.on("click", function (eventObject, htmlElement) {
+            
+                console.log(htmlElement);
+            }, this, {
+                delegate: "a"   // #6
+            });
+        });
+    }
+~~~
+
+* View - When I click a tab
+
+ ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/customtab3.png)
+
+ ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/customtab3_console.png)
+
+~~~java
+    1. onRender: function ()
+        - It will be called when it is in rendering step
+        - this.callParent() call(execute) super class's onRender()
+    
+    2.  Ext.core.DomHelper.append(this.getEl()
+        - Define a Dom element by using domhelper
+    
+    3. this.on('afterrender', function ()
+        - Define a event listener After render mehtod will be executed 
+        
+    4. this.el.on("click", function (eventObject, htmlElement)
+        - Add a click event to dom element
+    
+    5. delegate: "a"
+        - When click event occur, Only a tag react
+~~~
