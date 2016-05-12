@@ -483,4 +483,12 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
     
     5. delegate: "a"
         - When click event occur, Only a tag react
+        - If delegate 'a' will be commented, I will see the ul tag event
+            It means, anyone who contain the 'a' , you can check it out by using click 
+        
 ~~~
+
+* commenting a tag
+
+ ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/atag.png)
