@@ -287,5 +287,103 @@ cls : 'custom-tab',
 xtype:'chapter4-customstep1',
 ~~~
 
+## 3. Arranging dom element by using container
 
+        I extend container and then use a xtype
+    
 
+* 3_CustomTabPanelStep2.html
+
+~~~html
+<body>
+<script type="text/javascript">
+
+    Ext.Loader.setConfig({
+       enabled : true,
+        paths:{
+            'ext5': '/app'
+        }
+    });
+
+    Ext.require([
+        'ext5.view.chapter4.MyCustomTabPanelStep2'
+    ]);
+
+    Ext.onReady(function () {
+        Ext.create('ext5.view.chapter4.MyCustomTabPanelStep2',{
+            width:500,
+            height:300,
+            renderTo: document.body
+        });
+
+    })
+
+</script>
+</body>
+~~~
+
+* MyCustomTabPanelStep2.js
+
+~~~javascript
+Ext.define('ext5.view.chapter4.MyCustomTabPanelStep2', {
+    extend: 'Ext.container.Container', //#1
+    cls : 'custom-tab',                 //#2
+    xtype: 'chapter4-customstep2',
+    initComponent: function () {
+        var me = this;
+        Ext.apply(this, {
+            cls: 'main_dashboard',//#3
+            autoEl: 'div',//#4
+            items: [
+                {
+                    xtype: 'container',     // #5
+                    cls: 'tab_bg',          // #6
+                    items: [
+                        {
+                            xtype: 'container', // #7
+                            autoEl: 'ul',       // #8
+                            id: "ulroot",       // #9
+                            cls: 'dashboard_tab_menu',
+                            items: [
+                                {
+                                    xtype: 'component', // #10
+                                    autoEl: 'li',   // #11
+                                    html: '<a href="#" tabIdx="0">탭1번</a>'  // #12
+                                },
+                                {
+                                    xtype: 'component',
+                                    autoEl: 'li',
+                                    html: '<a href="#" tabIdx="1" class="on">탭2번</a>'
+                                },
+                                {
+                                    xtype: 'component',
+                                    autoEl: 'li',
+                                    html: '<a href="#" tabIdx="2">탭3번</a>'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
+        me.callParent(arguments);
+    }
+
+});
+~~~
+
+~~~java
+     1. extend: 'Ext.container.Container'
+        - I can arrange many children by using container
+     
+     2.  autoEl: 'div'
+        -Define a div automatically
+    
+     3. id: "ulroot"
+        - After I use it for serching
+~~~
+
+* View
+
+ ![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/customtab2.png)
