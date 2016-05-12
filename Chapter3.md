@@ -557,7 +557,10 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
     (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/confirm.png)
     
     ~~~java
-    
+        1. eventObject.preventDefault()
+            - stop event
+            - It can use a eventObject.stopEvent() at the same time
+            
     ~~~
 
 
