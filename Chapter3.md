@@ -699,9 +699,67 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
      ![child1layout]
         (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/select.png)
     
-        
+
+* Ext.query()
+
+        Ext.query() like a select
+    
+    ~~~css
+    .bgcolor_red{
+        background-color:red;
+    }
+    ~~~
+    
+    - Change a first tab to red
+    
+    ~~~javascript
+    initComponent: function () {
+        var me = this;
+        this.callParent(arguments);
+        this.on('afterrender', function () {
+
+            this.el.on("click", function (eventObject, htmlElement) {
+
+               var first_anchor = Ext.get(Ext.select('a').first());
+                first_anchor.hide();
+                var first_li = Ext.get(Ext.select('li').first());
+                first_li.addCls('bgcolor_red');
+                console.log(Ext.query('#ulroot.dashboard_tab_menu li.bgcolor_red'));
+                console.log(Ext.query('li.bgcolor_red'));
+                console.log(Ext.query('.bgcolor_red'));
+
+            }, this, {
+                delegate: "a"   // #6
+            });
+        });
+    },
+    ~~~
+    
+     ![child1layout]
+        (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/red.png)
     
 
+    - As a result
+    ~~~javascript
+     initComponent: function () {
+        var me = this;
+        this.callParent(arguments);
+        this.on('afterrender', function () {
 
+            this.el.on("click", function (eventObject, htmlElement) {
 
+            eventObject.preventDefault();
+                Ext.select('.dashboard_tab_menu li a').removeCls('on');
+                Ext.get(htmlElement).addCls('on');
+
+            }, this, {
+                delegate: "a"   // #6
+            });
+        });
+    },
+    ~~~
+    
+     ![child1layout]
+        (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/complete.png)
+    
 
