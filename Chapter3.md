@@ -616,15 +616,17 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
         ~~~
 
 * Ext.select()
+
         
         Ext.select() invoke a dom element set by using CSS selector
 
     
-        - findElement()
+    
+    - findElement()
         
         ~~~javascript
          findElement : function(condition){
-
+    
             var els = Ext.select(conditioni), domEl = els.first().dom;
             console.log('result:',domEl,'count:',els.getCount());
             return els;
@@ -655,7 +657,7 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
         console.log('result:',els.elements[0], 'count:', els.getCount());
         ~~~
         
-        - Ext.select()
+    - Ext.select()
         ~~~javascript
         
         ~~~
