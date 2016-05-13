@@ -660,8 +660,45 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
         
     - Ext.select()
         ~~~javascript
-        
+         initComponent: function () {
+            var me = this;
+            this.callParent(arguments);
+            this.on('afterrender', function () {
+    
+                this.el.on("click", function (eventObject, htmlElement) {
+    
+                    eventObject.stopEvent();
+                    console.log('send a id:',Ext.get('ulroot').dom);
+                    var ulroot = Ext.query('#ulroot')[0];
+                    console.log('send Ext.dom.Element', Ext.get(ulroot).dom);
+                    var ulrootDomElement = Ext.get(ulroot).dom;
+                    console.log('HTML DomElement', Ext.get(ulrootDomElement).dom);
+    
+                    Ext.select('li a').addCls('on');
+    
+                }, this, {
+                    delegate: "a"   // #6
+                });
+            });
+        },
         ~~~
+        
+        ~~~java
+            1. Dom element delete
+                - Ext.select('li a').destroy();
+            
+            2. Dom element hide
+                - Ext.select('li a').hide();
+            
+            3. Dom element change attribute
+                - Ext.select('li a').removeCls('on');
+        ~~~
+    
+    - view
+    
+     ![child1layout]
+        (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/select.png)
+    
         
     
 
