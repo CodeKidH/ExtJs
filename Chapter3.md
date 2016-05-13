@@ -565,5 +565,52 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
             
     ~~~
 
+## 5. Ext.query, Ext.get, Ext.select
+        
+        ExtJs use these methods(query,get,select) to get dom element's reference
+        
+
+* Ext.get()
+    
+        Ext.get() will returns a dom element
+
+* Ext.get() Source
+
+    ~~~javascript
+     initComponent: function () {
+        var me = this;
+        this.callParent(arguments);
+        this.on('afterrender', function () {
+            this.el.on("click", function (eventObject, htmlElement) {
+                
+                eventObject.stopEvent();
+                console.log('send a id:',Ext.get('ulroot').dom);
+                var ulroot = Ext.query('#ulroot')[0];
+                console.log('send Ext.dom.Element', Ext.get(ulroot).dom);
+                var ulrootDomElement = Ext.get(ulroot).dom;
+                console.log('HTML DomElement', Ext.get(ulrootDomElement).dom);
+                
+            }, this, {
+                delegate: "a"   // #6
+            });
+        });
+    }/*,
+    ~~~
+
+* Console
+![child1layout]
+(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/get.png)
+
+~~~java
+    1.Ext.get('ulroot').dom
+        - To get a dom element by using id attribute
+    
+    2.Ext.query('#ulroot')[0]
+        - 
+    
+    3. var ulrootDomElement = Ext.get(ulroot).dom
+        - Use a (2) object 
+~~~
+
 
 
