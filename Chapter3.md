@@ -572,12 +572,12 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
 
 * Ext.get()
     
-        Ext.get() will returns a dom element
+         Ext.get() will returns a dom element
 
 
 
         
-        - Ext.get() Source
+ - Ext.get() Source
         
             ~~~javascript
              initComponent: function () {
@@ -600,7 +600,7 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
             }/*,
             ~~~
         
-        - Console
+- Console
         ![child1layout]
         (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/get.png)
         
