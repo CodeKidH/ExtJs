@@ -135,26 +135,30 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
         var me = this;
         this.callParent(arguments);
         this.on('afterrender', function () {
-            this.el.on("click", function (eventObject, htmlElement) {
-                eventObject.preventDefault();
-                var url = Ext.get(htmlElement).getAttribute('href');
-                if(url!='#'){
-                    Ext.Msg.confirm('url check', 'link exist, you want to move?', function(btn){
-                        if(btn == 'yes'){
-                            location.href = url;
-                        }
-                    },me);
 
-                }
-              /*  eventObject.preventDefault();  // or eventObject.stopEvent();
-                Ext.select('.dashboard_tab_menu li a').removeCls('on');			// #3
-                Ext.get(htmlElement).addCls("on");*/
-                console.log(htmlElement);
+            this.el.on("click", function (eventObject, htmlElement) {
+
+            eventObject.preventDefault();
+                Ext.select('.dashboard_tab_menu li a').removeCls('on');
+                Ext.get(htmlElement).addCls('on');
+
             }, this, {
                 delegate: "a"   // #6
             });
         });
-    }/*,
+    },
+
+    findElement : function(condition){
+
+        var els = Ext.select(condition), domEl = els.first();
+        console.log('result:',domEl,'count:',els.getCount());
+        return els;
+    }
+
+
+
+
+    /*,
 
     findElement: function (condition) {
         var els = Ext.select(condition), domEl = els.first().dom; // #1
