@@ -574,6 +574,8 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
     
         Ext.get() will returns a dom element
 
+
+
         
         - Ext.get() Source
         
