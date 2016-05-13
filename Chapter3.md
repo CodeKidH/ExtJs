@@ -574,43 +574,92 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
     
         Ext.get() will returns a dom element
 
-* Ext.get() Source
+        
+        - Ext.get() Source
+        
+            ~~~javascript
+             initComponent: function () {
+                var me = this;
+                this.callParent(arguments);
+                this.on('afterrender', function () {
+                    this.el.on("click", function (eventObject, htmlElement) {
+                        
+                        eventObject.stopEvent();
+                        console.log('send a id:',Ext.get('ulroot').dom);
+                        var ulroot = Ext.query('#ulroot')[0];
+                        console.log('send Ext.dom.Element', Ext.get(ulroot).dom);
+                        var ulrootDomElement = Ext.get(ulroot).dom;
+                        console.log('HTML DomElement', Ext.get(ulrootDomElement).dom);
+                        
+                    }, this, {
+                        delegate: "a"   // #6
+                    });
+                });
+            }/*,
+            ~~~
+        
+        - Console
+        ![child1layout]
+        (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/get.png)
+        
+        ~~~java
+            1.Ext.get('ulroot').dom
+                - To get a dom element by using id attribute
+            
+            2.Ext.query('#ulroot')[0]
+                - 
+            
+            3. var ulrootDomElement = Ext.get(ulroot).dom
+                - Use a (2) object 
+        ~~~
 
-    ~~~javascript
-     initComponent: function () {
-        var me = this;
-        this.callParent(arguments);
-        this.on('afterrender', function () {
-            this.el.on("click", function (eventObject, htmlElement) {
-                
-                eventObject.stopEvent();
-                console.log('send a id:',Ext.get('ulroot').dom);
-                var ulroot = Ext.query('#ulroot')[0];
-                console.log('send Ext.dom.Element', Ext.get(ulroot).dom);
-                var ulrootDomElement = Ext.get(ulroot).dom;
-                console.log('HTML DomElement', Ext.get(ulrootDomElement).dom);
-                
-            }, this, {
-                delegate: "a"   // #6
-            });
+* Ext.select()
+        
+        Ext.select() invoke a dom element set by using CSS selector
+
+    
+        - findElement()
+        
+        ~~~javascript
+         findElement : function(condition){
+
+            var els = Ext.select(conditioni), domEl = els.first().dom;
+            console.log('result:',domEl,'count:',els.getCount());
+            return els;
+        }    
+        ~~~
+        
+        ~~~java
+            1.  var els = Ext.select(conditioni), 
+                - select() will be executed when findElement get a Dom tree path as a parameter
+            
+            2. domEl = els.first().dom;
+                - domEl is a first element using els dom
+        ~~~
+        
+        ~~~javascript
+        me.findElement('div.main_dashboard');
+        me.findElement('div.main_dashboard div.teb_bg ul.dashboard_tab_menu');
+        me.findElement('div.main_dashboard div.tab_bg ul.dashboard_tab_menu li');
+
+        var els = me.findElement('div.main_dashboard div.tab_bg ul.dashboard_tab_menu li a');
+
+        Ext.each(els.elements, function(element){
+            console.log('searching element:', element);
         });
-    }/*,
-    ~~~
 
-* Console
-![child1layout]
-(https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/get.png)
+        me.findElement('div.main_dashboard div.tab_bg ul.dashboard_tab_menu li a.on');
 
-~~~java
-    1.Ext.get('ulroot').dom
-        - To get a dom element by using id attribute
+        console.log('result:',els.elements[0], 'count:', els.getCount());
+        ~~~
+        
+        - Ext.select()
+        ~~~javascript
+        
+        ~~~
+        
     
-    2.Ext.query('#ulroot')[0]
-        - 
-    
-    3. var ulrootDomElement = Ext.get(ulroot).dom
-        - Use a (2) object 
-~~~
+
 
 
 
