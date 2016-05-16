@@ -765,116 +765,116 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
 
 ## 6. Dom element delete and add
 
-        I will add a tab menu by using ajax
+            I will add a tab menu by using ajax
 
     
-    * 5_CustomTabPanelFinal.html
-    ~~~html
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>CustomTab</title>
-        <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
-    </head>
+* 5_CustomTabPanelFinal.html
+~~~html
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CustomTab</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+</head>
 
 
-    <body>
-    <script type="text/javascript">
-    
-        Ext.Loader.setConfig({
-           enabled : true,
-            paths:{
-                'ext5': '/app'
-            }
-        });
-    
-        Ext.require([
-            'ext5.view.chapter4.CustomCardTabPanel'
-        ]);
-    
-        Ext.onReady(function () {
-            Ext.create('ext5.view.chapter4.CustomCardTabPanel',{
-                width:500,
-                height:300,
-                renderTo: document.body
-            });
-    
-        })
-    
-    </script>
-    </body>
-    </html>
-    ~~~
-    
-    * CustomCardTabPanel.js
-    ~~~javascript
-    Ext.define('ext5.view.chapter4.CustomCardTabPanel',{
-       extend:'Ext.container.Container',
-        cls: 'custom-tab',
-        requires:[
-            'Ext.layout.container.Border',
-            'Ext.layout.container.Card',
-            'Ext.button.Button',
-            'Ext.grid.Panel',
-            'ext5.view.chapter4.CustomTab'
-        ],
-        layout:'border',
-        height: 400,
-        xtype:'chapter4-customcardtabpanel',
-        items:[
-            {
-                region : 'north',
-                xtype:'chapter4-customtab'
-            },{
-                region : 'center',
-                xtype:'container'
-            }
-        ]
-    });
-    ~~~
-    
-    * CustomTab.js
-    ~~~javascript
-    
-    Ext.define('ext5.view.chapter4.CustomTab', {
-        extend: 'Ext.Component',
-        alias : 'widget.chapter4-customtab',
-        onRender: function () {     // #1
-            this.callParent(arguments);
-            Ext.core.DomHelper.append(this.getEl(),     // #2
-                '<div class="main_dashboard">' +
-                    '<div class="tab_bg">' +
-                    '<ul class="dashboard_tab_menu" id="ulroot">' +
-                    '<li><a href="http://www.daum.net">탭1번</a></li>' +
-                    '<li><a href="#" class="on">탭2번</a></li>' +
-                    '<li><a href="#">탭3번</a></li>' +
-                    '</ul>' +
-                    '</div>' +
-                    '</div>'
-            );
-        },
-        initComponent: function () {
-            var me = this;
-            me.callParent(arguments);
-            me.on('afterrender', function () {
-    
-                this.el.on("click", function (eventObject, htmlElement) {
-    
-                eventObject.preventDefault();
-                    Ext.select('.dashboard_tab_menu li a').removeCls('on');
-                    Ext.get(htmlElement).addCls('on');
-    
-                }, this, {
-                    delegate: "a"   // #6
-                });
-            });
+<body>
+<script type="text/javascript">
+
+    Ext.Loader.setConfig({
+       enabled : true,
+        paths:{
+            'ext5': '/app'
         }
-    
     });
 
-    ~~~
-    
-    * view
-      ![child1layout]
-        (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/final.png)
+    Ext.require([
+        'ext5.view.chapter4.CustomCardTabPanel'
+    ]);
+
+    Ext.onReady(function () {
+        Ext.create('ext5.view.chapter4.CustomCardTabPanel',{
+            width:500,
+            height:300,
+            renderTo: document.body
+        });
+
+    })
+
+</script>
+</body>
+</html>
+~~~
+
+* CustomCardTabPanel.js
+~~~javascript
+Ext.define('ext5.view.chapter4.CustomCardTabPanel',{
+   extend:'Ext.container.Container',
+    cls: 'custom-tab',
+    requires:[
+        'Ext.layout.container.Border',
+        'Ext.layout.container.Card',
+        'Ext.button.Button',
+        'Ext.grid.Panel',
+        'ext5.view.chapter4.CustomTab'
+    ],
+    layout:'border',
+    height: 400,
+    xtype:'chapter4-customcardtabpanel',
+    items:[
+        {
+            region : 'north',
+            xtype:'chapter4-customtab'
+        },{
+            region : 'center',
+            xtype:'container'
+        }
+    ]
+});
+~~~
+
+* CustomTab.js
+~~~javascript
+
+Ext.define('ext5.view.chapter4.CustomTab', {
+    extend: 'Ext.Component',
+    alias : 'widget.chapter4-customtab',
+    onRender: function () {     // #1
+        this.callParent(arguments);
+        Ext.core.DomHelper.append(this.getEl(),     // #2
+            '<div class="main_dashboard">' +
+                '<div class="tab_bg">' +
+                '<ul class="dashboard_tab_menu" id="ulroot">' +
+                '<li><a href="http://www.daum.net">탭1번</a></li>' +
+                '<li><a href="#" class="on">탭2번</a></li>' +
+                '<li><a href="#">탭3번</a></li>' +
+                '</ul>' +
+                '</div>' +
+                '</div>'
+        );
+    },
+    initComponent: function () {
+        var me = this;
+        me.callParent(arguments);
+        me.on('afterrender', function () {
+
+            this.el.on("click", function (eventObject, htmlElement) {
+
+            eventObject.preventDefault();
+                Ext.select('.dashboard_tab_menu li a').removeCls('on');
+                Ext.get(htmlElement).addCls('on');
+
+            }, this, {
+                delegate: "a"   // #6
+            });
+        });
+    }
+
+});
+
+~~~
+
+* view
+  ![child1layout]
+    (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/final.png)
