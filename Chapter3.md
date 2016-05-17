@@ -1066,3 +1066,57 @@ initComponent: function () {
 
   ![child1layout]
     (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/addmethod.png)
+
+#### 6_4 Dom Event handling
+
+        I have to fix a depth index(number) and Tabs connect with panel by using depth index
+        
+
+* CustomTab
+~~~javascript
+me.on('afterrender', function () {
+    this.el.on("click", function (eventObject, htmlElement) {
+        eventObject.preventDefault();
+
+        Ext.select('.dashboard_tab_menu li a').removeCls('on');
+        Ext.get(htmlElement).addCls('on');
+
+        var idx = Ext.get(htmlElement).getAttribute('tabidx'); //1
+        me.fireEvent('tabselect',idx); //2
+
+    }, this,{
+        deletegate:"a"
+    });
+~~~
+
+~~~java
+    1.  Ext.get(htmlElement).getAttribute('tabidx');
+        Dom element clicked has a attribute of tabidx and we know  sequnce of tabs through tabidx
+    
+    2. me.fireEvent('tabselect',idx)
+        - tabselect event occur 
+~~~
+
+* Check it out when it work well
+
+    - CustomCardTabPanel.js
+    ~~~javascript
+     {
+            region : 'north',
+            xtype:'chapter4-customtab',
+            listeners:{ //1
+                tabselect : function(idx){ //2
+                    console.log('which tab do you select?',idx);
+                }
+
+            }
+
+    },{
+    ~~~
+
+* view
+
+  ![child1layout]
+    (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/idx.png)
+   ![child1layout]
+    (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/idx2.png)
