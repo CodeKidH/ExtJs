@@ -1030,7 +1030,7 @@ initComponent: function () {
 
 * destroy
 ~~~javascript
-    destroyTabMenu:function(htmlElment){
+    destroyTabMenu:function(htmlElement){
         Ext.get(htmlElement).destroy();
     },
 ~~~
