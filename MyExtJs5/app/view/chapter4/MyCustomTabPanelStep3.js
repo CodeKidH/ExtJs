@@ -155,9 +155,6 @@ Ext.define('ext5.view.chapter4.MyCustomTabPanelStep3', {
         return els;
     }
 
-
-
-
     /*,
 
     findElement: function (condition) {
