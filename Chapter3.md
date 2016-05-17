@@ -909,7 +909,7 @@ onRender: function () {
         var tpl = Ext.DomHelper.createTemplate(html);
 
         Ext.Ajax.request({
-           url:"/resources/dta/tablist.json",
+           url:"/resources/data/tablist.json",
             method:"GET",
             success: function(result, request){
                 var obj = Ext.JSON.decode(result.responseText);
@@ -930,6 +930,134 @@ onRender: function () {
     2. var html = '<li><a href = "#" tabidx="{tabIdx}" class="{tabCls}">{tabName}</a></li>';
         - template string
     
+~~~
+
+* view
+
+  ![child1layout]
+    (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/ajax.png)
+
+#### 6_2. Add context menu
+
+
+* Add a method
+
+~~~javascript
+initComponent: function () {
+        var me = this;
+        me.callParent(arguments);
+        me.on('afterrender', function () {
+            this.el.on("click", function (eventObject, htmlElement) {
+                eventObject.preventDefault();
+               
+                Ext.select('.dashboard_tab_menu li a').removeCls('on');
+                Ext.get(htmlElement).addCls('on');
+
+            });
+            
+            this.el.on("contextmenu", function (eventObject, htmlElement) { //1
+                var menu = Ext.create('Ext.menu.Menu',{//2
+                    items:[
+                        {
+                            xtype:'menuitem',//3
+                            text:'delete',
+                            scope : me,
+                            handler: function(){ //4
+                                this.destroyTabMenu(htmlElement);//5
+                            }
+                        },
+                        {
+                            xtype:'menuitem',
+                            text:'before add',
+                            scope: me,
+                            handler : function(){
+                                this.insertBeforeTabMenu(htmlElement);
+                            }
+                        },
+                        {
+                            xtype:'menuitem',
+                            text:'after add',
+                            scope: me,
+                            handler:function(){
+                                this.insertAfterTabMenu(htmlElement);
+                            }
+                        }
+                    ]
+                });
+
+            eventObject.preventDefault();
+                menu.showBy(htmlElement);
+
+            }, this, {
+                delegate: "a" ,  // #6
+                preventDefault: true
+            });
+        });
+    }
+~~~
+
+~~~java
+    Click right button
     
+        1.  this.el.on("contextmenu", function (eventObject, htmlElement)
+            - contextmenu will be added and listening
         
+        2.  var menu = Ext.create('Ext.menu.Menu',{
+            - Create the menu class
+        
+        3. xtype:'menuitem
+            - Menu items add  as a Menu class's items
+        
+        4. handler: function()
+            - Usually use a hander when click event occur
+        
+        5. this.destroyTabMenu(htmlElement)
+            - Invoke a deleteMethod
+        
+        6. eventObject.preventDefault();
+            - Prevent a Crome browser right click event
+        
+        7.  menu.showBy(htmlElement);
+            - Show me a dom element
+~~~
+
+* view
+
+  ![child1layout]
+    (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/context.png)
+
+#### 6_3. Insert, destroy method
+
+* destroy
+~~~javascript
+    destroyTabMenu:function(htmlElment){
+        Ext.get(htmlElement).destroy();
+    },
+~~~
+
+* insertBeforeAdd
+~~~javascript
+    insertBeforeTabMenu: function(htmlElement){
+        var root = this.el.select('.dashboard_tab_menu').first(); //1
+        var insertBefore = Ext.get(htmlElement).up('li'); //2
+
+        root.createChild('<li><a href="#" tabIdx="0" class="">before add</a></li>',insertBefore,true); //3
+
+    }
+~~~
+
+~~~java
+    1. var root = this.el.select('.dashboard_tab_menu').first()
+        - Search for root dom that located in tab
+    
+    2.  root.createChild('<li><a href="#" tabIdx="0" class="">before add</a></li>',insertBefore,true);
+        - Send three parameters to use a createChild
+~~~
+
+* insertAfterAdd
+~~~javascript
+    insertAfterTabMenu:function(htmlElement){
+        var insertAfter = Ext.get(htmlElement).up('li');
+        Ext.DomHelper.insertAfter(insertAfter, '<li><a href="#" tabIdx="0" class="">after add</a></li>')
+    }
 ~~~
