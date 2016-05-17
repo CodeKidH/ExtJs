@@ -878,3 +878,58 @@ Ext.define('ext5.view.chapter4.CustomTab', {
 * view
   ![child1layout]
     (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/final.png)
+
+
+#### 6_1. Add a tab through ajax
+
+        Receive datas from server and add datas as a li tag
+        
+        
+* CustomTab.js
+
+~~~javascript
+onRender: function () {     
+        this.callParent(arguments);
+        Ext.core.DomHelper.append(this.getEl(),    
+            '<div class="main_dashboard">' +
+                '<div class="tab_bg">' +
+                '<ul class="dashboard_tab_menu" id="ulroot">' +
+                '</ul>' +
+                '</div>' +
+                '</div>'
+        );
+
+        this.setTabMenu();
+    },
+
+    setTabMenu: function(){
+      var root = this.el.select('.dashboard_tab_menu').first();
+        var html = '<li><a href = "#" tabidx="{tabIdx}" class="{tabCls}">{tabName}</a></li>';
+
+        var tpl = Ext.DomHelper.createTemplate(html);
+
+        Ext.Ajax.request({
+           url:"/resources/dta/tablist.json",
+            method:"GET",
+            success: function(result, request){
+                var obj = Ext.JSON.decode(result.responseText);
+                Ext.each(obj.entitys, function(tabData){
+                    tpl.append(root,tabData);
+                })
+            }
+        });
+    },
+~~~
+
+~~~java
+    1.  var root = this.el.select('.dashboard_tab_menu').first();
+        - Root dom element will be given to root variable
+        - this.el.select = Ext.select
+        - Ext.select scan global area, this.el.select scan current class(Just this.el will be scaned)
+    
+    2. var html = '<li><a href = "#" tabidx="{tabIdx}" class="{tabCls}">{tabName}</a></li>';
+        - template string
+    
+    
+        
+~~~
