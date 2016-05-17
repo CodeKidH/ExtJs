@@ -1061,3 +1061,8 @@ initComponent: function () {
         Ext.DomHelper.insertAfter(insertAfter, '<li><a href="#" tabIdx="0" class="">after add</a></li>')
     }
 ~~~
+
+* view
+
+  ![child1layout]
+    (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/addmethod.png)
