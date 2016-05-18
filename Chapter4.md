@@ -192,6 +192,7 @@ Ext.define('ext5.model.Board', {
 ~~~
 
 * view
-
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/validate.png)
 
 
