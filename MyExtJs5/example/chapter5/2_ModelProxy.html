@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Table Layout</title>
+    <link rel="stylesheet" type="text/css"
+          href="/ext/packages/ext-theme-gray/build/resources/ext-theme-gray-all-debug.css">
+    <script type="text/javascript" src="/ext/build/ext-all-debug.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.model.Board'
+    ]);
+
+    Ext.onReady(function () {
+        // 모델을 생성하고 필드를 채운다.
+        var board = Ext.create('ext5.model.Board', {
+            id:1,
+            title: 'Hello',
+            userName: 'kyle',
+            content: 'check it out.',
+            role: 'user',
+            deleteYn: false
+        });
+        board.save({
+            success: function(record, operation){
+                console.log('read date:',record.data)
+            },
+            failure: function(record,options){
+                console.log('save fail');
+            },
+            callback: function(){
+                console.log('callback');
+            }
+
+
+        })
+    });
+</script>
+</body>
+</html>
