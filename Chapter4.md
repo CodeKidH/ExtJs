@@ -196,3 +196,61 @@ Ext.define('ext5.model.Board', {
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/validate.png)
 
 
+#### 1_3. Read and update by using proxy
+
+    Model has a proxy to communicate with server and can read and update the data
+
+* board.js
+~~~javascript
+ proxy:{
+      type:'ajax',
+        actionMethods:{
+            read:'GET',
+            create:'POST',
+            update:'POST',
+            destroy:'POST'
+        },
+        api:{
+            read : '/resources/data/boards.json?read',
+            create : '/resources/data/boards.json?create',
+            update : '/resources/data/boards.json?update',
+            destroy : '/resources/data/boards.json?destroy'
+        },
+        reader:{
+            type:'json',
+            rootProperty:'entitys'
+        }
+    },
+~~~
+
+~~~java
+    1.  actionMethods:{
+        - To set up a communication way
+        - GET, POST, PUT, DELETE
+        - Usually This way will be used when it is on the RESTful
+    2.  reader:{
+        - Api reader action config
+        
+~~~
+
+* board.json
+~~~json
+{
+    entitys: [
+    {
+        "id": 33,
+        "title": "ExtJS에 대한 문의",
+        "content": "ExtJS Model클래스의 Proxy설정에 대해 알아봅니다.",
+        "userName": "홍길동",
+        "role": "User",
+        "createDate": "2013-12-03",
+        "updateDate": "2013-12-04",
+        "readCnt": 230,
+        "deleteYn": false
+    }],
+    success: true
+}
+
+~~~
+    
+    
