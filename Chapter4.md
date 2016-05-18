@@ -309,6 +309,9 @@ Ext.define('ext5.model.Board', {
 ~~~java
     1.  board.save({
         - Call the save() to connect to server
+        - save() can use a update, create
+        - idProperty is important
+        - idProperty == primary key
 ~~~
 
 * view
