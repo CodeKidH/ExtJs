@@ -321,4 +321,22 @@ Ext.define('ext5.model.Board', {
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/save2.png)
-    
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/create.png)
+
+
+* 2_ModelProxy.html(add id)
+~~~script
+ var board = Ext.create('ext5.model.Board', {
+        id:1,
+        title: 'Hello',
+        userName: 'kyle',
+        content: 'check it out.',
+        role: 'user',
+        deleteYn: false
+    });
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/update.png)
+
