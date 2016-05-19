@@ -339,4 +339,48 @@ Ext.define('ext5.model.Board', {
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/update.png)
+      
+
+#### 1_4. Read and delete
+
+* 2_ModelProxy.html - read
+~~~javascript
+ var board = Ext.create('ext5.model.Board', {
+        id:1,
+        title: 'Hello',
+        userName: 'kyle',
+        content: 'check it out.',
+        role: 'user',
+        deleteYn: false
+    });
+    board.save({
+        success: function(record, operation){
+            console.log('read date:',record.data)
+        },
+        failure: function(record,options){
+            console.log('save fail');
+        },
+        callback: function(){
+            console.log('callback');
+        }
+
+
+    })
+
+    var board = ext5.model.Board.load(33,{
+        success: function(record, operation){
+            console.log('read data:',record.data);
+
+        }
+    })
+~~~
+
+~~~java
+    1. ext5.model.Board.load(33,{
+        - Call the load()
+        - FirstParam is id
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/read.png)
 
