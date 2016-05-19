@@ -196,7 +196,7 @@ Ext.define('ext5.model.Board', {
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/validate.png)
 
 
-#### 1_3. Read and update by using proxy
+#### 1_3. Write and update by using proxy
 
     Model has a proxy to communicate with server and can read and update the data
 
