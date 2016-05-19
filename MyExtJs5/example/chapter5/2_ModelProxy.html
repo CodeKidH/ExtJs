@@ -43,6 +43,21 @@
 
 
         })
+
+        var board = ext5.model.Board.load(33,{
+            success: function(record, operation){
+                console.log('read data:',record.data);
+
+                record.erase({
+                    success : function(record, operation){
+                        console.log('After delete, Value that send ')
+                    }
+                });
+
+            }
+
+        });
+
     });
 </script>
 </body>
