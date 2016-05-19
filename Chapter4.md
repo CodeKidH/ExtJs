@@ -404,3 +404,103 @@ Ext.define('ext5.model.Board', {
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/destroy.png)
+
+#### 1_5 Relationship between models and Data loading
+
+    Model == DB Table(RDB)
+    
+
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/RDB.png)
+
+    1 : M(Ext.data.HashManyAssociation)
+    M : M(Ext.data.BelongsToAssociation)
+    1 : 1(Ext.data.association.HasOne)
+    
+* 3_ModelAssociation.html
+
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css"
+          href="/ext/packages/ext-theme-gray/build/resources/ext-theme-gray-all-debug.css">
+    <script type="text/javascript" src="/ext/build/ext-all-debug.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'Ext.Component',
+        'ext5.model.ticket.User',
+        'ext5.model.ticket.Organization',
+        'ext5.model.ticket.Project',
+        'ext5.model.ticket.Group'
+    ]);
+
+    Ext.onReady(function () {
+
+    });
+</script>
+</body>
+</html>
+
+~~~
+
+* Base.js
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-05-19.
+ */
+Ext.define('ext5.model.ticket.Base',{
+   extend:'Ext.data.Model',
+    requires:['Ext.data.proxy.JsonP'],
+    fields:[
+        {
+            name : 'id',
+            type:'int'
+        }
+    ],
+    schema : {
+        namespace : 'ext5.model.ticket',
+        proxy:{
+            type : 'jsonp',
+            actionMethods:{
+                read:'GET'
+            },
+            api : {
+                read : 'http://extuxgroup.com/ticket-{entityName:uncapitalize}.do?read'
+            },
+            reader : {
+                type:'json',
+                rootProperty : 'entitys'
+            }
+
+        }
+    }
+});
+~~~
+
+~~~java
+    It's like a schema in DB
+    
+    1.  extend:'Ext.data.Model',
+        - Extend Model class
+    
+    2.  schema : {
+        - Config a schema
+    
+    3.   namespace : 'ext5.model.ticket',
+        - Location of package that extend Base class
+    
+~~~
