@@ -384,3 +384,23 @@ Ext.define('ext5.model.Board', {
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/read.png)
 
+* Destroy
+
+~~~javascript
+  var board = ext5.model.Board.load(33,{
+        success: function(record, operation){
+            console.log('read data:',record.data);
+
+            record.erase({
+                success : function(record, operation){
+                    console.log('After delete, Value that send ')
+                }
+            });
+
+        }
+
+    });
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/destroy.png)
