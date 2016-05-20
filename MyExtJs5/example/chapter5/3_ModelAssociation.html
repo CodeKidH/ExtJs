@@ -25,7 +25,48 @@
     ]);
 
     Ext.onReady(function () {
+        var eachRecord = function(records, model){
+            console.log(model)
+            Ext.each(records, function(rec, idx){
+                console.log('no:'+idx, rec.data);
+            })
+        };
 
+        ext5.model.ticket.User.load(2,{
+            success : function(record, operation){
+                console.log('userInfo:', record.data);
+                record.getProject({
+                    callback: function(project){
+                        console.log('Project:', project.data);
+                        project.users().load({
+                           callback: function(records){
+                               eachRecord(records, 'Project(1) > User(n)');
+                           }
+                        });
+                    }
+                });
+
+            }
+
+        });
+
+       /* var user = ext5.model.ticket.Organization.load(1,{
+            success: function(org, operation){
+                console.log('Organ info:',org.data);
+
+                org.projects().load({
+                    callback : function(records){
+                        eachRecord(records, 'Organization(1) > Project(n)');
+                    }
+                });
+
+                org.users().load({
+                    callback: function(records){
+                        eachRecord(records, 'Organization(1) > User (n)')
+                    }
+                });
+            }
+        });*/
     });
 </script>
 </body>

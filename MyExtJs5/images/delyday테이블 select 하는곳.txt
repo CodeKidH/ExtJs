@@ -1,0 +1,15 @@
+1.batch 
+	1_1.slipCreateJob
+
+2.bo
+	2_1. getDelyDay - calcOrderStock(배송예정일계산) - checkOrderStock - ARSContorller   - BridgeControl
+
+									   - OrderClaimController - saveExchGoodsdtStock(단품 변경 저장(출고후))
+
+								           - OrderInputController - checkOrderStockByChangeReceiver(주문접수 - 상품선택 이후 배송지 변경시 상품의 재고체크)
+											          - setOrderAmtGift(총금액 사은품 프로모션 정보 조회 및 세팅)
+												  - setOrderGoods
+									
+							
+	2_2. getDelydayPlan - 
+	
