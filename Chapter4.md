@@ -412,7 +412,7 @@ Ext.define('ext5.model.Board', {
 
 
 ![child1layout]
-      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/RDB.png)
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/RDB.jpg)
 
     1 : M(Ext.data.HashManyAssociation)
     M : M(Ext.data.BelongsToAssociation)
@@ -504,3 +504,83 @@ Ext.define('ext5.model.ticket.Base',{
         - Location of package that extend Base class
     
 ~~~
+
+* Organization.js
+
+~~~javascript
+Ext.define('ext5.model.ticket.Organization',{
+    extend:'ext5.model.ticket.Base'
+});
+~~~
+
+~~~java
+    I don't need to config a field on Ext5
+    So I make a field whenever I need it
+~~~
+
+* project.js
+~~~javascript
+Ext.define('ext5.model.ticket.Project',{
+    extend:'ext5.model.ticket.Base',
+    fields:[
+        {
+            name: 'organizationId', reference : 'Organization'
+        },
+        {
+            name:'leadId',
+            unique: true,
+            reference : 'User'
+        }
+
+    ]
+});
+~~~
+
+~~~java
+    1. name: 'organizationId', reference : 'Organization'
+        - Make a organizationId field
+        - This field will refer to Organization model
+        - It has a forign key of Organization
+        - 1:m
+    
+    2. unique: true,
+        - 1 : 1
+    
+~~~
+
+* User.js
+
+~~~javascript
+Ext.define('ext5.model.ticket.User',{
+    extend:'ext5.model.ticket.Base',
+    fields:[
+        {
+            name : 'organizationId',
+            reference: 'Organization'
+        },
+        {
+            name : 'projectId',
+            reference:'Project'
+        }
+
+    ]
+});
+~~~
+
+* Group.js
+~~~javascript
+Ext.define('ext5.model.ticket.Group',{
+    extend:'ext5.model.ticket.Base',
+    fields:[
+        {
+            name: 'organizationId', reference:'Organization'
+
+        },
+        {
+            name:'userId', reference:'User'
+        }
+    ]
+});
+~~~
+
+
