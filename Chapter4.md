@@ -583,4 +583,28 @@ Ext.define('ext5.model.ticket.Group',{
 });
 ~~~
 
+* 3_ModelAssociation.html
+~~~javascript
+ Ext.onReady(function () {
+        var eachRecord = function(records, model){
+            console.log(model)
+            Ext.each(records, function(rec, idx){
+                console.log('no:'+idx, rec.data);
+            })
+        };
 
+        var user = ext5.model.ticket.Organization.load(1,{
+            success: function(org, operation){
+                console.log('Organ info:',org.data);
+            }
+        });
+    });
+~~~
+
+~~~java
+    1.  ext5.model.ticket.Organization.load(1,{
+        - Organization call load() and send id field value 1 
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/organread.png)
