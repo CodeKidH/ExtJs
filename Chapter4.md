@@ -403,7 +403,7 @@ Ext.define('ext5.model.Board', {
 ~~~
 
 ![child1layout]
-      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/destroy.png)
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/destory.png)
 
 #### 1_5 Relationship between models and Data loading
 
