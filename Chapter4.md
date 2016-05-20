@@ -608,3 +608,40 @@ Ext.define('ext5.model.ticket.Group',{
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/organread.png)
+
+* 3_ModelAssociation.html
+~~~javascript
+Ext.onReady(function () {
+        var eachRecord = function(records, model){
+            console.log(model)
+            Ext.each(records, function(rec, idx){
+                console.log('no:'+idx, rec.data);
+            })
+        };
+
+        var user = ext5.model.ticket.Organization.load(1,{
+            success: function(org, operation){
+                console.log('Organ info:',org.data);
+
+                org.projects().load({
+                    callback : function(records){
+                        eachRecord(records, 'Organization(1) > Project(n)');
+                    }
+                });
+
+                org.users().load({
+                    callback: function(records){
+                        eachRecord(records, 'Organization(1) > User (n)')
+                    }
+                });
+            }
+        });
+    });
+~~~
+
+~~~java
+    1.   org.projects().load({
+        - org is result of load of organ
+        - Access to projects()
+        
+~~~
