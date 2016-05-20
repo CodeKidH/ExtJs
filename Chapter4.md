@@ -645,3 +645,50 @@ Ext.onReady(function () {
         - Access to projects()
         
 ~~~
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/readUserOrgan.png)
+    
+
+    Get a User Info and access to involved with model
+
+* 3_ModelAssociation.html
+
+~~~javascript
+Ext.onReady(function () {
+        var eachRecord = function(records, model){
+            console.log(model)
+            Ext.each(records, function(rec, idx){
+                console.log('no:'+idx, rec.data);
+            })
+        };
+
+        ext5.model.ticket.User.load(2,{
+            success : function(record, operation){
+                console.log('userInfo:', record.data);
+                record.getProject({
+                    callback: function(project){
+                        console.log('Project:', project.data);
+                        project.users().load({
+                           callback: function(records){
+                               eachRecord(records, 'Project(1) > User(n)');
+                           }
+                        });
+                    }
+                });
+
+            }
+
+        });
+~~~
+
+~~~java
+    1. record.getProject({
+        - I get a Project Info by using UserInfo loaded 
+    
+    2. project.users().load({
+        - I get Users info by using project info
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/Users.png)
+
