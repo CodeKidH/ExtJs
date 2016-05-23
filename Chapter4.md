@@ -716,9 +716,9 @@ Ext.onReady(function () {
     ]);
 
     Ext.onReady(function () {
-        var store = Ext.create('Ext.data.Store',{
-            model : 'ext5.model.ticket.User',
-            proxy : {
+        var store = Ext.create('Ext.data.Store',{  //1
+            model : 'ext5.model.ticket.User',//2
+            proxy : {                       //3
                 type : 'ajax',
                 url:'../../resources/data/ticket-user.json',
                 reader : {
@@ -726,11 +726,11 @@ Ext.onReady(function () {
                     rootProperty : 'entitys'
                 }
             },
-            autoLoad : true
+            autoLoad : true //4
         });
         
-        store.on('load',function(records){
-           records.each(function(item){
+        store.on('load',function(records){ //5
+           records.each(function(item){ //6
                 console.log(item.data)
             })
         });
