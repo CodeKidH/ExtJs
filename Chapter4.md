@@ -738,6 +738,23 @@ Ext.onReady(function () {
 </script>
 ~~~
 
+~~~java
+    1. Ext.create('Ext.data.Store',{
+        - Create a Store
+    
+    2.  model : 'ext5.model.ticket.User'
+        - Define a model class I need
+    
+    3.  proxy : {
+        - config a proxy
+        
+    4.  store.on('load',function(records){
+        - If I get a data by using store, I have to define a listener
+    
+    5. 'load',function(records)
+        - I use a 'load' event to get a loaded data
+~~~
+
 * ticket-user.json
 
 ~~~json
@@ -753,7 +770,8 @@ Ext.onReady(function () {
 }
 ~~~
 
-
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/store.png)
     
 
     
