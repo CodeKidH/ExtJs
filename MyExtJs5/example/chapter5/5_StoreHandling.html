@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'Ext.Component',
+        'ext5.model.ticket.User',
+        'ext5.model.ticket.Organization',
+        'ext5.model.ticket.Project',
+        'ext5.model.ticket.Group'
+
+    ]);
+
+    Ext.onReady(function () {
+        var store = Ext.create('Ext.data.Store',{
+            model : 'ext5.model.ticket.User',
+            proxy : {
+                type : 'ajax',
+                actionMehtod:{
+                  read:'GET',
+                  create:'POST',
+                  update:'POST',
+                  destroy:'POST'
+                },
+                api:{ //1
+                  read : '../../resources/data/ticket-user.json?read',
+                  create:'../../resources/data/ticket-user.json?create',
+                  update:'../../resources/data/ticket-user.json?update',
+                  destroy:'../../resources/data/ticket-user.json?destroy'
+                },
+                writer:{
+                  type:'json',
+                  allowSingle : true, //2
+                  writeAllFields: true  //3
+                },
+                reader : {
+                    type:'json',
+                    rootProperty : 'entitys'
+                }
+            },
+            autoLoad : true
+        });
+
+        var user = Ext.create('ext5.model.ticket.User',{ //1
+           name : 'Kyle',
+            projectId : 2,
+            organizationId: 1
+        });
+        store.add(user); //2
+        store.sync(); //3
+    });
+</script>
+</body>
+</html>

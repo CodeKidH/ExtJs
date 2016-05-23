@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'Ext.Component',
+        'ext5.model.ticket.User'
+
+    ]);
+
+    Ext.onReady(function () {
+        var store = Ext.create('Ext.data.Store',{
+            model : 'ext5.model.ticket.User',
+            proxy : {
+                type : 'ajax',
+                url:'../../resources/data/ticket-user.json',
+                reader : {
+                    type:'json',
+                    rootProperty : 'entitys'
+                }
+            },
+            autoLoad : true
+        });
+
+        store.on('load',function(records){
+           records.each(function(item){
+                console.log(item.data)
+            })
+        });
+    });
+</script>
+</body>
+</html>
