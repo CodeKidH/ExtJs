@@ -698,7 +698,7 @@ Ext.onReady(function () {
     - Collection of Model is the Store
     - Store send a request to server to get data by using proxy
 
-#### 2_1. Create Store
+#### 2_1. Create Store(load)
 
 * 4_StoreOverview.html
 ~~~html
