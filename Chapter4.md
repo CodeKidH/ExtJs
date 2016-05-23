@@ -4,7 +4,7 @@
     
 
 
-## 1. Model
+# 1. Model
     
     Model like a RDB(DB Table)
     
@@ -692,3 +692,68 @@ Ext.onReady(function () {
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/Users.png)
 
+# 2. Store
+
+    - Model handle a data but Store can handle many data
+    - Collection of Model is the Store
+    - Store send a request to server to get data by using proxy
+
+#### 2_1. Create Store
+
+* 4_StoreOverview.html
+~~~html
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'Ext.Component',
+        'ext5.model.ticket.User'
+
+    ]);
+
+    Ext.onReady(function () {
+        var store = Ext.create('Ext.data.Store',{
+            model : 'ext5.model.ticket.User',
+            proxy : {
+                type : 'ajax',
+                url:'../../resources/data/ticket-user.json',
+                reader : {
+                    type:'json',
+                    rootProperty : 'entitys'
+                }
+            },
+            autoLoad : true
+        });
+        
+        store.on('load',function(records){
+           records.each(function(item){
+                console.log(item.data)
+            })
+        });
+    });
+</script>
+~~~
+
+* ticket-user.json
+
+~~~json
+{    entitys: [
+        {
+            id: 2,
+            name: "이순신",
+            projectId: 2,
+            organizationId: 1
+        }
+    ],
+    success: true
+}
+~~~
+
+
+    
+
+    
