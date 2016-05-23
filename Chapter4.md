@@ -865,3 +865,17 @@ Ext.onReady(function () {
     3.  store.sync(); 
         - To send a server the data
 ~~~
+
+* allowSingle : false
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/allowFalse.png)
+
+~~~java
+    Form of Array
+~~~
+
+* allowSingle : true
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/allowTrue.png)
