@@ -774,4 +774,94 @@ Ext.onReady(function () {
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/store.png)
     
 
+#### 2_2. To handle Store(CRUD)
+
+* 5_StoreHandling.html
+
+~~~html
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'Ext.Component',
+        'ext5.model.ticket.User',
+        'ext5.model.ticket.Organization',
+        'ext5.model.ticket.Project',
+        'ext5.model.ticket.Group'
+
+    ]);
+
+    Ext.onReady(function () {
+        var store = Ext.create('Ext.data.Store',{
+            model : 'ext5.model.ticket.User',
+            proxy : {
+                type : 'ajax',
+                actionMehtod:{
+                  read:'GET',
+                  create:'POST',
+                  update:'POST',
+                  destroy:'POST'
+                },
+                api:{ //1
+                  read : '../../resources/data/ticket-user.json?read',
+                  create:'../../resources/data/ticket-user.json?create',
+                  update:'../../resources/data/ticket-user.json?update',
+                  destroy:'../../resources/data/ticket-user.json?destroy'
+                },
+                writer:{
+                  type:'json',
+                  allowSingle : false, //2
+                  writeAllFields: true  //3
+                },
+                reader : {
+                    type:'json',
+                    rootProperty : 'entitys'
+                }
+            },
+            autoLoad : true
+        });
+    });
+</script>
+~~~
+
+~~~java
+    1.  api:{ 
+        - Define a CRUD
     
+    2. allowSingle : false
+        - Store can handle only one data 
+    
+    3. writeAllFields: true
+        - When It modify or delete, It config either to send a field value or not
+~~~
+
+* Add a new record model
+
+~~~javascript
+    var store = Ext.create('Ext.data.Store',{
+            .......
+        });
+        
+        var user = Ext.create('ext5.model.ticket.User',{ //1
+           name : 'Kyle',
+            projectId : 2,
+            organizationId: 1
+        });
+        store.add(user); //2
+        store.sync(); //3
+~~~
+
+~~~java
+    1. var user = Ext.create('ext5.model.ticket.User',{ 
+        - Create User model
+    
+    2.  store.add(user);
+        - Add a model to store
+    
+    3.  store.sync(); 
+        - To send a server the data
+~~~
