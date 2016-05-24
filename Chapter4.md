@@ -927,13 +927,133 @@ Ext.onReady(function () {
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/addedobject.png)
       
     - data to server because of sync();
-    ![child1layout]
-          (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/serveradded.png)
+
+    
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/serveradded.png)
 
 
 #### 2_3. To modify the store
 
     I can get a records and modify the data by using getUpdateRecords()
+    
 
-* 
+* 5_StoreHandling.html
+
+~~~javascript
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'Ext.Component',
+        'ext5.model.ticket.User',
+        'ext5.model.ticket.Organization',
+        'ext5.model.ticket.Project',
+        'ext5.model.ticket.Group'
+
+    ]);
+
+    Ext.onReady(function () {
+        var store = Ext.create('Ext.data.Store',{
+            model : 'ext5.model.ticket.Group',
+            proxy : {
+                type : 'ajax',
+                actionMehtod:{
+                  read:'GET',
+                  create:'POST',
+                  update:'POST',
+                  destroy:'POST'
+                },
+                api:{ //1
+                  read : '../../resources/data/ticket-group.json?read',
+                  create:'../../resources/data/ticket-group.json?create',
+                  update:'../../resources/data/ticket-group.json?update',
+                  destroy:'../../resources/data/ticket-group.json?destroy'
+                },
+                writer:{
+                  type:'json',
+                  allowSingle : false, //2
+                  writeAllFields: true  //3
+                },
+                reader : {
+                    type:'json',
+                    rootProperty : 'entitys'
+                }
+            },
+            autoLoad : true
+        });
+
+        var user = Ext.create('ext5.model.ticket.User',{ //1
+           name : 'Kyle',
+            projectId : 2,
+            organizationId: 1
+        });
+        store.add(user); //2
+
+        store.insert(0,{
+           name:'Hee',
+            projectId:2,
+            organizationId: 1
+        });
+
+        var arrayModel = [];
+        for(var i = 0; i<5; i++){
+            arrayModel.push({
+                name:"Kyle"+i,
+                projectId:2,
+                organizationId:1
+            });
+        }
+
+        store.add(arrayModel);
+        var newRecords = store.getNewRecords();
+        Ext.each(newRecords, function(record, index){
+            console.log('New(',index,')',record.get('name'));
+        });
+
+        store.sync(); //3
+    });
+</script>
+~~~
+
+* ticket-group.json
+~~~json
+{
+    entitys: [
+        {
+            id: 1,
+            name: "manager",
+            organizationId: 1
+        },
+        {
+            id: 2,
+            name: "dev",
+            organizationId: 1
+        },
+        {
+            id: 3,
+            name: "QA",
+            organizationId: 1
+        },
+        {
+            id: 4,
+            name: "Support",
+            organizationId: 1
+        },
+        {
+            id: 5,
+            name: "sales",
+            organizationId: 1
+        }
+    ],
+    success: true,
+    "errMsg": "",
+    "errTitle": ""
+}
+
+~~~
     
