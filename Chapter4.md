@@ -879,3 +879,46 @@ Ext.onReady(function () {
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/allowTrue.png)
+
+
+* Another way to add a model to store object
+~~~javascript
+    store.add(user); 
+    
+    store.insert(0,{
+       name:'Hee',
+        projectId:2,
+        organizationId: 1
+    });
+    
+    var arrayModel = [];
+    for(var i = 0; i<5; i++){
+        arrayModel.push({
+            name:"Kyle"+i,
+            projectId:2,
+            organizationId:1
+        });
+    }
+    
+    store.add(arrayModel);
+    var newRecords = store.getNewRecords();
+    Ext.each(newRecords, function(record, index){
+        console.log('New(',index,')',record.get('name'));
+    });
+    
+    store.sync(); 
+~~~
+
+~~~java
+    
+    0. store.insert(0,{
+        - Insert() can designate place to add a object
+        
+    1.  arrayModel.push({
+        - Add a object
+    
+    2. store.getNewRecords();
+        - getNewRecords() find a object added
+    
+ 
+~~~
