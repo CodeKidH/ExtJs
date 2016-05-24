@@ -26,7 +26,7 @@
 
     Ext.onReady(function () {
         var store = Ext.create('Ext.data.Store',{
-            model : 'ext5.model.ticket.User',
+            model : 'ext5.model.ticket.Group',
             proxy : {
                 type : 'ajax',
                 actionMehtod:{
@@ -36,15 +36,15 @@
                   destroy:'POST'
                 },
                 api:{ //1
-                  read : '../../resources/data/ticket-user.json?read',
-                  create:'../../resources/data/ticket-user.json?create',
-                  update:'../../resources/data/ticket-user.json?update',
-                  destroy:'../../resources/data/ticket-user.json?destroy'
+                  read : '../../resources/data/ticket-group.json?read',
+                  create:'../../resources/data/ticket-group.json?create',
+                  update:'../../resources/data/ticket-group.json?update',
+                  destroy:'../../resources/data/ticket-group.json?destroy'
                 },
                 writer:{
                   type:'json',
-                  allowSingle : true, //2
-                  writeAllFields: true  //3
+                  allowSingle : false, //2
+                  writeAllFields: false  //3
                 },
                 reader : {
                     type:'json',
@@ -54,13 +54,18 @@
             autoLoad : true
         });
 
-        var user = Ext.create('ext5.model.ticket.User',{ //1
-           name : 'Kyle',
-            projectId : 2,
-            organizationId: 1
+        store.on('load',function(groups){
+           store.first().set('name','superAdmin');
+            var last = store.last();
+            last.set('organizationId', 2);
+
+            var updated = store.getUpdatedRecords();
+            Ext.each(updated, function(record, index){
+                console.log('New(',index,')', record.data);
+            });
+
+            store.sync();
         });
-        store.add(user); //2
-        store.sync(); //3
     });
 </script>
 </body>

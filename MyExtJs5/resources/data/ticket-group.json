@@ -2,12 +2,12 @@
     entitys: [
         {
             id: 1,
-            name: "관리자",
+            name: "manager",
             organizationId: 1
         },
         {
             id: 2,
-            name: "개발자",
+            name: "dev",
             organizationId: 1
         },
         {
@@ -22,7 +22,7 @@
         },
         {
             id: 5,
-            name: "영업",
+            name: "sales",
             organizationId: 1
         }
     ],
