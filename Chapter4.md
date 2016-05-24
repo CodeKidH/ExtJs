@@ -922,3 +922,18 @@ Ext.onReady(function () {
     
  
 ~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/addedobject.png)
+      
+    - data to server because of sync();
+    ![child1layout]
+          (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/serveradded.png)
+
+
+#### 2_3. To modify the store
+
+    I can get a records and modify the data by using getUpdateRecords()
+
+* 
+    
