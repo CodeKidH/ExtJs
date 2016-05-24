@@ -986,36 +986,6 @@ Ext.onReady(function () {
             },
             autoLoad : true
         });
-
-        var user = Ext.create('ext5.model.ticket.User',{ //1
-           name : 'Kyle',
-            projectId : 2,
-            organizationId: 1
-        });
-        store.add(user); //2
-
-        store.insert(0,{
-           name:'Hee',
-            projectId:2,
-            organizationId: 1
-        });
-
-        var arrayModel = [];
-        for(var i = 0; i<5; i++){
-            arrayModel.push({
-                name:"Kyle"+i,
-                projectId:2,
-                organizationId:1
-            });
-        }
-
-        store.add(arrayModel);
-        var newRecords = store.getNewRecords();
-        Ext.each(newRecords, function(record, index){
-            console.log('New(',index,')',record.get('name'));
-        });
-
-        store.sync(); //3
     });
 </script>
 ~~~
@@ -1056,4 +1026,43 @@ Ext.onReady(function () {
 }
 
 ~~~
+
+* Record update
+
+~~~javascript
+    var store = Ext.create('Ext.data.Store',{
+          .....
+    });
+
+    store.on('load',function(groups){
+       store.first().set('name','superAdmin');
+        var last = store.last();
+        last.set('organizationId', 2);
+
+        var updated = store.getUpdatedRecords();
+        Ext.each(updated, function(record, index){
+            console.log('New(',index,')', record.data);
+        });
+
+        store.sync();
+    });
+~~~
+
+~~~java
+    1. store.on('load',function(groups){
+        - Define a load event, after ajax, I can get records data
     
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/updatedstore.png)
+
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/serverupdate.png)
+
+* writeAllFields: false
+    
+    When writeAllFields: false ,I send server the updated record
+
+
