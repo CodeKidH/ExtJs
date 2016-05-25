@@ -1,7 +1,7 @@
 # Form field and Form load, submit
 
 
-## 1. Form and Form field
+# 1. Form and Form field
 
     1) Form class is extended from Ext.panel.Panel class and Create a Ext.form.Base object by using createForm()
     2) getForm() - I can get a form by using it , I use it because real form exist inside of form panel
@@ -73,4 +73,20 @@ Ext.define('ext5.view.chapter6.MyForm',{
     ]
 });
 
+~~~
+
+~~~java
+    1.  width : 500
+        - Config the Form's width
+    
+    2. bodyStyle:'padding 6px'
+        - Form's body style
+    
+    3. defaultType : 'textfield'
+        - If items doesn't have a xtype, It will create a textfield
+        
+    4.  default:{
+        - items default set
+    
+    
 ~~~
