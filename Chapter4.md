@@ -1066,3 +1066,31 @@ Ext.onReady(function () {
     When writeAllFields: false ,I send server the updated record
 
 
+#### 2_4. To delete the store
+
+* 5_StoreHandling.html
+~~~javascript
+ store.on('load',function(groups){
+
+        console.log('before delete:',groups.count());
+        var first = groups.first();
+        last = groups.last();
+        groups.remove(first);
+        groups.removeAt(3);
+        groups.removeAll();
+        groups.sync({
+            callback: function(){
+                console.log('after delete:',groups.count());
+            }
+        })
+    });
+~~~
+
+~~~java
+    1.  groups.sync({
+       - It invoke a sync() callback
+    
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/deletestore.png)
