@@ -90,3 +90,7 @@ Ext.define('ext5.view.chapter6.MyForm',{
     
     
 ~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/formInit.png)
+
