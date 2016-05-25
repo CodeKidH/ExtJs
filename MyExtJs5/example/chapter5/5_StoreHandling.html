@@ -55,16 +55,18 @@
         });
 
         store.on('load',function(groups){
-           store.first().set('name','superAdmin');
-            var last = store.last();
-            last.set('organizationId', 2);
 
-            var updated = store.getUpdatedRecords();
-            Ext.each(updated, function(record, index){
-                console.log('New(',index,')', record.data);
-            });
-
-            store.sync();
+            console.log('before delete:',groups.count());
+            var first = groups.first();
+            last = groups.last();
+            groups.remove(first);
+            groups.removeAt(3);
+            groups.removeAll();
+            groups.sync({
+                callback: function(){
+                    console.log('after delete:',groups.count());
+                }
+            })
         });
     });
 </script>
