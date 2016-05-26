@@ -228,3 +228,110 @@ Ext.define('ext5.view.chapter6.MyForm',{
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/numberfield.png)
+
+#### 1_5. CheckBox and CheckBoxGroup
+
+    Ext.form.field.Checkbox
+    Ext.form.CheckboxGroup
+    Ext.form.CheckboxGroup will be extended from Ext.form.FieldContainer and It give support to form field and label in form panel
+
+* 4_CheckBox.html
+~~~html
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter6.MyForm'
+    ]);
+
+    Ext.onReady(function () {
+
+        var fp = Ext.create('ext5.view.chapter6.MyForm',{
+           renderTo : document.body
+        });
+        fp.add({
+           xtype:'checkboxgroup', //1
+            fieldLabel:'checkBox',
+            name:'mobilephone', //2
+            columns:3, //3
+            items:[//4
+                {
+                    xtype:'checkbox', //5
+                    boxLabel:'iphone4',
+                    name:'ip4'//6
+                },
+                {
+                    boxLabel :'iphone5',
+                    xtype:'checkbox',
+                    name:'mobilephone',
+                    inputValue:'ip5'
+                },
+                {
+                    boxLabel : 'galaxy5',
+                    xtype:'checkbox',
+                    name:'mobilephone',
+                    inputValue:'gs'
+                },
+                {
+                    boxLabel:'galaxynote',
+                    xtype:'checkbox',
+                    name:'mobilephone',
+                    inputValue:'gnote'
+                },
+                {
+                    boxLabel:'vega',
+                    xtype:'checkbox',
+                    name:'mobilephone',
+                    inputValue:'vege'
+                },
+                {
+                    boxLabel:'g2',
+                    xtype:'checkbox',
+                    name:'mobilephone',
+                    inputValue:g2
+                }
+            ]
+        });
+
+    });
+</script>
+~~~
+
+~~~java
+    1. name:'mobilephone'
+        - It will be used to access the group
+~~~
+ 
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/checkboxgroup.png)  
+
+* How to handle it
+
+    - Find a group
+    ~~~javascript
+          var checkboxgroup = fp.down('checkboxgroup[name=mobilephone]');
+    ~~~
+    
+    - Check
+    ~~~javascript
+          /* checkboxgroup.setValue({
+            mobilephone : 'gs'
+        });
+
+        checkboxgroup.setValue({
+           ip4 : true
+        });*/
+
+        checkboxgroup.setValue({
+            mobilephone : ['vega','g2'],
+            ip4: true
+
+        });
+    ~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/checkboxchecked.png)  
