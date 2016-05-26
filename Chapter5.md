@@ -94,3 +94,86 @@ Ext.define('ext5.view.chapter6.MyForm',{
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/formInit.png)
 
+
+#### 1_2. Base Class
+
+    1. Base class (Ext.form.field.Base) refer to Ext.form.Labellabel class and Ext.form.field.Field Class
+    2. Base class will not create object but Form field class use it by extending 
+
+#### 1_3. TextField
+    
+    
+    Ext.form.field.Text
+        1. Ext.form.field.ComboBox
+        2. Ext.form.field.Date
+        3. Ext.form.field.File
+        4. Ext.form.field.Number
+        5. Ext.form.field.Spinner
+        6. Ext.form.field.TextArea
+
+
+* 2_TextField.html
+
+~~~html
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter6.MyForm'
+    ]);
+
+    Ext.onReady(function () {
+
+        var fp = Ext.create('ext5.view.chapter6.MyForm',{
+           renderTo : document.body
+        });
+        fp.add({
+            xtype : 'textfield',//1
+            msgTarget : 'under',//2
+            anchor:'100%',//3
+            labelWidth : 120,//4
+            fieldLabel : 'TextField',//5
+            allowBlank : false,//6
+            emptyText : 'This field only allow to write in English',//7
+            maskRe: /[a-z]/i,//8
+            name:'mytext',//9
+            enableKeyEvents: true,//1o
+            listener:{
+                keydown: function(field, event){
+                    console.log('keydown',arguments)
+                },
+                keypress: function(field,event){
+                    console.log('keypress',arguments)
+                },
+                keyup: function(field, event){
+                    console.log('keyup',arguments)
+                }
+            }
+        });
+    })
+</script>
+~~~
+
+~~~java
+    1. xtype : 'textfield'
+        - widget's name
+    
+    2. msgTarget : 'under',
+        - config of Ext.form.Labellabel, 
+        - It will set up a location of field class message area
+    
+    3. anchor:'100%'
+        - Form panel's default layout is anchor layout
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/textfield.png)
+    
+#### 1_4. Number field
+
+    Ext.form.field.Number
+
