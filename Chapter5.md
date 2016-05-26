@@ -177,3 +177,54 @@ Ext.define('ext5.view.chapter6.MyForm',{
 
     Ext.form.field.Number
 
+
+* 3_NumberField.html
+~~~html
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter6.MyForm'
+    ]);
+
+    Ext.onReady(function () {
+
+        var fp = Ext.create('ext5.view.chapter6.MyForm',{
+           renderTo : document.body
+        });
+        fp.add({
+           xtype : 'numberfield',
+            fieldLabel: 'NumberField',
+            name:'mynumber',
+            value : 1.0,
+            maxValue : 10,
+            minValue : 0,
+            step : 0.01,
+            decimalPrecision : 2,
+            allowBlank : false,
+            allowDecimals: true,
+            mouseWheelEnabled : true,
+            emptyText : 'decimal point'
+        });
+
+    })
+</script>
+~~~
+
+~~~java
+    1. value : 1.0,
+        - permission of number
+    
+    2.  step : 0.01,
+        - Increase or decrease in number when I use a mouse scroll
+    
+    3. mouseWheelEnabled : true,
+        - Mouse wheel
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/numberfield.png)
