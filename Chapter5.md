@@ -340,4 +340,81 @@ Ext.define('ext5.view.chapter6.MyForm',{
 
     Ext.form.RadioGroup extend from checkgroup
     
-    
+
+* 5_Radio.html
+~~~javascript
+Ext.onReady(function () {
+
+        var fp = Ext.create('ext5.view.chapter6.MyForm',{
+           renderTo : document.body
+        });
+        fp.add({
+          xtype:'radiogroup',
+            fieldLabel:'radioGroup',
+            allowBlank : false,
+            columns: 3,
+            items:[
+                {
+                    xtype:'radio',
+                    boxLabel : 'window98',
+                    name:'os',
+                    inputValue : 'wind95',
+                    checked : true
+                },
+                {
+                    boxLabel : 'windowXP',
+                    xtype:'radio',
+                    name:'os',
+                    inputValue : 'windxp'
+                },
+                {
+                    boxLabel : 'window7',
+                    xtype:'radio',
+                    name:'os',
+                    inputValue : 'win8'
+                },
+                {
+                    boxLabel:'ubuntu',
+                    xtype:'radio',
+                    name:'os',
+                    inputValue:'ubuntu'
+                },
+                {
+                    boxLabel:'Mac',
+                    xtype:'radio',
+                    name:'os',
+                    inputValue:'mac'
+                }
+
+            ]
+        });
+
+    });
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/radiogroup.png) 
+      
+
+#### 1_7. ComboBox and data load
+
+    Ext.form.field.ComboBox
+    If I use a store, I can load data easily
+
+
+* Code.js-model
+~~~javascript
+Ext.define('ext5.model.smpl.Code',{
+    extend: 'Ext.data.Model',
+    fields:[
+        {
+            name:'cd_code',
+            type:'string'
+        },
+        {
+            name:'cd_desc',
+            type:'string'
+        }
+    ]
+});
+~~~
