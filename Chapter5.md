@@ -418,3 +418,99 @@ Ext.define('ext5.model.smpl.Code',{
     ]
 });
 ~~~
+
+* 6_Combo.html -store: data load
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.model.smpl.Code',
+        'ext5.view.chapter6.MyForm'
+    ]);
+
+    Ext.onReady(function () {
+
+        var fp = Ext.create('ext5.view.chapter6.MyForm',{
+           renderTo : document.body
+        });
+
+        var store = Ext.create('Ext.data.Store',{
+            model : ext5.model.smpl.Code,
+            proxy:{
+                type:'ajax',
+                url:'/resources/data/code.json',
+                reader:{
+                    type:'json',
+                    root:'entitys'
+                }
+            }
+        });
+
+        fp.add({
+            xtype:'combo',
+            name:'code',
+            store : store,
+            fieldLabel:'ComboBox',
+            displayField:'cd_desc',//4
+            valueField:'cd_code',//5
+            queryMode:'remote',//6
+            forceSelection : true,//7
+            typeAhead:'true',//8
+            typeAheadDelay:100,//9
+            minChars:1,//10
+            hideTrigger: false//11
+        });
+
+    });
+</script>
+</body>
+</html>
+
+~~~
+
+~~~java
+    1. displayField:'cd_desc'
+        - Show me the display
+    
+    2. valueField:'cd_code'
+        - data sended
+    
+    3. queryMode:'remote'
+        - Automatically load a data by using store
+        - If I don't need to communicate with server, I set up 'local'
+    
+    4. forceSelection : true
+        - If user write it down something, It can be sended to server(true)
+        - false, It is the other way around
+    
+    5. typeAhead:'true',
+        - If User enter a similar value among combo data, It is make a value automatically
+    
+    6.  typeAheadDelay:100,//9
+        - configure typeAhead
+    
+    7. minChars:1,//10
+        - configure entered value for typeAhead
+        
+    8.  hideTrigger: false//11
+        - Trigger button
+        
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/combodata.png) 
