@@ -614,3 +614,124 @@ Ext.define('ext5.model.smpl.Code',{
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/htmleditor.png) 
+
+#### 1_9. To make a popup by using picker field
+
+    Ext.form.field.Picker
+    - datefield will be extended from picker field
+
+
+* 8_PickerField.html
+~~~html
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter6.MyForm',
+   'ext5.view.chapter6.CustomPickerField'
+    ]);
+
+    Ext.onReady(function () {
+
+        var fp = Ext.create('ext5.view.chapter6.MyForm',{
+           renderTo : document.body
+        });
+        fp.add({
+            xtype:'chapter6-custompicker',
+            fieldLabel:'First name',
+            name:'first',
+            allowBlank : false
+        });
+    });
+</script>
+~~~
+
+* CustomPickerField.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-05-30.
+ */
+Ext.define('ext5.view.chapter6.CustomPickerField',{
+   extend : 'Ext.form.field.Picker',//1
+    alias:'widget.chapter6-custompicker',//2
+    triggerCls : 'x-form-search-trigger',//3
+    createPicker: function(){//4
+        var me = this;
+        if(!me.picker){//5
+            me.picker = Ext.create('Ext.window.Window',{ //6
+                title:'Hello',
+                closeAction:'hide',
+                height: 200,
+                width : 150,
+                layout:'fit',
+                items:{
+                    xtype:'grid',//7
+                    border:false,
+                    columns:[
+                        {
+                            header : 'World',
+                            dataIndex:'field1',
+                            flex:1
+                        }
+                    ],
+                    store: Ext.create('Ext.data.ArrayStore',{
+                        fields:['field1'],
+                        data:[['Hello']]
+                    }),
+                    listeners:{
+                        select : function(grid, record){//8
+                            me.setValue(record.get('field1'));//9
+                            me.collapse();//10
+                        }
+                    }
+                }
+            });
+        }
+        return me.picker; //11
+    }
+});
+
+~~~
+~~~java
+    1. extend : 'Ext.form.field.Picker'
+        - This class will be extended from 
+    
+    2.  triggerCls : 'x-form-search-trigger'
+        - It will be extended from Ext.form.field.Trigger
+        - I can use a trigger button cls
+        - x-from-clear-trigger : Shape of 'X'
+        - x-form-trigger : 'Select icon'
+        - x-form-date-trigger : 'date'
+    
+    3. createPicker: function(){
+        - Picker class have to have a createpicker()
+    
+    4.  if(!me.picker){//5
+        - Check a picker exist
+    
+    5.  me.picker = Ext.create('Ext.window.Window',{ /
+        - Create a Ext.window.Window and send a picker value
+    
+    6. xtype:'grid',//7
+        - Add a grid to window
+    
+    7.   select : function(grid, record){
+        - picker class provide a select () 
+    
+    8. me.setValue(record.get('field1'))
+        - selected value will be set 
+    
+    9.  me.collapse();
+        - fold a picker and hide
+    
+    10.  return me.picker; 
+        - return picker value
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/custompicker.png) 
+
