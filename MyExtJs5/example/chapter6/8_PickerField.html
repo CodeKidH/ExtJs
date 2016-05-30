@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter6.MyForm',
+            'ext5.view.chapter6.CustomPickerField'
+    ]);
+
+    Ext.onReady(function () {
+
+        var fp = Ext.create('ext5.view.chapter6.MyForm',{
+           renderTo : document.body
+        });
+        fp.add({
+            xtype:'chapter6-custompicker',
+            fieldLabel:'First name',
+            name:'first',
+            allowBlank : false
+        })
+    });
+</script>
+</body>
+</html>
