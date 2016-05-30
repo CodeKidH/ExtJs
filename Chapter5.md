@@ -735,3 +735,86 @@ Ext.define('ext5.view.chapter6.CustomPickerField',{
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/custompicker.png) 
 
+* Add a grid as a picker
+~~~javascript
+/**
+ * Created by Administrator on 2016-05-30.
+ */
+Ext.define('ext5.view.chapter6.CustomPickerField',{
+   extend : 'Ext.form.field.Picker',
+    alias:'widget.chapter6-custompicker',
+    triggerCls : 'x-form-search-trigger',
+    createPicker: function(){
+        var me = this;
+        if(!me.picker){
+            me.picker = Ext.create('Ext.grid.Panel',{ 
+                floating : true,
+                title:'Hello',
+                height : 200,
+                width:150,
+                border:false,
+                columns:[
+                    {
+                        header:'World',
+                        dataIndex : 'title',
+                        flex:1
+                    },
+                ],
+                store: Ext.create('Ext.data.Store',{
+                    field:['field1'],
+                    data:[
+                        {field1: 'Hello'}
+                    ]
+                })
+            });
+        }
+        return me.picker; 
+    }
+});
+
+~~~
+
+~~~java
+    1.  floating : true,
+        - If It is not a window class, floating must be true
+~~~
+
+* Choose a UI class by using CustomPickerClass
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-05-30.
+ */
+Ext.define('ext5.view.chapter6.CustomPickerField',{
+   extend : 'Ext.form.field.Picker',
+    alias:'widget.chapter6-custompicker',
+    triggerCls : 'x-form-search-trigger',
+    requires:[
+        'ext5.view.chapter6.GridPicker',//1
+        'ext5.view.chapter6.WindowPicker'//2
+    ],
+    createPicker: function(){
+        var me = this;
+        if(!me.picker){
+            me.picker = Ext.widget(me.pickerAlias);//3
+            me.picker.on('select',function(p, record){//4
+                me.setValue(record.get('company')|| record.get('text'));//5
+                me.collapse //6
+            })
+        }
+        return me.picker;
+    }
+});
+
+~~~
+
+~~~java
+    1.  'ext5.view.chapter6.GridPicker',//1
+        'ext5.view.chapter6.WindowPicker'//2
+            - load a source
+    
+    2.  Ext.widget(me.pickerAlias);
+        - Ext.widget is different from Ext.create
+        - Ext.widtet will create instance by using widget name
+        - pickerAlias is provided by external class 
+~~~
