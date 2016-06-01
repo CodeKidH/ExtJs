@@ -927,3 +927,159 @@ Ext.define('ext5.view.chapter6.WindowPicker', {
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/pickercomplete.png) 
+
+# 2. Complex Form
+
+* ComplexForm.html
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+    <style type="text/css">
+        .combo {
+            font-weight: bold;
+            font-size : 11px;
+            background-color : #FFFF99;
+        }
+
+        .combo-address{
+            font-size : 11px;
+            color:#666666;
+        }
+
+        .x-form-check-group-label{
+            color:#000;
+            pdding : 2px;
+            margin : 0 30px 5px 0;
+            border-width : 0 0 1px 0;
+            border-style:solid;
+            border-color:#000;
+        }
+
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter6.CheckOutMaster'
+
+    ]);
+
+    Ext.onReady(function () {
+        var fp = Ext.create('ext5.view.chapter6.CheckOutMaster',{
+           renderTo : document.body
+        });
+    });
+</script>
+</body>
+</html>
+
+~~~
+
+* CheckOutMaster.js
+    - To make a frame of class
+    
+~~~javascript
+/**
+ * Created by Administrator on 2016-06-01.
+ */
+Ext.define('ext5.view.chapter6.CheckOutMaster',{
+    extend:'Ext.form.Panel',
+    alias:'widget.chapter6-checkoutmaster',
+    requires:[],
+    title:'Shipping/payment',
+    bodypadding:5,
+    width:700,
+    initComponent:function(){
+        var me = this;
+        Ext.apply(me,{
+
+        });
+        me.callParent(arguments);
+    }
+});
+
+
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/complexInit.png) 
+
+* To configure a basics
+
+~~~javascript
+    initComponent:function(){
+        var me = this;
+        Ext.apply(me,{
+            fieldDefaults:{
+                labelAlign:'right',
+                labelWidth:80,
+                msgTarget:'qtip'
+            },
+            items:[]
+        });
+        me.callParent(arguments);
+    }
+~~~
+
+* Making init button and submit button
+
+~~~javascript
+ initComponent:function(){
+        var me = this;
+        Ext.apply(me,{
+            fieldDefaults:{
+                labelAlign:'right',
+                labelWidth:80,
+                msgTarget:'qtip'
+            },
+            items:[],
+            buttons:[
+                {
+                    text:'Reset',
+                    scope:this,
+                    handler:this.onResetClick
+                },
+                {
+                    text:'Submit',
+                    scope:this,
+                    handler:this.onCompleteClick
+                }
+
+            ]
+        });
+        me.callParent(arguments);
+    },
+
+    onResetClick :function(){
+        this.getForm().reset();
+    },
+
+    onCompleteClick: function(){
+        var form = this.getForm();
+        if(form.isValid()){
+            console.log('Submitted Value',form.getValues(true));
+            form.submit({
+                url:'server.jsp'
+            })
+        }
+
+    }
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/complexButton.png) 
+
+
+
+
