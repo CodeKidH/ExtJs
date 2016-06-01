@@ -29,7 +29,17 @@
             xtype:'chapter6-custompicker',
             fieldLabel:'First name',
             name:'first',
-            allowBlank : false
+            allowBlank : false,
+            pickerAlias:'chapter6-gridpicker'//1
+        });
+        fp.add({
+            xtype:'chapter6-custompicker',
+            fieldLabel:'Last name',
+            name:'left',
+            allowBlank:false,
+            matchFieldWidth : false,//2
+            pickerOffset:[10, 10],//3
+            pickerAlias:'chapter6-windowpicker'//4
         })
     });
 </script>

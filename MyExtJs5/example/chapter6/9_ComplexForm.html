@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+    <style type="text/css">
+        .combo {
+            font-weight: bold;
+            font-size : 11px;
+            background-color : #FFFF99;
+        }
+
+        .combo-address{
+            font-size : 11px;
+            color:#666666;
+        }
+
+        .x-form-check-group-label{
+            color:#000;
+            pdding : 2px;
+            margin : 0 30px 5px 0;
+            border-width : 0 0 1px 0;
+            border-style:solid;
+            border-color:#000;
+        }
+
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter6.CheckOutMaster'
+
+    ]);
+
+    Ext.onReady(function () {
+        var fp = Ext.create('ext5.view.chapter6.CheckOutMaster',{
+           renderTo : document.body
+        });
+    });
+</script>
+</body>
+</html>
