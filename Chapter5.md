@@ -1082,4 +1082,101 @@ Ext.define('ext5.view.chapter6.CheckOutMaster',{
 
 
 
+#### 2_1. Form field batch by using fieldset and fieldContainer
+
+* To add a widget name
+
+~~~javascript
+ Ext.apply(me,{
+            fieldDefaults:{
+                labelAlign:'right',
+                labelWidth:80,
+                msgTarget:'qtip'
+            },
+            items:[
+
+                {
+                    xtype : 'chapter6-deliveryForm'
+                }
+
+            ],
+~~~
+
+* To add a requires config to dynamic load a DeliveryForm
+~~~javascrip
+requires:[
+        'ext5.view.chapter6.DeliveryForm'
+    ],
+~~~
+
+* DeliveryForm.js
+~~~javascrip
+/**
+ * Created by Administrator on 2016-06-01.
+ */
+Ext.define('ext5.view.chapter6.DeliveryForm',{
+    extend:'Ext.form.FieldSet',
+    xtype:'chapter6-deliveryform',
+    title:'destination info',
+    layout:'column',
+    initComponent: function(){
+        Ext.apply(this,{
+            items:[
+
+            ]
+        });
+
+        this.callParent();
+    }
+});
+
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/deliveryFormInit.png) 
+
+* First child - DeliveryForm.js
+
+~~~javascript
+initComponent: function(){
+        Ext.apply(this,{
+            items:[
+                {
+                    xtype:'fieldcontainer',
+                    fieldLabel:'destination address',
+                    columnWidth:5,
+                    layout:'hbox',
+                    combineErrors:true,
+                    defaultType:'radio',
+                    items:[
+                        {
+                            name:'delivery',
+                            inputValue:'newDelivery',
+                            boxLabel:'New destination',
+                            checked:true,
+                            handler:this.resetDelivery,
+                            scope:this,
+                            margin:'0 5 0 0'
+                        },
+                        {
+                            name:'delivery',
+                            inputValue:'0',
+                            boxLabel:'Member address',
+                            handler:this.clickLatestDelivery,
+                            scope:this,
+                            margin : '0 5 0 0'
+
+                        }
+                    ]
+                }
+            ]
+        });
+
+        this.callParent();
+    }
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/deliveryFormRadio.png) 
+
 
