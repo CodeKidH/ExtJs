@@ -1180,3 +1180,138 @@ initComponent: function(){
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/deliveryFormRadio.png) 
 
 
+#### 2_2. Form field batch by using container
+
+* Second child - DeliveryForm.js
+~~~javascript
+    {
+        xtype:'container',
+        layout:'hbox',
+        columnWidth:1,
+        defaultType:'textfield',
+        margin:'0 0 5 80',
+        items:[
+            
+        ]
+    }
+~~~
+
+* Get a data
+    
+        To make a combo box and I will get a data from json using ajax
+
+~~~javascript
+ initComponent: function(){
+
+        var remoteJsonStore = Ext.create('Ext.data.JsonStore',{
+           fields:['zipcode','address'],
+            proxy : {
+                xtype:'ajax',
+                url:'/resources/data/jusoData.json',
+                reader:{
+                    type:'json',
+                    rootProperty:'data',
+                    totalProperty:'totalCount'
+                }
+            }
+        });
+~~~
+
+* jusoData.json
+~~~json
+{
+    "success": true,
+    "totalCount": 200,
+    "errMsg": "",
+    "errTitle": "",
+    "data": [
+
+        {
+            "zipcode": "150-601",
+            "address": "서울특별시 영등포구 여의도우체국사서함 100~199	"
+        },
+        {
+            "zipcode": "150-602",
+            "address": "서울특별시 영등포구 여의도우체국사서함 200~299	"
+        },
+        {
+            "zipcode": "150-600",
+            "address": "서울특별시 영등포구 여의도우체국사서함 1~99"
+        },
+        {
+            "zipcode": "150-603",
+            "address": "서울특별시 영등포구 여의도우체국사서함 300~399"
+        },
+        {
+            "zipcode": "150-604",
+            "address": "서울특별시 영등포구 여의도우체국사서함 400~499	"
+        },
+        {
+            "zipcode": "150-605",
+            "address": "서울특별시 영등포구 여의도우체국사서함 500~599	"
+        },
+        {
+            "zipcode": "150-606",
+            "address": "서울특별시 영등포구 여의도우체국사서함 600~699"
+        }
+    ]
+}
+
+~~~
+
+* combo box
+~~~javascript
+ xtype:'container',
+                    layout:'hbox',
+                    columnWidth:1,
+                    defaultType:'textfield',
+                    margin:'0 0 5 80',
+                    items:[
+                        {
+                            xtype:'combo',
+                            name:'findaddress',
+                            queryMode:'remote',//1
+                            width:400,
+                            labelWidth:55,
+                            fieldLabel:'Search address',
+                            forceSelection: true,//2
+                            displayField:'address',//3
+                            valueField:'address',//4
+                            pageSize:5,//5
+                            minChars:1,//6
+                            triggerAction:'query',//7
+                            store:remoteJsonStore,//8
+                            listConfig:{//9
+                                getInnerTpl:function(displayField){
+                                    return '<div data-qtip="{fullName}">'+
+                                            '<div class="combo">{zipcode}</div>'+
+                                            '<div class=""combo-address>{address}</div>'+
+                                            '</div>';
+                                }
+                            }
+
+                        }
+                    ]
+~~~
+
+~~~java
+    1. queryMode:'remote'
+        - To connect with remote
+    
+    2. forceSelection: true,/
+        - Text value will not transmit data, Only combo data will be transmitted
+    
+    3.  displayField:'address',
+        - display data
+    
+    4. valueField:'address',
+        - data transmitted
+    
+    5.  pageSize:5
+        - If combo box will be unfold, Paging tool bar exist
+    
+    6. 
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/comboboxinit.png) 
