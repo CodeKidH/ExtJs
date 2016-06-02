@@ -1290,6 +1290,12 @@ initComponent: function(){
                                 }
                             }
 
+                        },
+                        {
+                            xtype:'checkbox',
+                            name:'basicaddress',
+                            margin:'0 0 0 5',
+                            boxLabel:'Normal Address'
                         }
                     ]
 ~~~
