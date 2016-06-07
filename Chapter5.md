@@ -1321,3 +1321,104 @@ initComponent: function(){
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/comboboxinit.png) 
+
+#### 2_3. Add a form field dynamically
+
+     I can load datas dynamically
+
+* latestDelivery.json
+~~~json
+{
+    "success": true,
+    "errMsg": "",
+    "errTitle": "",
+    "data": [
+        {
+            "label": "홍길동",
+            "latestnum": 1,
+            "checked": false
+        },
+        {
+            "label": "김민섭",
+            "latestnum": 2,
+            "checked": true
+        },
+        {
+            "label": "김송이",
+            "latestnum": 3,
+            "checked": false
+        }
+    ]
+}
+~~~
+
+* Handle json file
+~~~javascript
+    initCompoent: function(){
+    
+    }
+    
+    setLatestDelivery: function(){
+        Ext.Ajax.request({
+            url : '/resources/data/latestDelivery.json',
+            success:thsi.onLoad,
+            scope:this
+        });
+    },
+
+    onLoad: function(response){
+        var response = Ext.decode(response.responseText); //1
+        if(response.success){//2
+            var radiogroup = {//3
+                xtype:'radiogroup',//4
+                itemId: 'latestDelivery',
+                findLabel:'latest destination',
+                columnWidth : .5,//5
+                items:[]//6
+            };
+
+            var i, len = response.data.length;//7
+            for( i = 0; i< len; i++){
+
+                record = response.data[i];//8
+
+                radiogroup.items.push({//9
+                    boxLabel: record.label,//10
+                    name:'latestDelivery',
+                    inputValue:record.latestnum,
+                    handler:this.clickLatestDelivery,//11
+                    scope:this//12
+                });
+            }
+            this.insert(1, radiogroup);//13
+        }
+    }
+~~~
+
+~~~java
+    1. var radiogroup = {
+        - Make a radiogroup object
+    
+    2. radiogroup.items.push({//9
+        - Add a radio button
+    
+    3. handler:this.clickLatestDelivery
+        - radiobutton event
+    
+    
+~~~
+
+    When the class will be created, setLatestDelivery method can be executed by using this way
+    
+    ~~~javascript
+        initComponent: function(){
+            ...
+            
+            this.callParent(arguments);
+            this.setLatestDelivery();
+        }
+    ~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/radiogroupdynamic.png) 
+
