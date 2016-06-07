@@ -76,9 +76,23 @@ Ext.define('ext5.view.chapter6.DeliveryForm',{
                                 getInnerTpl:function(displayField){
                                     return '<div data-qtip="{fullName}">'+
                                             '<div class="combo">{zipcode}</div>'+
-                                            '<div class=""combo-address>{address}</div>'+
+                                            '<div class="combo-address">{address}</div>'+
                                             '</div>';
                                 }
+                            },
+                            listeners:{
+                                select: function(combo, records){
+                                    var zipcode = records[0].get('zipcode').split('-'),
+                                        address = records[0].get('address'),
+                                        zipcoderField = this.query('[name=zipcode1],[name=zipcode2]'),
+                                        addressField = this.down('[name=address1]');
+
+                                    Ext.each(zipcodeField, function(field, idx){
+                                        field.setValue(zipcode[idx]);
+                                    });
+                                    addressField.setValue(address);
+                                },
+                                scope: this
                             }
 
                         },
@@ -89,10 +103,90 @@ Ext.define('ext5.view.chapter6.DeliveryForm',{
                             boxLabel:'Normal Address'
                         }
                     ]
+                },
+                {
+                    xtype:'container',
+                    layout:'hbox',
+                    itemId:'zipcodeContainer',
+                    columnWidth:1,
+                    defaultType:'textfield',
+                    margin:'0 0 5 85',
+                    defaults:{
+                        readOnly:true
+                    },
+                    items:[
+                        {
+                            xtype:'textfield',
+                            name:'zipcode1',
+                            width:50
+                        },
+                        {
+                            xtype:'label',
+                            text:'-',
+                            margin:'0 5 0 5'
+                        },
+                        {
+                            xtype:'textfield',
+                            name:'zipcode2',
+                            width:50,
+                            margin:'0 5 0 0'
+                        },
+                        {
+                            xtype:'textfield',
+                            name:'address',
+                            flex:1
+                        }
+                    ]
+
+                },
+                {
+                    xtype:'textfield',
+                    columnWidth:1,
+                    name:'address2',
+                    margin:'0 0 5 85'
                 }
+
+
             ]
         });
 
-        this.callParent();
+        this.callParent(arguments);
+        this.setLatestDelivery();
+    },
+
+    setLatestDelivery: function () {
+        Ext.Ajax.request({
+            url: '/resources/data/latestDelivery.json',
+            success: this.onLoad,
+            scope: this
+        });
+    },
+
+    onLoad: function (response) {
+        var response = Ext.decode(response.responseText);       	// #1
+        if (response.success) {                                 	// #2
+            var radiogroup = {                                	// #3
+                xtype: 'radiogroup',                            	// #4
+                itemId: 'latestDelivery',
+                fieldLabel: '최근 배송지',
+                columnWidth: .5,                               	// #5
+                items: []                                       	// #6
+            };
+
+            var i, len = response.data.length;                    	// #7
+            for (i = 0; i < len; i++) {
+                record = response.data[i];                      	// #8
+
+                radiogroup.items.push({                        	// #9
+                    boxLabel: record.label,                     	// #10
+                    name: 'latestDelivery',
+                    inputValue: record.latestnum,
+                    handler: this.clickLatestDelivery,            	// #11
+                    scope: this                               	// #12
+                });
+            }
+            this.insert(1, radiogroup);                         		// #13
+        }
     }
+
 });
