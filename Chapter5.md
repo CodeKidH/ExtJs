@@ -1410,15 +1410,103 @@ initComponent: function(){
 
     When the class will be created, setLatestDelivery method can be executed by using this way
     
-    ~~~javascript
-        initComponent: function(){
-            ...
-            
-            this.callParent(arguments);
-            this.setLatestDelivery();
-        }
-    ~~~
+    
+~~~javascript
+    initComponent: function(){
+        ...
+        
+        this.callParent(arguments);
+        this.setLatestDelivery();
+    }
+~~~
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/radiogroupdynamic.png) 
 
+* Add post number and destination
+
+~~~javascript
+ {
+    xtype:'container',
+    layout:'hbox',
+    itemId:'zipcodeContainer',
+    columnWidth:1,
+    defaultType:'textfield',
+    margin:'0 0 5 85',
+    defaults:{
+    readOnly:true
+    },
+    items:[
+    {
+        xtype:'textfield',
+        name:'zipcode1',
+        width:50
+    },
+    {
+        xtype:'label',
+        text:'-',
+        margin:'0 5 0 5'
+    },
+    {
+        xtype:'textfield',
+        name:'zipcode2',
+        width:50,
+        margin:'0 5 0 0'
+    },
+    {
+        xtype:'textfield',
+        name:'address',
+        flex:1
+    }
+    ]
+    
+    },
+    {
+    xtype:'textfield',
+    columnWidth:1,
+    name:'address2',
+    margin:'0 0 5 85'
+    }
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/addtextfieldcomplex.png) 
+
+
+* Set a textfield by choosing a combodata
+~~~javascript
+    name:'findaddress',
+    queryMode:'remote',//1
+    width:400,
+    labelWidth:55,
+    fieldLabel:'Search address',
+    forceSelection: true,//2
+    displayField:'address',//3
+    valueField:'address',//4
+    pageSize:5,//5
+    minChars:1,//6
+    triggerAction:'query',//7
+    store:remoteJsonStore,//8
+    listConfig:{//9
+        getInnerTpl:function(displayField){
+            return '<div data-qtip="{fullName}">'+
+                    '<div class="combo">{zipcode}</div>'+
+                    '<div class="combo-address">{address}</div>'+
+                    '</div>';
+        }
+    },
+    listeners:{
+        select: function(combo, records){
+            var zipcode = records[0].get('zipcode').split('-'),
+                address = records[0].get('address'),
+                zipcoderField = this.query('[name=zipcode1],[name=zipcode2]'),
+                addressField = this.down('[name=address1]');
+
+            Ext.each(zipcodeField, function(field, idx){
+                field.setValue(zipcode[idx]);
+            });
+            addressField.setValue(address);
+        },
+        scope: this
+    }
+~~~
