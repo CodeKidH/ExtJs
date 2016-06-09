@@ -1497,8 +1497,8 @@ initComponent: function(){
     },
     listeners:{
         select: function(combo, records){
-            var zipcode = records[0].get('zipcode').split('-'),
-                address = records[0].get('address'),
+            var zipcode = records.get('zipcode').split('-'),
+                address = records.get('address'),
                 zipcoderField = this.query('[name=zipcode1],[name=zipcode2]'),
                 addressField = this.down('[name=address1]');
 
@@ -1507,6 +1507,92 @@ initComponent: function(){
             });
             addressField.setValue(address);
         },
-        scope: this
+        scope: this //9
     }
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/setaddress.png) 
+
+~~~java
+    1. select: function(comb
+        -Listen to a combobox's select ()
+        - When the event occur, framework will send a combox and selected records array
+    
+    2. this.query('[name=zipcode1],[name=zipcode2]')
+        - this is combobox ,but this scope will change into DeliveryForm due to //9
+        -  this.query('[name=zipcode1],[name=zipcode2]') means that It search for zipcode1, zipcode2 and return form of array
+        
+    
+~~~
+
+* When I click a new destination, resetDelivery() will start
+* 
+~~~javascript
+    onLoad: function (response) {
+      
+    },
+
+    resetDelivery: function(radio, checked){ //1
+        if(!checked) return;//2
+        var me = this,
+            delivery = ['zipcode1','zipcode2','address1','address2'];//3
+
+        Ext.each(delivery, function(field){//4
+            me.down('textfield[name='+field+']').setValue();//5
+        });
+    }
+~~~
+
+#### 2_4. fill form with datas
+
+    I use a specific method to fill form by using model, object 
+    If form field's name will be same as data's name, I can fill form with data at the same time
+
+* memberAddress.json
+~~~json
+{
+    "success": true,
+    "errMsg": "",
+    "errTitle": "",
+    "data": {
+        "zipcode1": "101",
+        "zipcode2": "209",
+        "address1": "서울시 영등포고 여의도동",
+        "address2": "여의도 1동 111번지",
+       "deliveryusername":"김영희",
+        "deliverycellphone1": "1234",
+        "deliverycellphone2": "1234",
+        "deliverycellphone3": "1234",
+        "deliveryphone1": "02",
+        "deliveryphone2": "02",
+        "deliveryphone3": "02"
+    }
+}
+~~~
+
+* To make a method - First way(Using a Form panel's load())
+~~~javascript
+    resetDelivery: function(radio, checked){
+    ...
+    },
+    
+    clickLatestDelivery: function(radio, checked){
+        if(!checked) return;
+        
+        var me = this;
+        //Case1
+        this.ownerCt.getForm().load({
+            url:'/resources/data/memberAddress.json',
+            params:{ //1
+                addressnum:radio.inputValue
+            }
+        });
+    }
+~~~
+
+~~~java
+    1. params:{ 
+        - Server can ditingush data
+        
 ~~~
