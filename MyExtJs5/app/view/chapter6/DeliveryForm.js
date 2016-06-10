@@ -82,9 +82,9 @@ Ext.define('ext5.view.chapter6.DeliveryForm',{
                             },
                             listeners:{
                                 select: function(combo, records){
-                                    var zipcode = records[0].get('zipcode').split('-'),
-                                        address = records[0].get('address'),
-                                        zipcoderField = this.query('[name=zipcode1],[name=zipcode2]'),
+                                    var zipcode = records.get('zipcode').split('-'),
+                                        address = records.get('address'),
+                                        zipcodeField = this.query('[name=zipcode1],[name=zipcode2]'),
                                         addressField = this.down('[name=address1]');
 
                                     Ext.each(zipcodeField, function(field, idx){
@@ -133,7 +133,7 @@ Ext.define('ext5.view.chapter6.DeliveryForm',{
                         },
                         {
                             xtype:'textfield',
-                            name:'address',
+                            name:'address1',
                             flex:1
                         }
                     ]
@@ -144,7 +144,49 @@ Ext.define('ext5.view.chapter6.DeliveryForm',{
                     columnWidth:1,
                     name:'address2',
                     margin:'0 0 5 85'
+                },
+                {
+                    xtype:'fieldcontainer',
+                    fieldLabel:'Shipping day',
+                    layout:'hbox',
+                    columnWidth:1,
+                    defaultType:'textfield',
+                    margin:'0 0 5 0',
+                    items:[
+                        {
+                            xtype:'datefield',
+                            width: 100
+                        },
+                        {
+                            xtype:'label',
+                            text:'-',
+                            margin:'0 0 5 0'
+                        },
+                        {
+                            xtype:'datefield',
+                            width:100,
+                            margin:'0 5 0 0'
+                        },
+                        {
+                            xtype: 'datefield',
+                            fieldLabel:'due date',
+                            width:180
+                        },
+                        {
+                            xtype:'label',
+                            text:'-',
+                            margin:'0 5 0 0'
+                        },
+                        {
+                            xtype:'datefield',
+                            width:100,
+                            margin:'0 5 0 0'
+                        }
+
+
+                    ]
                 }
+
 
 
             ]
@@ -187,6 +229,44 @@ Ext.define('ext5.view.chapter6.DeliveryForm',{
             }
             this.insert(1, radiogroup);                         		// #13
         }
+    },
+
+    resetDelivery: function(radio, checked){
+        if(!checked) return;
+        var me = this,
+            delivery = ['zipcode1','zipcode2','address1','address2'];
+
+        Ext.each(delivery, function(field){
+            me.down('textfield[name='+field+']').setValue();
+        });
+    },
+
+    clickLatestDelivery: function(radio, checked){
+        if(!checked) return;
+
+        var me = this;
+        //Case1
+
+       /* this.ownerCt.getForm().load({
+            url:'/resources/data/memberAddress.json',
+            params:{ //1
+                addressnum:radio.inputValue
+            }
+        });*/
+        Ext.Ajax.request({
+            url:'/resources/data/memberAddress.json',
+            success: function (response){
+                var response = Ext.decode(response.responseText);
+
+                //Case2
+                /*this.ownerCt.getForm().setValues(response.data);*/
+                //Case3
+                var model = Ext.create('ext5.model.smpl.CheckOut')//1
+                Ext.apply(model.data, response.data);//2
+                this.ownerCt.getForm().loadRecord(model);//3
+            },
+            scope : this
+        });
     }
 
 });
