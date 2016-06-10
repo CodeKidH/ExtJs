@@ -1591,8 +1591,89 @@ initComponent: function(){
     }
 ~~~
 
+
 ~~~java
     1. params:{ 
         - Server can ditingush data
         
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/filldata1.png) 
+
+
+* To make a method - Second way(Using a Form panel's load())
+
+~~~javascript
+clickLatestDelivery: function(radio, checked){
+        if(!checked) return;
+
+        var me = this;
+        //Case1
+
+       /* this.ownerCt.getForm().load({
+            url:'/resources/data/memberAddress.json',
+            params:{ //1
+                addressnum:radio.inputValue
+            }
+        });*/
+        Ext.Ajax.request({
+            url:'/resources/data/memberAddress.json',
+            success: function (response){
+                var response = Ext.decode(response.responseText);
+
+                //Case2
+                this.ownerCt.getForm().setValues(response.data);
+               
+            },
+            scope : this
+        });
+    }
+
+});
+~~~
+
+* To make a method - Third way(Making a model)
+
+~~~javascript
+clickLatestDelivery: function(radio, checked){
+        if(!checked) return;
+
+        var me = this;
+        //Case1
+
+       /* this.ownerCt.getForm().load({
+            url:'/resources/data/memberAddress.json',
+            params:{ //1
+                addressnum:radio.inputValue
+            }
+        });*/
+        Ext.Ajax.request({
+            url:'/resources/data/memberAddress.json',
+            success: function (response){
+                var response = Ext.decode(response.responseText);
+
+                //Case2
+                /*this.ownerCt.getForm().setValues(response.data);*/
+                //Case3
+                var model = Ext.create('ext5.model.smpl.CheckOut')//1
+                Ext.apply(model.data, response.data);//2
+                this.ownerCt.getForm().loadRecord(model);//3
+            },
+            scope : this
+        });
+    }
+});
+~~~
+
+~~~java
+    1. make a model
+        Ext.define('ext5.model.smpl.CheckOut',{
+           extend:'Ext.data.Model',
+            field:['zipcode1','zipcode2','address1','address2']
+        });
+    
+    2. The datas will be contained apply() by Ext.Ajax
+    
+    3. fill the form with data by loadRecord()
 ~~~
