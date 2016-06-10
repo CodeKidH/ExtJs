@@ -1666,6 +1666,14 @@ clickLatestDelivery: function(radio, checked){
 });
 ~~~
 
+checkout.js
+~~~javascript
+Ext.define('ext5.model.smpl.CheckOut',{
+   extend:'Ext.data.Model',
+    field:['zipcode1','zipcode2','address1','address2']
+});
+~~~
+
 ~~~java
     1. make a model
         Ext.define('ext5.model.smpl.CheckOut',{
@@ -1676,4 +1684,52 @@ clickLatestDelivery: function(radio, checked){
     2. The datas will be contained apply() by Ext.Ajax
     
     3. fill the form with data by loadRecord()
+~~~
+
+* To add a form field to DeliveryForm for shipping day
+~~~javascript
+{
+xtype:'textfield',
+columnWidth:1,
+name:'address2',
+margin:'0 0 5 85'
+},
+{
+xtype:'fieldcontainer',
+fieldLabel:'Shipping day',
+layout:'hbox',
+columnWidth:1,
+defaultType:'textfield',
+margin:'0 0 5 0',
+items:[
+    {
+        xtype:'datefield',
+        width: 100
+    },
+    {
+        xtype:'label',
+        text:'-',
+        margin:'0 0 5 0'
+    },
+    {
+        xtype:'datefield',
+        width:100,
+        margin:'0 5 0 0'
+    },
+    {
+        xtype: 'datefield',
+        fieldLabel:'due date',
+        width:180
+    },
+    {
+        xtype:'label',
+        text:'-',
+        margin:'0 5 0 0'
+    },
+    {
+        xtype:'datefield',
+        width:100,
+        margin:'0 5 0 0'
+    }
+
 ~~~
