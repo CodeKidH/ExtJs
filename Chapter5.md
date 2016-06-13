@@ -1874,3 +1874,126 @@ Ext.define('ext5.view.chapter6.DeliveryPersonInfo',{
 ~~~
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/recipient.png) 
+
+* PaymentOfCardInfo.js
+~~~javascript
+requires:[
+        'ext5.view.chapter6.DeliveryForm',
+        'ext5.view.chapter6.DeliveryPersonInfo',
+        'ext5.view.chapter6.PaymentOfCardInfo'
+    ],
+    title:'Shipping/payment',
+    bodypadding:5,
+    width:700,
+    initComponent:function(){
+        var me = this;
+        Ext.apply(me,{
+            fieldDefaults:{
+                labelAlign:'right',
+                labelWidth:80,
+                msgTarget:'qtip'
+            },
+            items:[
+
+                {
+                    xtype : 'chapter6-deliveryform'
+                },
+                {
+                    xtype:'chapter6-deliveryperson'
+                },
+                {
+                    xtype:'chapter6-paymentcard'
+                }
+~~~
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-06-13.
+ */
+Ext.define('ext5.view.chapter6.PaymentOfCardInfo',{
+   extend:'Ext.form.FieldSet',
+    xtype:'chapter6-paymentcard',
+    requires:[
+        'ext5.view.chapter6.DataSet',
+        'ext5.model.smpl.Data'
+    ],
+    title:'PayInfo',
+    initComponent:function(){
+        Ext.apply(this,{
+            items: this.getItems()
+        });
+        this.callParent();
+    },
+    getItems:function(){
+        return [
+            {
+                xtype:'container',
+                layout:'hbox',
+                margin:' 0 0 5 0',
+                items:[
+                    {
+                        xtype:'combo',
+                        fieldLabel:'KindofCard',
+                        width:210,
+                        displayField:'name',
+                        valueField:'code',
+                        queryMode:'local',//1
+                        emptyText:'Choose a card',
+                        editable:'false', //2
+                        layout:{
+                            autoFlex: false
+                        },
+                        margin:'0 0 10 0',
+                        store: new Ext.data.Store({ //3
+                            model:ext5.model.Data,//4
+                            proxy:{
+                                type:'memory',//5
+                                reader:{
+                                    type:'array'//6
+                                }
+                            },
+                            data:ext5.view.chapter6.DataSet.cardList//7
+                        })
+                    }
+
+                ]
+            }
+        ]
+    }
+});
+~~~
+
+~~~java
+    1. queryMode:'local'
+        - It will not send a request to remote repository
+    
+    2. editable:'false',
+        - I can only choose a option
+    
+    3.  store: new Ext.data.Store({ 
+        - It won't make a store class, 
+        - To make a store class in person by using new
+    
+    
+~~~
+
+* Data.js
+~~~javascript
+Ext.define('ext5.model.smpl.Data',{
+   extend:'Ext.data.Model',
+    fields:['name','code','description']
+});
+~~~
+
+* DataSet.js
+~~~javascript
+Ext.define('ext5.view.chapter6.DataSet',{
+   singleton:true,
+    cardList:[
+        ['국민','KB'],
+        ['신한','SH'],
+        ['우리','WR'],
+        ['시티','CT']
+    ]
+});
+~~~
