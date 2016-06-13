@@ -2014,33 +2014,86 @@ Ext.define('ext5.view.chapter6.DataSet',{
 
 * To add a card validdate
 ~~~javascript
-  {
-        xtype: 'textfield',
-        name: 'cardNumber',
-        fieldLabel: '카드번호',
-        flex: 1,
-        allowBlank: false,
-        minLength: 15,
-        maxLength: 16,
-        enforceMaxLength: true,
-        maskRe: /\d/
-    },
-    {
-        xtype:'fieldcontainer',
-        fieldLabel:'validate',
-        labelWidth:75,
-        layout:'hbox',
-        items:[
-            {
-                xtype:'numberfield',
-                name:'cardExpireYear',
-                hideLabel:true,
-                width:70,
-                margins:'0 6 0 0',
-                vlaue: new Date().getFullYear(),
-                minValue: new Date().getFullYear(),
-                allowBlank:false
-            }
-        ]
-    }
+   {
+            xtype: 'textfield',
+            name: 'cardNumber',
+            fieldLabel: '카드번호',
+            flex: 1,
+            allowBlank: false,
+            minLength: 15,
+            maxLength: 16,
+            enforceMaxLength: true,
+            maskRe: /\d/
+        },
+        {
+            xtype:'fieldcontainer',
+            fieldLabel:'validate',
+            labelWidth:75,
+            layout:'hbox',
+            items:[
+                {
+                    xtype:'numberfield',
+                    name:'cardExpireYear',
+                    hideLabel:true,
+                    width:70,
+                    margins:'0 6 0 0',
+                    vlaue: new Date().getFullYear(),
+                    minValue: new Date().getFullYear(),
+                    allowBlank:false
+                }
+            ]
+        },
+        {
+            xtype:'combobox',
+            editable:false,
+            name:'cardExpireMonth',
+            displayField:'name',
+            valueField:'num',
+            queryMode:'local',
+            emptyText:'validatemonth',
+            hideLabel:'true',
+            margins:'0 6 0 0',
+            store: new Ext.data.Store({//1
+               field:['name','num'],//2
+                data:(function () {//3
+                    var data = [],//4
+                        months=ext5.view.chapter6.DataSet.monthNames;//5
+                    Ext.Array.forEach(months, function(name, i){//6
+                        data[i]={name: name, num: i + 1};//7
+                    });
+                    return data;
+                })()
+            }),
+            width: 60,
+            allowBlank: false,
+            forceSelection:true
+        }
 ~~~
+
+~~~java
+    1. store: new Ext.data.Store({
+        - To create a store in a combobox
+    
+    2. field:['name','num']
+        - Configure field instead of model
+    
+    3. data:(function ()
+        - It's not proxy, configure data in person
+    
+    4.  months=ext5.view.chapter6.DataSet.monthNames
+        Ext.define('ext5.view.chapter6.DataSet',{
+            singleton:true,
+            monthNames:["1","2","3","4","5","6","7","8","9","10","11","12"],
+            cardList:[
+                ['국민','KB'],
+                ['신한','SH'],
+                ['우리','WR'],
+                ['시티','CT']
+                ]
+            });
+
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/validatemonth.png) 
+
