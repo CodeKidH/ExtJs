@@ -21,24 +21,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="9_ComplexForm.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/chapter6/9_ComplexForm.html">
+      <file leaf-file-name="CheckOutMaster.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/chapter6/CheckOutMaster.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            <state relative-caret-position="621">
+              <caret line="32" column="17" selection-start-line="6" selection-start-column="4" selection-end-line="32" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#50#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PaymentOfCardInfo.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/view/chapter6/PaymentOfCardInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="73" column="33" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckOutMaster.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/chapter6/CheckOutMaster.js">
+      <file leaf-file-name="Data.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/smpl/Data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="8" column="46" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="46" />
+            <state relative-caret-position="115">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#0#50#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataSet.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/chapter6/DataSet.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -46,8 +68,8 @@
       <file leaf-file-name="DeliveryForm.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/chapter6/DeliveryForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3197">
-              <caret line="141" column="16" selection-start-line="141" selection-start-column="16" selection-end-line="184" selection-end-column="0" />
+            <state relative-caret-position="1012">
+              <caret line="132" column="26" selection-start-line="132" selection-start-column="26" selection-end-line="132" selection-end-column="26" />
               <folding>
                 <element signature="e#0#50#0" expanded="false" />
               </folding>
@@ -55,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeliveryPersonInfo.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DeliveryPersonInfo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/chapter6/DeliveryPersonInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+            <state relative-caret-position="276">
+              <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
               <folding>
                 <element signature="e#0#50#0" expanded="false" />
               </folding>
@@ -122,9 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/view/chapter3/VBoxLayout.js" />
-        <option value="$PROJECT_DIR$/app/view/chapter3/CardChild1.js" />
-        <option value="$PROJECT_DIR$/app/view/chapter3/CardChild3.js" />
         <option value="$PROJECT_DIR$/app/view/chapter3/CardChild2.js" />
         <option value="$PROJECT_DIR$/app/view/chapter3/CardLayout.js" />
         <option value="$PROJECT_DIR$/example/chapter3/9_CardLayout.html" />
@@ -171,8 +190,11 @@
         <option value="$PROJECT_DIR$/example/chapter6/9_ComplexForm.html" />
         <option value="$PROJECT_DIR$/app/model/smpl/CheckOut.js" />
         <option value="$PROJECT_DIR$/app/view/chapter6/DeliveryForm.js" />
-        <option value="$PROJECT_DIR$/app/view/chapter6/CheckOutMaster.js" />
         <option value="$PROJECT_DIR$/app/view/chapter6/DeliveryPersonInfo.js" />
+        <option value="$PROJECT_DIR$/app/view/chapter6/CheckOutMaster.js" />
+        <option value="$PROJECT_DIR$/app/model/smpl/Data.js" />
+        <option value="$PROJECT_DIR$/app/view/chapter6/PaymentOfCardInfo.js" />
+        <option value="$PROJECT_DIR$/app/view/chapter6/DataSet.js" />
       </list>
     </option>
   </component>
@@ -182,8 +204,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="553" />
-    <option name="y" value="137" />
+    <option name="x" value="242" />
+    <option name="y" value="105" />
     <option name="width" value="1529" />
     <option name="height" value="782" />
   </component>
@@ -212,8 +234,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -346,8 +366,50 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyExtJs5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyExtJs5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyExtJs5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyExtJs5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -360,18 +422,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Sencha\workspace\MyExtJs5\images" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\app\view\chapter6" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter6" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter5" />
+      <recent name="C:\Sencha\workspace\MyExtJs5\resources\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Sencha\workspace\MyExtJs5\app\model" />
       <recent name="C:\Sencha\workspace\MyExtJs5\app\view\chapter6" />
       <recent name="C:\Sencha\workspace\MyExtJs5\images" />
       <recent name="C:\Sencha\workspace\MyExtJs5\example" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Sencha\workspace\MyExtJs5\images" />
-      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter6" />
-      <recent name="C:\Sencha\workspace\MyExtJs5\app\view\chapter6" />
-      <recent name="C:\Sencha\workspace\MyExtJs5\example\chapter5" />
-      <recent name="C:\Sencha\workspace\MyExtJs5\resources\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -474,33 +536,34 @@
       <workItem from="1465258887791" duration="3152000" />
       <workItem from="1465438648406" duration="2343000" />
       <workItem from="1465524903199" duration="4685000" />
-      <workItem from="1465537073422" duration="11000" />
+      <workItem from="1465537073422" duration="98000" />
+      <workItem from="1465777235209" duration="3590000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122158000" />
+    <option name="totallyTimeSpent" value="125835000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="553" y="137" width="1529" height="782" extended-state="0" />
-    <editor active="true" />
+    <frame x="242" y="105" width="1529" height="782" extended-state="1" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21877065" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21877065" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -521,27 +584,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example/chapter3/0_FlexConfig.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/chapter4/3_CustomTabPanelStep2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="88" column="11" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/chapter4/MyCustomTabPanelStep2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example/chapter4/2_CustomTabPanelStep1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1541">
@@ -830,46 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/chapter6/CheckOutMaster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="8" column="46" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/chapter6/DeliveryForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3197">
-          <caret line="141" column="16" selection-start-line="141" selection-start-column="16" selection-end-line="184" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/chapter6/DeliveryPersonInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/smpl/CheckOut.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/data/memberAddress.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -890,6 +892,72 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter6/CheckOutMaster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="32" column="17" selection-start-line="6" selection-start-column="4" selection-end-line="32" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/smpl/CheckOut.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter6/DeliveryPersonInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter6/DeliveryForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="132" column="26" selection-start-line="132" selection-start-column="26" selection-end-line="132" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/smpl/Data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter6/DataSet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/chapter6/PaymentOfCardInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="73" column="33" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
           <folding />
         </state>
       </provider>

@@ -6,7 +6,8 @@ Ext.define('ext5.view.chapter6.CheckOutMaster',{
     alias:'widget.chapter6-checkoutmaster',
     requires:[
         'ext5.view.chapter6.DeliveryForm',
-        'ext5.view.chapter6.DeliveryPersonInfo'
+        'ext5.view.chapter6.DeliveryPersonInfo',
+        'ext5.view.chapter6.PaymentOfCardInfo'
     ],
     title:'Shipping/payment',
     bodypadding:5,
@@ -26,6 +27,9 @@ Ext.define('ext5.view.chapter6.CheckOutMaster',{
                 },
                 {
                     xtype:'chapter6-deliveryperson'
+                },
+                {
+                    xtype:'chapter6-paymentcard'
                 }
 
             ],
