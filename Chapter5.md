@@ -2097,3 +2097,287 @@ Ext.define('ext5.view.chapter6.DataSet',{
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/validatemonth.png) 
 
+#### 2_5. To recycle a form
+
+* Add a require(CheckOutMaster.js)
+~~~javascript
+requires:[
+        'ext5.view.chapter6.DeliveryForm',
+        'ext5.view.chapter6.DeliveryPersonInfo',
+        'ext5.view.chapter6.PaymentOfCardInfo',
+        'ext5.view.chpater6.SurveyForm'
+    ],
+    title:'Shipping/payment',
+    bodypadding:5,
+    width:700,
+    initComponent:function(){
+        var me = this;
+        Ext.apply(me,{
+            fieldDefaults:{
+                labelAlign:'right',
+                labelWidth:80,
+                msgTarget:'qtip'
+            },
+            items:[
+
+                {
+                    xtype : 'chapter6-deliveryform'
+                },
+                {
+                    xtype:'chapter6-deliveryperson'
+                },
+                {
+                    xtype:'chapter6-paymentcard'
+                },
+                {
+                    xtype:'chapter6-surveyform'
+                }
+~~~
+
+* SurveyForm.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-06-14.
+ */
+Ext.define('ext5.view.chapter6.SurveyForm',{
+   extend:'Ext.form.FieldSet',
+    xtype:'chapter6-surveyform',
+    requires:[
+        'ext5.view.chapter6.SurveyRadio'
+    ],
+    title:'Survey',
+    layout:'anchor',
+    defaults:{
+        anchor:'100%'
+    },
+    initComponent:function(){
+        Ext.apply(this,{
+           items:[
+               {
+                   xtype:'container',
+                   layout:'hbox',
+                   defaults:{
+                       flex:1
+                   },
+                   items:[
+                       {
+                           xtype:'chapter6-surveyradio',
+                           label:'gender',
+                           code:'gender'
+                       },
+                       {
+                           xtype:'chapter6-surveyradio',
+                           label:'age',
+                           code:'age'
+                       },
+                       {
+                           xtype:'chapter6-surveyradio',
+                           label:'career',
+                           code:'career'
+                       },
+                       {
+                           xtype:'chapter6-surveyradio',
+                           label:'job',
+                           code:'job'
+                       },
+                       {
+                           xtype:'chapter6-surveyradio', //1
+                           label:'jobtype',//2
+                           code:'jobtype'//3
+                       }
+                   ]
+               }
+
+           ]
+        });
+        this.callParent();
+    }
+});
+~~~
+
+~~~java
+    1. label:'jobtype'
+        - To configure the SurveyRadio class's label attr 
+    
+    2. code:'jobtype
+        - To configure the SurveyRadio class's code attr 
+~~~
+
+* SurveyRadio.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-06-14.
+ */
+Ext.define('ext5.view.chapter6.SurveyRadio',{
+   extend:'Ext.container.Container',
+    xtype:'chapter6-surveyradio',
+    requires:['ext5.view.chapter6.DataSet',
+                'ext5.model.smpl.Data'],
+    initComponent:function(){
+        var me = this;
+
+        Ext.apply(this,{
+            items:[
+                {
+                    xtype:'component',//1
+                    html:me.label,//2
+                    cls:'x-form-check-group-label'//3
+                }
+            ]
+        });
+        this.callParent(arguments);
+
+        this.on('render',function(){
+           me.add({
+               xtype:'radiofield',
+               name:me.code,
+               inputValue:'0',
+               boxLabel:'test'
+           })
+        })
+    }
+});
+
+~~~
+
+~~~java
+    1. xtype:'component',//
+        - It use a component class
+    
+    2. html:me.label
+        - label attr will be configured by someone who use it and then label will be sent to component
+    
+    
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/surveyformradio.png) 
+
+* DataSet.js
+~~~javascript
+Ext.define('ext5.view.chapter6.DataSet', {
+    singleton: true,
+    monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    cardList: [
+        ['국민카드', 'kb'],
+        ['신한카드', 'sh'],
+        ['우리카드', 'wr'],
+        ['시티카드', 'ct']
+    ],
+    gender: [
+        ['남자', 'M'],
+        ['여자', 'F']
+    ],
+    age: [
+        ['20대', '20'],
+        ['20대', '30'],
+        ['30대', '30'],
+        ['40대', '40'],
+        ['50대이상', '50']
+    ],
+    career: [
+        ['1~3년', '1~3'],
+        ['3~5년', '3~5'],
+        ['5~10년', '5~10'],
+        ['10년이상', '10']
+    ],
+    job: [
+        ['시스템엔지니어', 'systemeng'],
+        ['시스템프로그래머', 'systempgm'],
+        ['디자이너', 'designer'],
+        ['웹프로그래머', 'webprogramer']
+    ],
+    jobtype: [
+        ['정규직', 'fulltime'],
+        ['파트타임', 'parttime'],
+        ['프리랜서', 'freelancer'],
+        ['기타', 'etc']
+    ],
+    interest: [
+        ['Java', 'java'],
+        ['C#', 'C#'],
+        ['C&C++', 'C&C++'],
+        ['ExtJS', 'ExtJS'],
+        ['JQuery', 'JQuery'],
+        ['Sencha-Touch', 'ST'],
+        ['JQuery-Mobile', 'JM'],
+        ['CSS', 'CSS'],
+        ['퍼블리싱', 'Publishing'],
+        ['웹디자인', 'WebDesign']
+    ]
+});
+
+~~~
+
+* Modify SurveyRadio.js
+~~~javascript
+this.on('render',function(){
+          var store = new Ext.data.Store({
+              model:ext5.model.smpl.Data,
+              proxy:{
+                  type:'memory',
+                  reader:{
+                      type:'array'
+                  }
+              },
+              data:eval('ext5.view.chapter6.DataSet'+me.code)
+          });
+
+        })
+~~~
+
+~~~java
+    Important thing is data config
+    
+    proxy will be set as memory, so store get a data
+    
+    eval() : It can set a data by using external data
+~~~
+
+~~~javascript
+Ext.define('ext5.view.chapter6.SurveyRadio', {
+    extend: 'Ext.container.Container',
+    xtype: 'chapter6-surveyradio',
+    requires: ['ext5.view.chapter6.DataSet', 'ext5.model.smpl.Data'],
+    initComponent: function () {
+        var me = this;
+
+        Ext.apply(this, {
+            items: [
+                {
+                    xtype: 'component',		// #1
+                    html: me.label,			// #2
+                    cls: 'x-form-check-group-label'	// #3
+                }
+            ]
+        });
+        this.callParent();
+        this.on('render', function () {
+            var store = new Ext.data.Store({
+                model: ext5.model.smpl.Data,
+                proxy: {
+                    type: 'memory',
+                    reader: {
+                        type: 'array'
+                    }
+                },
+                data: eval('ext5.view.chapter6.DataSet.'+me.code)
+            });
+            store.each(function(item, idx){
+                console.log('No:', idx, 'Value', item.data)
+                me.add({
+                    xtype: 'radiofield',
+                    name : me.code,
+                    inputValue : item.get('code'),
+                    boxLabel: item.get('name')
+                });
+            });
+
+        })
+
+    }
+});
+~~~
+
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/completeradio.png) 
