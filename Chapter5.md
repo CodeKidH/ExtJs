@@ -2381,3 +2381,52 @@ Ext.define('ext5.view.chapter6.SurveyRadio', {
 
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/completeradio.png) 
+
+* To make a checkbox-surveyform.js
+~~~javascript
+ requires:[
+        'ext5.view.chapter6.SurveyRadio',
+        'ext5.view.chapter6.SurveyCheck'
+    ],
+.
+.
+.
+ {
+       xtype:'chapter6-surveycheck',
+       label:'interesting',
+       code:'interest',
+       column:5
+   }
+~~~
+
+* SurveyCheck.js
+~~~javascript
+Ext.define('ext5.view.chapter6.SurveyCheck', {
+    extend: 'Ext.container.Container',
+    xtype: 'chapter6-surveycheck',
+    requires: ['ext5.view.chapter6.DataSet', 'ext5.model.smpl.Data'],		// #1
+    layout: {
+        type: 'vbox',						// #2
+        align: 'stretch'						// #3
+    },
+    initComponent: function () {
+        var me = this;
+        Ext.apply(this, {
+            items: [
+                {
+                    xtype: 'component',				// #4
+                    html: me.label,				// #5
+                    cls: 'x-form-check-group-label'			// #6
+                }
+            ]
+        });
+        this.callParent();						// #7
+        this.on('render', function () {					// #8
+            
+
+        })
+    }
+});
+
+~~~
+
