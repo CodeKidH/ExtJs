@@ -2,3 +2,41 @@
 
 
 ## 1. Simple Grid and Panel
+
+* 1_BasicGrid.html
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+      
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext6': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext6.view.chapter7.BasicGrid' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        var fp = Ext.create('ext5.view.chapter7.BasicGrid',{
+            renderTo : document.body
+        });
+    });
+
+</script>
+</body>
+</html>
+
+
+~~~
