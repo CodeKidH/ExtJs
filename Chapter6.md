@@ -320,4 +320,5 @@ Ext.define('ext5.view.chapter7.BasicGrid',{
 ~~~
 
 * View
-
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/basicgrid.png) 
