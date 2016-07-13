@@ -495,3 +495,93 @@ Ext.define('ext5.view.chapter7.ColumnsGrid',{
 * view
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/gridcolumns.png) 
+
+
+## 3.ColumnRenderer
+
+    I can use a renderer to change datas form
+
+* Simple Example
+~~~javascript
+    renderer: function(value, metaData, record,, rowIndex, colIndex,store, view){
+        return '['+value+']'
+    }
+~~~
+
+    renderer paramter
+        1) value : data value
+        2) metaData: colletion object that contain a metadata
+        3) record : model record 
+        4) rowIndex : row index value
+        5) colIndex : col index value
+        6) store : store that is used by grid
+        7) view : view of grid
+        
+    To use a renderer by using Ext.util.Format
+        1) renderer: 'usMoney' >> dollar
+        2) renderer : 'uppercase' 
+        3) renderer : 'lowercase' 
+        4) renderer : Ext.util.Format.usMoney >> insert a dollar sign
+        5) renderer : Ext.util.Format.uppercase >> change into uppercase
+        6) renderer : Ext.util.Format.lowercase >> change into lowercase
+        7) renderer : Ext.util.Format.numberRenderer('0,000') >> insert , sign 
+        8) renderer : Ext.util.Format.dateRenderer('Y-m-d') >> insert - 
+
+* 3_RendererGrid.html
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+    <style type="text/css">
+        .my-action-col-cell{
+            vertical-align: middle;
+        }
+        .x-action-col-icon{
+            height: 16px;
+            width:16px;
+            margin-right:8px;
+
+        }
+        
+        .thumb-up{
+            background:url(/resources/images/up.png) 20px no-repeat !important;
+        }
+        
+        .thumb-down{
+            background:url(/resources/images/down.png) 20px no-repeat !important;
+        }
+
+
+    </style>
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter7.RendererGrid' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        var fp = Ext.create('ext5.view.chapter7.RendererGrid',{
+            renderTo : document.body
+        });
+    });
+
+</script>
+</body>
+</html>
+
+~~~
+
+* 
