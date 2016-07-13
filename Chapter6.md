@@ -492,3 +492,6 @@ Ext.define('ext5.view.chapter7.ColumnsGrid',{
 
 ~~~
 
+* view
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/gridcolumns.png) 
