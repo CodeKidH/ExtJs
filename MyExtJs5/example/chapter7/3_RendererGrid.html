@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+    <style type="text/css">
+        .my-action-col-cell{
+            vertical-align: middle;
+        }
+        .x-action-col-icon{
+            height: 16px;
+            width:16px;
+            margin-right:8px;
+
+        }
+
+        .thumb-up{
+            background:url(/resources/images/up.png) 20px no-repeat !important;
+        }
+
+        .thumb-down{
+            background:url(/resources/images/down.png) 20px no-repeat !important;
+        }
+
+
+    </style>
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter7.RendererGrid' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        var fp = Ext.create('ext5.view.chapter7.RendererGrid',{
+            renderTo : document.body
+        });
+    });
+
+</script>
+</body>
+</html>
