@@ -74,7 +74,7 @@
 ~~~java
     1. To config view model
     2. Define datas
-    3. bind data
+    3. binding to data
 ~~~
 
 * view
