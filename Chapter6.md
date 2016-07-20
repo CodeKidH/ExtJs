@@ -322,3 +322,428 @@ Ext.define('ext5.view.chapter7.BasicGrid',{
 * View
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/basicgrid.png) 
+
+## 2. Grid Column
+
+    Column Class
+        1) Ext.grid.RowNumberer
+        2) Ext.grid.column.Boolean
+        3) Ext.grid.column.Action
+        4) Ext.grid.columnCheckColumn
+        5) Ext.grid.column.Date
+        6) Ext.grid.column.Number
+        7) Ext.grid.column.Template
+
+* 2_ColumnsGrid.html
+
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+      
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter7.ColumnsGrid' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        var fp = Ext.create('ext5.view.chapter7.ColumnsGrid',{
+            renderTo : document.body
+        });
+    });
+
+</script>
+</body>
+</html>
+
+~~~
+
+* ColumnsGrid.js
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-13.
+ */
+Ext.define('ext5.view.chapter7.ColumnsGrid',{
+    extend:'Ext.grid.Panel',
+    alias:'widget.chapter7-columnsgrid',
+    requires:[
+        'ext5.model.smpl.Order',
+        'Ext.grid.column.RowNumberer',
+        'Ext.grid.column.Date',
+        'Ext.grid.column.Number',
+        'Ext.grid.column.Template',
+        'Ext.grid.column.Boolean',
+        'Ext.grid.column.Action'
+    ],
+    height:200,
+    columnLines:true,
+    initComponent:function(){
+        var me= this;
+        Ext.apply(this,{
+            store:{
+                model:'ext5.model.smpl.Order',
+                autoLoad:true
+            },
+            columns:this.getColumnConfig()
+        });
+        me.callParent(arguments);
+    },
+    
+    getColumnConfig: function () {
+
+        var me = this;
+        return [
+            {
+                xtype:'rownumberer' //1
+            },
+            {
+                text:'customer',
+                align:'center',
+                width:70,
+                dataIndex:'customName'
+            },
+            {
+                text:'orderDate',
+                align:'center',
+                xtype:'datecolumn',
+                format:'Y.m.d',
+                width:80,
+                dataIndex:'orderDate'
+            },
+            {
+                text:'orderAmt',
+                xtype:'numbercolumn',
+                format:'0,000',
+                style:'text-align:center',
+                align:'right',
+                width:100,
+                dataIndex:'orderAmount'
+            },
+            {
+                text:'orderContent',
+                style:'text-align:center',
+                width:200,
+                flex:1,
+                xtype:'templatecolumn',//7
+                tpl:[
+                    '{orderDesc}>><br><tpl for="orderDetail">',
+                    'goodsNumber:{detailNo} goodsName:{detailDesc}<br>',//8
+                    '</tpl>'
+                ]
+            },
+            {
+                text:'accrueAmount',
+                style:'text-align:center',
+                align:'right',
+                width:100,
+                dataIndex:'accrueAmount'
+            },
+            {
+                text:'isMember',
+                align:'center',
+                width:70,
+                dataIndex:'isMember',
+                xtype:'booleancolumn',
+                trueText:'memberBuy',
+                falseText:'nonMemberBuy'
+            },
+            {
+                xtype:'actioncolumn',
+                text:'orderChange',
+                align:'center',
+                width:100,
+                tdCls:'my-action-col-cell',
+                items:[
+                    {
+                        icon:'/resources/images/Save.png',
+                        handler: function(){
+                            alert('update')
+                        }
+                    },
+                    {
+                        icon:'/resources/images/Schedule.png',
+                        handler: function(){
+                            alert('delete')
+                        }
+                    }
+                    
+                ]
+            }
+        ];
+
+    }
+});
+
+
+~~~
+
+* view
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/gridcolumns.png) 
+
+
+## 3.ColumnRenderer
+
+    I can use a renderer to change datas form
+
+* Simple Example
+~~~javascript
+    renderer: function(value, metaData, record,, rowIndex, colIndex,store, view){
+        return '['+value+']'
+    }
+~~~
+
+    renderer paramter
+        1) value : data value
+        2) metaData: colletion object that contain a metadata
+        3) record : model record 
+        4) rowIndex : row index value
+        5) colIndex : col index value
+        6) store : store that is used by grid
+        7) view : view of grid
+        
+    To use a renderer by using Ext.util.Format
+        1) renderer: 'usMoney' >> dollar
+        2) renderer : 'uppercase' 
+        3) renderer : 'lowercase' 
+        4) renderer : Ext.util.Format.usMoney >> insert a dollar sign
+        5) renderer : Ext.util.Format.uppercase >> change into uppercase
+        6) renderer : Ext.util.Format.lowercase >> change into lowercase
+        7) renderer : Ext.util.Format.numberRenderer('0,000') >> insert , sign 
+        8) renderer : Ext.util.Format.dateRenderer('Y-m-d') >> insert - 
+
+* 3_RendererGrid.html
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+    <style type="text/css">
+        .my-action-col-cell{
+            vertical-align: middle;
+        }
+        .x-action-col-icon{
+            height: 16px;
+            width:16px;
+            margin-right:8px;
+
+        }
+        
+        .thumb-up{
+            background:url(/resources/images/up.png) 20px no-repeat !important;
+        }
+        
+        .thumb-down{
+            background:url(/resources/images/down.png) 20px no-repeat !important;
+        }
+
+
+    </style>
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter7.RendererGrid' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        var fp = Ext.create('ext5.view.chapter7.RendererGrid',{
+            renderTo : document.body
+        });
+    });
+
+</script>
+</body>
+</html>
+
+~~~
+
+* RendererGrid.js
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-13.
+ */
+Ext.define('ext5.view.chapter7.RendererGrid',{
+    extend:'Ext.grid.Panel',
+    alias:'widget.chapter7-renderergrid',
+    requires:[
+        'ext5.model.smpl.Order',
+        'Ext.grid.column.RowNumberer',
+        'Ext.grid.column.Date',
+        'Ext.grid.column.Number',
+        'Ext.grid.column.Template',
+        'Ext.grid.column.Boolean',
+        'Ext.grid.column.Action'
+    ],
+    height:200,
+    columnLines:true,
+    initComponent:function(){
+        var me= this;
+        Ext.apply(this,{
+            store:{
+                model:'ext5.model.smpl.Order',
+                autoLoad:true
+            },
+            columns:this.getColumnConfig()
+        });
+        me.callParent(arguments);
+    },
+    
+    getColumnConfig: function () {
+
+        var me = this;
+        return [
+            {
+                xtype:'rownumberer' //1
+            },
+            {
+                text:'customer',
+                align:'center',
+                width:70,
+                dataIndex:'customName',
+                renderer: function(value){
+                    return value + 'sir';
+                }
+            },
+            {
+                text:'orderDate',
+                align:'center',
+               // xtype:'datecolumn',
+              //  format:'Y.m.d',
+                width:80,
+                dataIndex:'orderDate',
+                renderer: function(value, metaData, record, rowIndex, colIndex, store, view){
+                    if((rowIndex % 2)== 0){ //4
+                        metaData.align = 'left'; //5
+                        metaData.style= 'color:red'; //6
+                    }else {
+                        metaData.align = 'right';
+                        metaData.style='color:blue';
+                    }
+                    return Ext.util.Format.date(value, 'Y-m-d'); //7
+
+                }
+            },
+            {
+                text:'orderAmt',
+                xtype:'numbercolumn',
+              //  format:'0,000',
+               // style:'text-align:center',
+                align:'right',
+                width:100,
+                dataIndex:'orderAmount',
+                renderer : function(value){
+                    return this.setMoney(value,'Korea'); //10
+                }
+
+            },
+            {
+                text:'orderContent',
+                style:'text-align:center',
+                width:200,
+                flex:1,
+                xtype:'templatecolumn',//7
+                tpl:[
+                    '{orderDesc}>><br><tpl for="orderDetail">',
+                    'goodsNumber:{detailNo} goodsName:{detailDesc}<br>',//8
+                    '</tpl>'
+                ]
+            },
+            {
+              text:'customEstimate',
+                align : 'center',
+                width : 70,
+                dataIndex:'estimate',
+                renderer: function(value, metaData){
+                    metaData.tdCLS = 'thumb-'+value; //11
+                    return '';
+                }
+            },
+            {
+                text:'accrueAmount',
+                style:'text-align:center',
+                align:'right',
+                flex : 1,
+                name:'accrueAmount',
+                dataIndex:'accrueAmount',
+                renderer: function(value){
+                    return this.setMoney(value, 'Korea');
+                }
+            },
+            {
+                text:'isMember',
+                align:'center',
+                width:70,
+                dataIndex:'isMember',
+                xtype:'booleancolumn',
+                trueText:'memberBuy',
+                falseText:'nonMemberBuy'
+            },
+            {
+                xtype:'actioncolumn',
+                text:'orderChange',
+                align:'center',
+                width:100,
+                tdCls:'my-action-col-cell',
+                items:[
+                    {
+                        icon:'/resources/images/Save.png',
+                        handler: function(){
+                            alert('update')
+                        }
+                    },
+                    {
+                        icon:'/resources/images/Schedule.png',
+                        handler: function(){
+                            alert('delete')
+                        }
+                    }
+
+                ]
+            }
+        ];
+
+    },
+
+    setMoney : function(value, nation){
+        if(nation =='Korea')
+            nation = '$';
+        else if(nation == 'US')
+            nation = '$';
+        return Ext.util.Format.currency(value, nation, 0);
+    }
+});
+
+
+~~~
+
+* view
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/renderergrid.png) 
