@@ -228,3 +228,93 @@ Ext.define('ext5.view.chapter8.DataBindController',{
 ~~~java
     1. View class call the method by listener
 ~~~
+
+* view
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/controllerconfirm.png) 
+
+#### View Controller by reference
+
+* DataBind.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-20.
+ */
+Ext.define('ext5.view.chapter8.DataBind',{
+    extend: 'Ext.panel.Panel',
+    alias : 'widget.chapter8-databind',
+    requires:[
+        'ext5.view.chapter8.DataBindModel',
+        'ext5.view.chapter8.DataBindController'
+
+
+    ],
+    width: 500,
+    bodyPadding: 10,
+    viewModel:'chapter8-databind',
+    controller : 'chapter8-databind',
+    items:[{
+       padding: '5 5 5 5',
+        xtype:'panel', //1
+        height:50,
+        reference : 'datapanel',//2
+        bind:{
+            title:'{name}'//3
+        }
+    }],
+    bind:{
+        title : '{title}',
+        html:'{html}'
+    },
+    tbar:[{ 
+        bind:'{buttonText}',
+        handler : 'onClickButton'
+    }]
+});
+~~~
+
+~~~java
+    1. children object is panel
+    2. reference is a datapanel
+    3. To set a title of Panel object
+~~~
+
+* DataBindController.js
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-20.
+ */
+
+Ext.define('ext5.view.chapter8.DataBindController',{
+   extend:'Ext.app.ViewController',
+    requires:[
+        'Ext.window.MessageBox'
+    ],
+    alias:'controller.chapter8-databind',
+    onClickButton : function () {
+        Ext.Msg.confirm('conFirm','Are you sure?','onConfirm',this);
+    },
+    onConfirm: function(choice){ //3
+        if(choice == 'yes'){
+            var mypanel = this.getView().down('panel'); //1
+            var mypanel = this.lookupReference('datapanel');//2
+            var mypanel = this.getReferences().datapanel;//3
+            mypanel.setTitle('access to reference'); //4
+
+            this.getViewModel().set('name','Hello');//5
+
+        }
+    }
+});
+~~~
+
+~~~java
+    1. this.getView() means View that is used by controller
+    2. previous code, referenc name is datapanel
+    3. It will return same result as 2
+~~~
+
+* view
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/controllerrefer.png)
