@@ -80,3 +80,69 @@
 * view
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/datagrid.png) 
+
+### View model
+
+    To improve a source code
+
+* 01 DataBind.html
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter8.DataBind' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        Ext.create('ext5.view.chapter8.DataBind', {   // #4
+            renderTo: document.body    // #5
+        });
+    });
+
+    Ext.define('ext5.view.chapter8.DataBind',{
+        extend: 'Ext.panel.Panel',
+        alias : 'widget.chapter8-databind',
+        requires:['ext5.view.chapter8.DataBindModel'],
+        width: 500,
+        bodyPadding: 10,
+        viewModel:'chapter8-databind',
+        bind:{//3
+            title : '{title}',
+            html:'{html}'
+        },
+        tbar:[{ //4
+            bind:'{buttonText}'
+        }]
+    });
+
+</script>
+</body>
+</html>
+
+~~~
+
+* DataBindModel.js
+
+
+    ViewModel class will handle the data
+
+
+~~~javasript
+
+~~~
