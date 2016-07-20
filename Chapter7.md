@@ -147,7 +147,7 @@
     ViewModel class will handle the data
 
 
-~~~javasript
+~~~javascript
 
 Ext.define('ext5.view.chapter8.DataBindModel',{
    extend:'Ext.app.ViewModel', //1
