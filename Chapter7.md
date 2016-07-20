@@ -184,12 +184,13 @@ Ext.define('ext5.view.chapter8.DataBind',{
     requires:[
         'ext5.view.chapter8.DataBindModel',
         'ext5.view.chapter8.DataBindController'
-        
-    
+
+
     ],
     width: 500,
     bodyPadding: 10,
     viewModel:'chapter8-databind',
+    controller : 'chapter8-databind',
     bind:{//3
         title : '{title}',
         html:'{html}'
@@ -210,7 +211,7 @@ Ext.define('ext5.view.chapter8.DataBind',{
 Ext.define('ext5.view.chapter8.DataBindController',{
    extend:'Ext.app.ViewController',
     requires:[
-        'Ext.MessageBox'
+        'Ext.window.MessageBox'
     ],
     alias:'controller-chapter8-databind',
     onClickButton : function () { //1
@@ -224,3 +225,6 @@ Ext.define('ext5.view.chapter8.DataBindController',{
 });
 ~~~
     
+~~~java
+    1. View class call the method by listener
+~~~
