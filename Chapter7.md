@@ -115,26 +115,30 @@
         });
     });
 
-    Ext.define('ext5.view.chapter8.DataBind',{
+
+</script>
+</body>
+</html>
+
+~~~
+
+* DataBind.js
+~~~javascript
+ Ext.define('ext5.view.chapter8.DataBind',{
         extend: 'Ext.panel.Panel',
         alias : 'widget.chapter8-databind',
         requires:['ext5.view.chapter8.DataBindModel'],
         width: 500,
         bodyPadding: 10,
         viewModel:'chapter8-databind',
-        bind:{//3
+        bind:{
             title : '{title}',
             html:'{html}'
         },
-        tbar:[{ //4
+        tbar:[{ 
             bind:'{buttonText}'
         }]
     });
-
-</script>
-</body>
-</html>
-
 ~~~
 
 * DataBindModel.js
@@ -145,4 +149,15 @@
 
 ~~~javasript
 
+Ext.define('ext5.view.chapter8.DataBindModel',{
+   extend:'Ext.app.ViewModel', //1
+    alias:'viewmodel.chapter8-databind',//2
+    data:{//3
+        title : 'Hello World',
+        html:'The html content',
+        buttonText : 'A button'
+    }
+});
+
 ~~~
+
