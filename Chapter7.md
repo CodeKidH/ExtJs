@@ -9,7 +9,7 @@
     4) VM(view model) : VM is class that manage a data
     
 
-### 2_1 Data binding
+###  Data binding
 
     Data will be changed, View data also change
 
@@ -164,3 +164,63 @@ Ext.define('ext5.view.chapter8.DataBindModel',{
 * view
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/datagrid.png) 
+
+### View Controller
+    
+
+    - View controller have a 1 : 1 relationship 
+    - View and View controller is connected each other by listeners and reference
+
+#### View Controller by listener
+* DataBind.js
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-20.
+ */
+Ext.define('ext5.view.chapter8.DataBind',{
+    extend: 'Ext.panel.Panel',
+    alias : 'widget.chapter8-databind',
+    requires:[
+        'ext5.view.chapter8.DataBindModel',
+        'ext5.view.chapter8.DataBindController'
+        
+    
+    ],
+    width: 500,
+    bodyPadding: 10,
+    viewModel:'chapter8-databind',
+    bind:{//3
+        title : '{title}',
+        html:'{html}'
+    },
+    tbar:[{ //4
+        bind:'{buttonText}',
+        handler : 'onClickButton'
+    }]
+});
+~~~
+
+* DataBindController.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-20.
+ */
+
+Ext.define('ext5.view.chapter8.DataBindController',{
+   extend:'Ext.app.ViewController',
+    requires:[
+        'Ext.MessageBox'
+    ],
+    alias:'controller-chapter8-databind',
+    onClickButton : function () { //1
+        Ext.Msg.confirm('conFirm','Are you sure?','onConfirm',this); //2
+    },
+    onConfirm: function(choice){ //3
+        if(choice == 'yes'){
+            
+        }
+    }
+});
+~~~
+    
