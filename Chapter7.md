@@ -161,3 +161,6 @@ Ext.define('ext5.view.chapter8.DataBindModel',{
 
 ~~~
 
+* view
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/datagrid.png) 
