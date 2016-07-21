@@ -318,3 +318,216 @@ Ext.define('ext5.view.chapter8.DataBindController',{
 * view
 ![child1layout]
       (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/controllerrefer.png)
+
+
+### Router
+
+    - Router can track a status of browser by using history stack
+    - ExtJs is a single page application, so when new page will be loaded, it won't be executed
+    - Router can handle this problem 
+
+#### URI Hash?
+
+~~~java
+    
+    Browser use a URI to explore Internet
+    
+    Example
+        - http://myurl.com/mypage/admins#userid/0710
+        - Hash : #userid/0710
+        - Hash won't be forwarded to server, just stack on a browser 
+~~~
+
+#### Default Hash config
+
+* application.js
+~~~javascript
+/**
+ * The main application class. An instance of this class is created by app.js when it
+ * calls Ext.application(). This is the ideal place to handle application launch and
+ * initialization details.
+ */
+Ext.define('ext6.Application', {
+    extend: 'Ext.app.Application',
+    
+    name: 'ext6',
+
+    stores: [
+        // TODO: add global / shared stores here
+    ],
+    
+    //Hash config
+    defaultToken : 'root',
+    init:function(){
+        this.setDefaultToken('root');
+    },
+    
+});
+
+~~~
+
+~~~java
+    This code will add a #root to URI 
+~~~
+
+#### Implementation of routing
+
+    Routing class is Ext.util.History
+    Router config must be contained in controller(view or contoller)
+
+* app/controller/Route.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-21.
+ */
+Ext.define('ext5.controller.Route',{
+   extend:'Ext.app.Controller',
+    alias:'controller.route',
+    
+    config:{
+        routes:{
+            'user' : 'findUser'
+        }
+    },
+    findUser : function(){
+        this.redirectTo('user/1234');
+        console.log('recognize hash');
+    }
+});
+
+* app/application.js
+
+~~~javascript
+/**
+ * The main application class. An instance of this class is created by app.js when it
+ * calls Ext.application(). This is the ideal place to handle application launch and
+ * initialization details.
+ */
+Ext.define('ext5.Application', {
+    extend: 'Ext.app.Application',
+    
+    name: 'ext5',
+
+    controllers:[
+        'Route'
+    ],
+
+    stores: [
+        // TODO: add global / shared stores here
+    ],
+    
+    launch: function () {
+        // TODO - Launch the application
+    },
+
+    onAppUpdate: function () {
+        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+            function (choice) {
+                if (choice === 'yes') {
+                    window.location.reload();
+                }
+            }
+        );
+    }
+});
+
+~~~
+
+## 3. MVVM, MVVC
+
+* 4_Ticket.html
+~~~html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAT</title>
+    <link href="//cdn.sencha.com/ext/gpl/5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="//cdn.sencha.com/ext/gpl/5.1.0/build/ext-all.js"></script>
+ 
+        <!-- The test harness -->
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        enabled: true,
+        paths: {
+            'ext5': '/app'  // #1
+        }
+    });
+    Ext.require([
+        'ext5.view.chapter8.ticket.Main' // #2
+    ]);
+
+    Ext.onReady(function () {   // #3
+        Ext.create('ext5.view.chapter8.ticket.Main', {   // #4
+            renderTo: document.body    // #5
+        });
+    });
+
+</script>
+</body>
+</html>
+
+~~~
+
+* Main.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-21.
+ */
+Ext.define('ext5.view.chapter8.ticket.Main',{
+   extend:Ext.container.Container,
+    alias:'widget.chapter8-ticketmain',
+    width:500,
+    requires:['ext5.view.chapter8.ticket.login.Login'],
+    otherContent:[
+        { //1
+            xtype:'Login',
+            path:'app/view/chapter8/ticket/login/Login.js'
+        },
+        {
+            xtype:'LoginController',
+            path:'app/view/chapter8/ticket/login/LoginContoller.js'
+        },
+        {
+            xtype:'LoginModel',
+            path:'app/view/chater8/ticekt/login/LoginModel.js'
+        }
+    ],
+    initComponent : function(){
+        Ext.apply(this,{
+           items:[
+               {
+                   padding: '5 5 5 5',
+                   xtype:'component',
+                   id:'databinding'//2
+               }
+           ] 
+        });
+        this.callParent(arguments);
+        
+        var fp = Ext.create('ext5.view.chapter8.ticket.login.Login',{//3
+            autoShow : true,//4
+            listeners:{
+                scope:this,
+                login:function(loginController,user, organization){ //5
+                    console.log('Login Success:',user, organization); //6
+                    fp.close(); //7
+                }
+            }
+        });
+    }
+});
+
+~~~
+
+~~~java
+    1. To show classes that relate to this class
+    2. component id
+    3. To create a login window
+    5. listen to login event
+    7. After success of login, login window is closed
+~~~
+    
+    
