@@ -530,4 +530,133 @@ Ext.define('ext5.view.chapter8.ticket.Main',{
     7. After success of login, login window is closed
 ~~~
     
+* Login.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-21.
+ */
+Ext.define('ext5.view.chapter8.ticket.login.Login',{
+
+    extend:'Ext.window.Window',
+
+    requires:[
+        'Ext.form.panel',
+        'Ext.form.field.ComboBox',
+        'ext5.view.chapter8.ticket.login.LoginModel',
+        'ext5.view.chapter8.ticket.login.LoginController'
+    ],
+    viewModel:{
+        type:'chapter8-ticketlogin'  //1
+    },
+    controller : 'chapter8-tiketlogin',//2
+    bodypadding : 10,
+    title: 'Login - Ticket app',
+    closable : false,
+
+    cls:'login',
+
+    items:{
+        xtype : 'form',
+        reference : 'form', //3
+        items:[
+            {
+                xtype:'textfield',
+                name:'username',
+                bind:'{username}',
+                fieldLabel : 'Username', //4
+                allowBlank : false,
+                enableKeyEvents:true
+            },
+            {
+                xtype:'textfield',
+                name:'password',
+                inputType:'password',
+                fieldLabel:'Password',
+                allowBlank :false,
+                enableKeyEvents:true
+            },
+            {
+                xtype: 'combobox',
+                name: 'organization',
+                fieldLabel: 'Organization',
+                reference: 'organization', //5
+                queryMode: 'local',
+                editable: false,
+                forceSelection:true,
+                displayField:'name',
+                valueField:'id',
+                bind:{
+                    store:'{organization}',//6
+                    value:{//7
+                        twoWay:false, //8
+                        bindTo:'{defaultOrg}' //9
+                    }
+                }
+            }
+        ]
+    },
     
+    button:[
+        {
+            text:'Login',
+            listener:{
+                click:'onLoginClick'//10
+            }
+        }
+    ]
+});
+~~~
+
+~~~java
+    1. To set a ViewModel
+    2. To set a controller
+    3. This reference refer to controller
+    4. View Model provide class with data
+    10. It will call a onLoginClick()  
+~~~
+
+* LoginModel.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-21.
+ */
+Ext.define('ext5.view.chapter8.ticket.login.LoginModel',{
+   extend:'Ext.app.ViewModel', //1
+    alias:'viewmodel.chapter8-ticketlogin',
+    requires:[
+        'ext5.model.ticekt.Organization'
+    ],
+    data:{//2
+        defaultOrg : 1,//3
+        username:'Don'//4
+    },
+    stores:{//5
+        organization : {//6
+            model : 'Organization',//7
+            autoLoad:true,//8
+            isolated:false
+        }
+        
+    }
+});
+~~~
+
+~~~java
+    2. Define a data that will be provided view controller
+    5. Define a store
+    6. 
+~~~
+
+* LoginController.js
+
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-21.
+ */
+Ext.define('ext5.view.chapter8.ticket.login.LoginController',{
+   extend:'Ext.app.viewController',
+    alias:'controller.chapter8-ticketlogin',
+    requires: ['ext5.model.ticket.User']
+});
+
+~~~
