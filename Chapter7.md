@@ -660,3 +660,7 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginController',{
 });
 
 ~~~
+
+* view
+![child1layout]
+      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/mvclogin.png) 
