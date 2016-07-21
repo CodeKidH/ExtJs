@@ -488,11 +488,11 @@ Ext.define('ext5.view.chapter8.ticket.Main',{
         },
         {
             xtype:'LoginController',
-            path:'app/view/chapter8/ticket/login/LoginContoller.js'
+            path:'app/view/chapter8/ticket/login/LoginController.js'
         },
         {
             xtype:'LoginModel',
-            path:'app/view/chater8/ticekt/login/LoginModel.js'
+            path:'app/view/chapter8/ticket/login/LoginModel.js'
         }
     ],
     initComponent : function(){
@@ -503,10 +503,10 @@ Ext.define('ext5.view.chapter8.ticket.Main',{
                    xtype:'component',
                    id:'databinding'//2
                }
-           ] 
+           ]
         });
         this.callParent(arguments);
-        
+
         var fp = Ext.create('ext5.view.chapter8.ticket.login.Login',{//3
             autoShow : true,//4
             listeners:{
@@ -540,7 +540,7 @@ Ext.define('ext5.view.chapter8.ticket.login.Login',{
     extend:'Ext.window.Window',
 
     requires:[
-        'Ext.form.panel',
+        'Ext.form.Panel',
         'Ext.form.field.ComboBox',
         'ext5.view.chapter8.ticket.login.LoginModel',
         'ext5.view.chapter8.ticket.login.LoginController'
@@ -548,7 +548,7 @@ Ext.define('ext5.view.chapter8.ticket.login.Login',{
     viewModel:{
         type:'chapter8-ticketlogin'  //1
     },
-    controller : 'chapter8-tiketlogin',//2
+    controller : 'chapter8-ticketlogin',//2
     bodypadding : 10,
     title: 'Login - Ticket app',
     closable : false,
@@ -595,7 +595,7 @@ Ext.define('ext5.view.chapter8.ticket.login.Login',{
             }
         ]
     },
-    
+
     button:[
         {
             text:'Login',
@@ -624,7 +624,7 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginModel',{
    extend:'Ext.app.ViewModel', //1
     alias:'viewmodel.chapter8-ticketlogin',
     requires:[
-        'ext5.model.ticekt.Organization'
+        'ext5.model.ticket.Organization'
     ],
     data:{//2
         defaultOrg : 1,//3
@@ -636,7 +636,7 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginModel',{
             autoLoad:true,//8
             isolated:false
         }
-        
+
     }
 });
 ~~~
@@ -654,7 +654,7 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginModel',{
  * Created by Administrator on 2016-07-21.
  */
 Ext.define('ext5.view.chapter8.ticket.login.LoginController',{
-   extend:'Ext.app.viewController',
+   extend:'Ext.app.ViewController',
     alias:'controller.chapter8-ticketlogin',
     requires: ['ext5.model.ticket.User']
 });
