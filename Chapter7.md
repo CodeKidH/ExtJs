@@ -629,7 +629,7 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginModel',{
         username:'Don'//4
     },
     stores:{//5
-        organization : {//6
+        organizations : {//6
             model : 'Organization',//7
             autoLoad:true,//8
             isolated:false
@@ -660,5 +660,78 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginController',{
 ~~~
 
 * view
+
 ![child1layout]
-      (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/mvclogin.png) 
+     (https://raw.githubusercontent.com/KyleJeong/ExtJs/master/MyExtJs5/images/mvclogin.png) 
+
+* LoginController - onLoginClick()
+~~~javascript
+    onLoginClick:function(){
+        var form = this.lookupReference('form') //1
+        if (form.isValid()){//2
+            Ext.getBody().mask(this.loginText);//3
+            this.login({//4
+                data:form.getValues(),//5
+                scope: this,
+                success:'onLoginSuccess',//6
+                failure:'onLoginFailure'//7
+            });
+        }
+    }
+~~~
+
+~~~java
+    1. It search for 'form' in the login class
+    2. To check a 'form'
+    3. When the form will be sended, To show the mask
+    4. Invoke a login method
+    5. It send a data to login()
+~~~
+
+* LoginController - fail() success()
+~~~javascript
+   onLoginFailure: function(){
+        Ext.getBody().unmask();
+    },
+
+    onLoginSuccess: function(){
+        Ext.getBody().unmask();//1
+
+        var org = this.lookupReference('organization').getSelectedRecord(); //2
+        this.fireViewEvent('login',this.getView(),user, org); //3
+    }
+~~~
+
+~~~java
+    1. deleting a mask
+    2. To get a organization in Login class and It choose a combo data
+    3. Fire a view , Event name is 'login'
+~~~
+
+* LoginController - login()
+~~~javascript
+   login : function(){
+        Ext.Ajax.request({
+           url: '../../resources/data/authenticate.json', //1
+            method:'GET',
+            params:options.data,//2
+            scope : this,
+            failure:this.onLoginFailure,//3
+            callback:this.onLoginReturn,//4
+            original:options
+        });
+    }
+~~~
+
+* authenticate.json
+~~~json
+{"entitys": [
+    {
+        "id": 1,
+        "name": "Don",
+        "projectId": 1,
+        "organizationId": 1
+    }
+], "success": true, "totalCount": "3", errMsg: "", errTitle: "검색결과"}
+
+~~~
