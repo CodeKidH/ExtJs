@@ -735,3 +735,131 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginController',{
 ], "success": true, "totalCount": "3", errMsg: "", errTitle: "검색결과"}
 
 ~~~
+
+* LoginController - onLoginReturn()
+
+~~~javascript
+    onLoginReturn: function (options, success, response) {
+        options = options.original;
+        var resultSet;
+        var user = Ext.create('ext5.model.ticket.User');
+
+        if(success){
+            resultSet  = user.getProxy().getReader().read(response);
+            if(resultSet.getSuccess()){
+                Ext.callback(options.success,options.scope, [resultSet.getRecords()[0]]);
+                return;
+            }
+        }
+    }
+~~~
+
+* Main.js
+
+~~~javascript
+Ext.define('ext5.view.chapter8.ticket.Main',{
+   extend:Ext.container.Container,
+    alias:'widget.chapter8-ticketmain',
+    width:500,
+    requires:['ext5.view.chapter8.ticket.login.Login'],
+    otherContent:[
+        { //1
+            xtype:'Login',
+            path:'app/view/chapter8/ticket/login/Login.js'
+        },
+        {
+            xtype:'LoginController',
+            path:'app/view/chapter8/ticket/login/LoginController.js'
+        },
+        {
+            xtype:'LoginModel',
+            path:'app/view/chapter8/ticket/login/LoginModel.js'
+        }
+    ],
+    initComponent : function(){
+        Ext.apply(this,{
+           items:[
+               {
+                   padding: '5 5 5 5',
+                   xtype:'component',
+                   id:'databinding'
+               }
+           ]
+        });
+        this.callParent(arguments);
+
+        var fp = Ext.create('ext5.view.chapter8.ticket.login.Login',{
+            autoShow : true,
+            listeners:{
+                scope:this,
+                login:function(loginController,user, organization){ 
+                    console.log('Login Success:',user, organization); 
+                    Ext.create('ext5.view.chapter8.ticket.Body',{//1
+                       renderTo : 'databinding',//2
+                        viewModel:{//3
+                            data:{
+                                currentOrg: organization, //4
+                                currentUser : user
+                            }
+                        }
+                    });
+                    fp.close(); 
+                }
+            }
+        });
+    }
+});
+
+~~~
+
+~~~java
+    1. Creating a Body class
+    2. It will be added to databinding(id) component
+    3. 
+~~~
+
+* Body.js
+
+
+    After Login is success
+    
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-27.
+ */
+Ext.define('ext5.view.chapter8.ticket.Body',{
+   extend:'Ext.panel.Panel',
+    alias:'widget.chapter8-ticektbody'
+    width:500,
+    height:300,
+
+    requires:[
+        'ext5.model.ticket.User',
+        'ext5.model.ticket.Proeject',
+        'ext5.view.chapter8.ticket.BodyModel',
+        'ext5.view.chapter8.ticket.BodyController',
+        'ext5.view.chapter8.ticket.User'
+    ],
+    
+    viewModel:{
+        type:'chapter8-ticketbody'//1
+    },
+    controller:'chapter8-ticketbody',//2
+    layout:{
+        type:'hbox',
+        align:'stretch'
+    },
+    items:[
+        {
+            xtype:'chapter8-ticketuser'//3
+        }
+    ]
+    
+});
+~~~
+
+~~~java
+    1. To configure viewmodel
+    2. To configure viewcontroller
+    3. Adding a first item 
+~~~
