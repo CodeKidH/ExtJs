@@ -863,3 +863,62 @@ Ext.define('ext5.view.chapter8.ticket.Body',{
     2. To configure viewcontroller
     3. Adding a first item 
 ~~~
+
+* BodyModel.js
+~~~javascript
+Ext.define('ext5.view.chapter8.ticket.BodyModel',{
+   extend:'Ext.app.ViewModel',
+    alias:'viewmodel.chapter8-ticketbody'
+});
+~~~
+
+* BodyController.js
+~~~javascript
+/**
+ * Created by Administrator on 2016-07-27.
+ */
+Ext.define('ext5.view.chapter8.ticket.BodyController',{
+   extend:'Ext.app.ViewController',
+    alias:'controller.chapter8-ticket'
+});
+~~~
+
+* User.js
+
+
+    This is first child in BodyClass
+
+~~~javascript
+    /**
+ * Created by Administrator on 2016-07-27.
+ */
+Ext.define('ext5.view.chapter8.ticket.User',{
+    extend:'Ext.panel.Panel',
+    xtype:'chapter8-ticketuser',
+    margin:'5 0 5 5',
+    title:'User Info',
+    width: 150,
+    defaults:{
+        labelWidth:80
+    },
+    items:[
+        {
+            xtype:'displayfield',
+            fieldLabel:'Orgname',
+            bind:'{currentOrg.name}'//1
+        },
+        {
+            xtype:'displayfield',
+            fieldLabel:'Username',
+            bind:'{currentUsername}',//2
+            margin:'0 10 0 0'
+        },
+        {
+            xtype:'displayfield',
+            fieldLabel:'Project',
+            bind:'{theProject.name}'//3
+        }
+    ]
+});
+
+~~~
