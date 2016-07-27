@@ -12,7 +12,7 @@ Ext.define('ext5.view.chapter8.ticket.login.LoginModel',{
         username:'Don'//4
     },
     stores:{//5
-        organization : {//6
+        organizations : {//6
             model : 'Organization',//7
             autoLoad:true,//8
             isolated:false

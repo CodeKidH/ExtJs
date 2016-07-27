@@ -26,19 +26,28 @@ Ext.define('ext5.view.chapter8.ticket.Main',{
                {
                    padding: '5 5 5 5',
                    xtype:'component',
-                   id:'databinding'//2
+                   id:'databinding'
                }
            ]
         });
         this.callParent(arguments);
 
-        var fp = Ext.create('ext5.view.chapter8.ticket.login.Login',{//3
+        var fp = Ext.create('ext5.view.chapter8.ticket.login.Login',{
             autoShow : true,//4
             listeners:{
                 scope:this,
-                login:function(loginController,user, organization){ //5
-                    console.log('Login Success:',user, organization); //6
-                    fp.close(); //7
+                login:function(loginController,user, organization){
+                    console.log('Login Success:',user, organization);
+                    Ext.create('ext5.view.chapter8.ticket.Body',{//1
+                       renderTo : 'databinding',//2
+                        viewModel:{//3
+                            data:{
+                                currentOrg: organization, //4
+                                currentUser : user
+                            }
+                        }
+                    });
+                    fp.close();
                 }
             }
         });
